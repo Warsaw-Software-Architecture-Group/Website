@@ -1,0 +1,130 @@
+---
+import { getTranslations } from '../i18n/translations';
+
+export interface Props {
+  lang?: 'pl' | 'en';
+}
+
+const { lang = 'pl' } = Astro.props;
+const t = getTranslations(lang);
+---
+
+<div class="flex flex-col items-center">
+  <svg 
+    width="240" 
+    height="160" 
+    viewBox="0 0 240 160" 
+    xmlns="http://www.w3.org/2000/svg"
+    class="hero-logo-svg-v2 mb-6"
+  >
+    <defs>
+      <linearGradient id="heroBlockGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+      </linearGradient>
+      
+      <linearGradient id="heroBlockGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+      </linearGradient>
+      
+      <linearGradient id="heroBlockGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#0891b2;stop-opacity:1" />
+      </linearGradient>
+    </defs>
+    
+    <!-- Building blocks representing architecture components -->
+    <g class="building-blocks-hero">
+      <!-- Bottom foundation blocks -->
+      <rect x="20" y="120" width="32" height="32" rx="4" fill="url(#heroBlockGrad1)" class="block block-1"/>
+      <rect x="60" y="120" width="32" height="32" rx="4" fill="url(#heroBlockGrad1)" class="block block-2"/>
+      <rect x="100" y="120" width="32" height="32" rx="4" fill="url(#heroBlockGrad1)" class="block block-3"/>
+      <rect x="140" y="120" width="32" height="32" rx="4" fill="url(#heroBlockGrad1)" class="block block-4"/>
+      <rect x="180" y="120" width="28" height="32" rx="4" fill="url(#heroBlockGrad1)" class="block block-5"/>
+      
+      <!-- Middle layer blocks -->
+      <rect x="40" y="80" width="32" height="32" rx="4" fill="url(#heroBlockGrad2)" class="block block-6"/>
+      <rect x="80" y="80" width="32" height="32" rx="4" fill="url(#heroBlockGrad2)" class="block block-7"/>
+      <rect x="120" y="80" width="32" height="32" rx="4" fill="url(#heroBlockGrad2)" class="block block-8"/>
+      <rect x="160" y="80" width="32" height="32" rx="4" fill="url(#heroBlockGrad2)" class="block block-9"/>
+      
+      <!-- Top layer blocks -->
+      <rect x="60" y="40" width="32" height="32" rx="4" fill="url(#heroBlockGrad3)" class="block block-10"/>
+      <rect x="100" y="40" width="32" height="32" rx="4" fill="url(#heroBlockGrad3)" class="block block-11"/>
+      <rect x="140" y="40" width="32" height="32" rx="4" fill="url(#heroBlockGrad3)" class="block block-12"/>
+      
+      <!-- Crown blocks with WSAG letters -->
+      <rect x="70" y="8" width="24" height="24" rx="4" fill="url(#heroBlockGrad3)" class="block crown-block-1"/>
+      <rect x="98" y="8" width="24" height="24" rx="4" fill="url(#heroBlockGrad3)" class="block crown-block-2"/>
+      <rect x="126" y="8" width="24" height="24" rx="4" fill="url(#heroBlockGrad3)" class="block crown-block-3"/>
+      <rect x="154" y="8" width="24" height="24" rx="4" fill="url(#heroBlockGrad3)" class="block crown-block-4"/>
+    </g>
+    
+    <!-- WSAG letters on crown blocks -->
+    <g class="wsag-letters-blocks">
+      <text x="82" y="23" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#ffffff" class="blocks-letter">
+        W
+      </text>
+      <text x="110" y="23" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#ffffff" class="blocks-letter">
+        S
+      </text>
+      <text x="138" y="23" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#ffffff" class="blocks-letter">
+        A
+      </text>
+      <text x="166" y="23" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#ffffff" class="blocks-letter">
+        G
+      </text>
+    </g>
+    
+    <!-- Connection lines showing dependencies -->
+    <g class="connection-lines-hero" stroke="#64748b" stroke-width="2" opacity="0.5" fill="none">
+      <line x1="76" y1="120" x2="96" y2="80" class="connection"/>
+      <line x1="116" y1="120" x2="96" y2="80" class="connection"/>
+      <line x1="96" y1="80" x2="116" y2="40" class="connection"/>
+      <line x1="136" y1="80" x2="116" y2="40" class="connection"/>
+    </g>
+  </svg>
+  
+  <div class="text-center">
+    <h1 class="text-2xl md:text-3xl font-bold text-gray-700 mb-2">
+      {t.organizationName}
+    </h1>
+  </div>
+</div>
+
+<style>
+  .hero-logo-svg-v2 {
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+  }
+  
+  .hero-logo-svg-v2:hover {
+    transform: scale(1.02) rotate(1deg);
+  }
+  
+  .building-blocks-hero .block {
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+  }
+  
+  .building-blocks-hero .crown-block-1,
+  .building-blocks-hero .crown-block-2,
+  .building-blocks-hero .crown-block-3,
+  .building-blocks-hero .crown-block-4 {
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3));
+  }
+  
+  .connection-lines-hero .connection {
+    stroke-linecap: round;
+  }
+  
+  .wsag-letters-blocks .blocks-letter {
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .hero-logo-svg-v2 * {
+      animation: none !important;
+    }
+  }
+</style>

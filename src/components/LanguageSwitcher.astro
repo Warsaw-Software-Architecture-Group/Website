@@ -1,0 +1,73 @@
+---
+import { getTranslations } from '../i18n/translations';
+
+export interface Props {
+  currentLang: 'pl' | 'en';
+  currentPath?: string;
+}
+
+const { currentLang, currentPath = '/' } = Astro.props;
+const t = getTranslations(currentLang);
+
+// Generate the opposite language URL
+function getOppositeLanguageUrl(lang: 'pl' | 'en', path: string) {
+  if (lang === 'pl') {
+    // Current is Polish, switch to English
+    return `/en${path}`;
+  } else {
+    // Current is English, switch to Polish (remove /en prefix)
+    return path.replace(/^\/en/, '') || '/';
+  }
+}
+
+const oppositeUrl = getOppositeLanguageUrl(currentLang, currentPath);
+---
+
+<div class="flex items-center space-x-1">
+  <!-- Current language (active) -->
+  <button 
+    class="flex items-center justify-center w-8 h-8 rounded-md opacity-50 cursor-default"
+    disabled
+  >
+    {currentLang === 'pl' ? (
+      <!-- Polish flag -->
+      <svg class="w-6 h-6" viewBox="0 0 640 480" fill="none">
+        <path fill="#fff" d="M0 0h640v240H0z"/>
+        <path fill="#dc143c" d="M0 240h640v240H0z"/>
+      </svg>
+    ) : (
+      <!-- UK/English flag -->
+      <svg class="w-6 h-6" viewBox="0 0 640 480" fill="none">
+        <path fill="#012169" d="M0 0h640v480H0z"/>
+        <path fill="#fff" d="m75 0 244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0h75z"/>
+        <path fill="#c8102e" d="m424 281 216 159v40L369 281h55zm-184 20 6 35L54 480H0l246-179zM640 0v3L391 191l2-44L590 0h50zM0 0l239 176h-60L0 42V0z"/>
+        <path fill="#fff" d="M241 0v480h160V0H241zM0 160v160h640V160H0z"/>
+        <path fill="#c8102e" d="M0 193v96h640v-96H0zM273 0v480h96V0h-96z"/>
+      </svg>
+    )}
+  </button>
+  
+  <!-- Switch to other language -->
+  <button 
+    onclick={`window.location.href='${oppositeUrl}'`}
+    class="flex items-center justify-center w-8 h-8 rounded-md hover:bg-gray-100 transition-colors duration-200 border border-gray-200"
+    title={currentLang === 'pl' ? t.switchToEnglish : t.switchToPolish}
+  >
+    {currentLang === 'pl' ? (
+      <!-- UK/English flag -->
+      <svg class="w-6 h-6" viewBox="0 0 640 480" fill="none">
+        <path fill="#012169" d="M0 0h640v480H0z"/>
+        <path fill="#fff" d="m75 0 244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0h75z"/>
+        <path fill="#c8102e" d="m424 281 216 159v40L369 281h55zm-184 20 6 35L54 480H0l246-179zM640 0v3L391 191l2-44L590 0h50zM0 0l239 176h-60L0 42V0z"/>
+        <path fill="#fff" d="M241 0v480h160V0H241zM0 160v160h640V160H0z"/>
+        <path fill="#c8102e" d="M0 193v96h640v-96H0zM273 0v480h96V0h-96z"/>
+      </svg>
+    ) : (
+      <!-- Polish flag -->
+      <svg class="w-6 h-6" viewBox="0 0 640 480" fill="none">
+        <path fill="#fff" d="M0 0h640v240H0z"/>
+        <path fill="#dc143c" d="M0 240h640v240H0z"/>
+      </svg>
+    )}
+  </button>
+</div>

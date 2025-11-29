@@ -1,0 +1,118 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  lang?: 'pl' | 'en';
+  image?: string;
+  type?: string;
+  canonical?: string;
+}
+
+const { 
+  title, 
+  lang = 'pl',
+  description = lang === 'pl' 
+    ? 'Warsaw Software Architecture Group - Społeczność architektów oprogramowania w Warszawie. Miesięczne spotkania, warsztaty i networking dla profesjonalistów.' 
+    : 'Warsaw Software Architecture Group - Connect with Warsaw\'s Software Architecture Community. Monthly meetups, workshops and networking for professionals.',
+  image = '/wsag-og-image.jpg',
+  type = 'website',
+  canonical
+} = Astro.props;
+
+const currentUrl = new URL(Astro.url.pathname, Astro.site || 'https://wsag.org');
+const canonicalUrl = canonical || currentUrl.toString();
+const siteTitle = 'Warsaw Software Architecture Group';
+const fullTitle = title.includes('WSAG') ? title : `${title} - WSAG`;
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Primary Meta Tags -->
+    <title>{fullTitle}</title>
+    <meta name="title" content={fullTitle} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={lang === 'pl' 
+      ? 'architektura oprogramowania, warszawa, software architecture, meetup, społeczność, programowanie, IT, technologia'
+      : 'software architecture, warsaw, meetup, community, programming, IT, technology, developers'} />
+    <meta name="author" content="Warsaw Software Architecture Group" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site || 'https://wsag.org').toString()} />
+    <meta property="og:site_name" content={siteTitle} />
+    <meta property="og:locale" content={lang === 'pl' ? 'pl_PL' : 'en_US'} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalUrl} />
+    <meta property="twitter:title" content={fullTitle} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.site || 'https://wsag.org').toString()} />
+
+    <!-- Language Alternates -->
+    {lang === 'pl' && <link rel="alternate" hreflang="en" href={currentUrl.toString().replace(/^\//, '/en/')} />}
+    {lang === 'en' && <link rel="alternate" hreflang="pl" href={currentUrl.toString().replace(/^\/en/, '')} />}
+    <link rel="alternate" hreflang="x-default" href={currentUrl.toString().replace(/^\/en/, '')} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": siteTitle,
+      "url": Astro.site || 'https://wsag.org',
+      "logo": new URL('/wsag-logo.png', Astro.site || 'https://wsag.org').toString(),
+      "description": description,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Warsaw",
+        "addressCountry": "PL"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "contact@wsag.org.pl",
+        "contactType": "customer service"
+      },
+      "sameAs": [
+        "https://github.com/wsag-org",
+        "https://linkedin.com/company/wsag",
+        "https://twitter.com/wsag_org"
+      ]
+    })} />
+  </head>
+  <body class="antialiased">
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+  
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+</style>

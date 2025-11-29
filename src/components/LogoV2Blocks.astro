@@ -1,0 +1,125 @@
+---
+---
+
+<div class="flex items-center space-x-3">
+  <svg 
+    width="40" 
+    height="40" 
+    viewBox="0 0 40 40" 
+    xmlns="http://www.w3.org/2000/svg"
+    class="logo-svg-v2"
+  >
+    <defs>
+      <linearGradient id="blockGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+      </linearGradient>
+      
+      <linearGradient id="blockGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+      </linearGradient>
+      
+      <linearGradient id="blockGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#0891b2;stop-opacity:1" />
+      </linearGradient>
+    </defs>
+    
+    <!-- Building blocks representing architecture components -->
+    <g class="building-blocks">
+      <!-- Bottom foundation blocks -->
+      <rect x="2" y="28" width="8" height="8" rx="2" fill="url(#blockGrad1)" class="block block-1">
+        <animateTransform attributeName="transform" type="translate" values="0,2;0,0;0,2" dur="3s" repeatCount="indefinite" begin="0s"/>
+      </rect>
+      <rect x="12" y="28" width="8" height="8" rx="2" fill="url(#blockGrad1)" class="block block-2">
+        <animateTransform attributeName="transform" type="translate" values="0,2;0,0;0,2" dur="3s" repeatCount="indefinite" begin="0.2s"/>
+      </rect>
+      <rect x="22" y="28" width="8" height="8" rx="2" fill="url(#blockGrad1)" class="block block-3">
+        <animateTransform attributeName="transform" type="translate" values="0,2;0,0;0,2" dur="3s" repeatCount="indefinite" begin="0.4s"/>
+      </rect>
+      <rect x="32" y="28" width="6" height="8" rx="2" fill="url(#blockGrad1)" class="block block-4">
+        <animateTransform attributeName="transform" type="translate" values="0,2;0,0;0,2" dur="3s" repeatCount="indefinite" begin="0.6s"/>
+      </rect>
+      
+      <!-- Middle layer blocks -->
+      <rect x="6" y="18" width="8" height="8" rx="2" fill="url(#blockGrad2)" class="block block-5">
+        <animateTransform attributeName="transform" type="translate" values="0,1;0,0;0,1" dur="2.5s" repeatCount="indefinite" begin="0.8s"/>
+      </rect>
+      <rect x="16" y="18" width="8" height="8" rx="2" fill="url(#blockGrad2)" class="block block-6">
+        <animateTransform attributeName="transform" type="translate" values="0,1;0,0;0,1" dur="2.5s" repeatCount="indefinite" begin="1s"/>
+      </rect>
+      <rect x="26" y="18" width="8" height="8" rx="2" fill="url(#blockGrad2)" class="block block-7">
+        <animateTransform attributeName="transform" type="translate" values="0,1;0,0;0,1" dur="2.5s" repeatCount="indefinite" begin="1.2s"/>
+      </rect>
+      
+      <!-- Top layer blocks -->
+      <rect x="10" y="8" width="8" height="8" rx="2" fill="url(#blockGrad3)" class="block block-8">
+        <animateTransform attributeName="transform" type="translate" values="0,0.5;0,0;0,0.5" dur="2s" repeatCount="indefinite" begin="1.4s"/>
+      </rect>
+      <rect x="20" y="8" width="8" height="8" rx="2" fill="url(#blockGrad3)" class="block block-9">
+        <animateTransform attributeName="transform" type="translate" values="0,0.5;0,0;0,0.5" dur="2s" repeatCount="indefinite" begin="1.6s"/>
+      </rect>
+      
+      <!-- Crown block with W -->
+      <rect x="16" y="2" width="8" height="6" rx="2" fill="url(#blockGrad3)" class="block crown-block">
+        <animateTransform attributeName="transform" type="scale" values="1;1.1;1" dur="2s" repeatCount="indefinite" begin="2s"/>
+      </rect>
+    </g>
+    
+    <!-- Central "W" on crown block -->
+    <g class="w-letter-blocks">
+      <text x="20" y="6.5" font-family="Arial, sans-serif" font-size="6" font-weight="bold" text-anchor="middle" fill="#ffffff" class="blocks-w">
+        W
+      </text>
+    </g>
+    
+    <!-- Connection lines showing dependencies -->
+    <g class="connection-lines" stroke="#64748b" stroke-width="1" opacity="0.5" fill="none">
+      <line x1="14" y1="28" x2="20" y2="18" class="connection">
+        <animate attributeName="opacity" values="0.3;0.7;0.3" dur="3s" repeatCount="indefinite"/>
+      </line>
+      <line x1="26" y1="28" x2="20" y2="18" class="connection">
+        <animate attributeName="opacity" values="0.3;0.7;0.3" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+      </line>
+      <line x1="18" y1="18" x2="20" y2="8" class="connection">
+        <animate attributeName="opacity" values="0.3;0.7;0.3" dur="3s" repeatCount="indefinite" begin="1s"/>
+      </line>
+    </g>
+  </svg>
+  
+  <div class="logo-text">
+    <span class="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+      WSAG
+    </span>
+  </div>
+</div>
+
+<style>
+  .logo-svg-v2 {
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  }
+  
+  .logo-svg-v2:hover {
+    transform: scale(1.05) rotate(2deg);
+  }
+  
+  .building-blocks .block {
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+  }
+  
+  .building-blocks .crown-block {
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  }
+  
+  .connection-lines .connection {
+    stroke-linecap: round;
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .logo-svg-v2 * {
+      animation: none !important;
+    }
+  }
+</style>

@@ -1,0 +1,28 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Hero from '../../components/Hero.astro';
+import About from '../../components/About.astro';
+import Events from '../../components/Events.astro';
+import Organizers from '../../components/Organizers.astro';
+import Footer from '../../components/Footer.astro';
+
+const lang = 'en';
+---
+
+<Layout title="WSAG - Warsaw Software Architecture Group" description="Warsaw Software Architecture Community. Monthly meetups, workshops and networking for IT professionals. Join us to learn and grow!" lang={lang}>
+  <Navigation lang={lang} isMainPage={true} />
+  <main>
+    <Hero lang={lang} />
+    <About lang={lang} />
+    <Events lang={lang} />
+    <Organizers lang={lang} />
+  </main>
+  <Footer lang={lang} />
+</Layout>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>

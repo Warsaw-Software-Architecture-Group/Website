@@ -1,0 +1,36 @@
+---
+import { getTranslations } from '../i18n/translations';
+
+export interface Props {
+  lang?: 'pl' | 'en';
+}
+
+const { lang = 'pl' } = Astro.props;
+const t = getTranslations(lang);
+
+const partners = [
+  'TechCorp',
+  'CloudSystems',
+  'DataFlow',
+  'DevTools Pro',
+  'CodeCraft',
+  'InnovateTech',
+];
+---
+
+<section id="partners" class="py-24 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{t.partners.title}</h2>
+      <p class="text-xl text-gray-600">{t.partners.subtitle}</p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+      {partners.map(partner => (
+        <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6 flex items-center justify-center">
+          <div class="text-lg font-semibold text-gray-700">{partner}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

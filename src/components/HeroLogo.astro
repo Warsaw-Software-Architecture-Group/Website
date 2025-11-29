@@ -1,0 +1,165 @@
+---
+import { getTranslations } from '../i18n/translations';
+
+export interface Props {
+  lang?: 'pl' | 'en';
+}
+
+const { lang = 'pl' } = Astro.props;
+const t = getTranslations(lang);
+---
+
+<div class="flex flex-col items-center">
+  <svg 
+    width="200" 
+    height="120" 
+    viewBox="0 0 200 120" 
+    xmlns="http://www.w3.org/2000/svg"
+    class="hero-logo-svg mb-6"
+  >
+    <defs>
+      <linearGradient id="heroLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+        <stop offset="50%" style="stop-color:#4f46e5;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+      </linearGradient>
+      
+      <linearGradient id="heroAccentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+      </linearGradient>
+    </defs>
+    
+    <!-- Main structure representing architecture layers -->
+    <g class="architecture-layers">
+      <!-- Base layer -->
+      <rect x="20" y="85" width="160" height="20" rx="4" fill="url(#heroLogoGrad)" class="layer layer-1">
+        <animate attributeName="opacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite" begin="0s"/>
+      </rect>
+      
+      <!-- Middle layer -->
+      <rect x="40" y="60" width="120" height="18" rx="4" fill="url(#heroLogoGrad)" class="layer layer-2">
+        <animate attributeName="opacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+      </rect>
+      
+      <!-- Top layer -->
+      <rect x="60" y="38" width="80" height="16" rx="4" fill="url(#heroLogoGrad)" class="layer layer-3">
+        <animate attributeName="opacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite" begin="1s"/>
+      </rect>
+    </g>
+    
+    <!-- Connecting nodes representing microservices -->
+    <g class="connection-nodes">
+      <circle cx="40" cy="75" r="6" fill="url(#heroAccentGrad)" class="node node-1">
+        <animate attributeName="r" values="6;8;6" dur="2s" repeatCount="indefinite" begin="0s"/>
+      </circle>
+      <circle cx="100" cy="50" r="6" fill="url(#heroAccentGrad)" class="node node-2">
+        <animate attributeName="r" values="6;8;6" dur="2s" repeatCount="indefinite" begin="0.3s"/>
+      </circle>
+      <circle cx="160" cy="75" r="6" fill="url(#heroAccentGrad)" class="node node-3">
+        <animate attributeName="r" values="6;8;6" dur="2s" repeatCount="indefinite" begin="0.6s"/>
+      </circle>
+    </g>
+    
+    <!-- Data flow lines -->
+    <g class="data-flow" stroke="url(#heroAccentGrad)" stroke-width="3" fill="none" opacity="0.6">
+      <path d="M40 75 L100 50" class="flow-line">
+        <animate attributeName="stroke-dasharray" values="0,200;40,160;0,200" dur="4s" repeatCount="indefinite"/>
+      </path>
+      <path d="M100 50 L160 75" class="flow-line">
+        <animate attributeName="stroke-dasharray" values="0,200;40,160;0,200" dur="4s" repeatCount="indefinite" begin="1s"/>
+      </path>
+      <path d="M40 75 L160 75" class="flow-line">
+        <animate attributeName="stroke-dasharray" values="0,200;50,150;0,200" dur="5s" repeatCount="indefinite" begin="2s"/>
+      </path>
+    </g>
+    
+    <!-- Large "WSAG" text -->
+    <g class="wsag-text">
+      <!-- W -->
+      <path 
+        d="M 30 8 L 35 25 L 40 15 L 45 25 L 50 15 L 55 25 L 60 8" 
+        stroke="url(#heroLogoGrad)" 
+        stroke-width="4" 
+        fill="none" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+        class="letter-path"
+      >
+        <animate attributeName="stroke-width" values="4;5;4" dur="2.5s" repeatCount="indefinite"/>
+      </path>
+      
+      <!-- S -->
+      <path 
+        d="M 75 25 Q 70 25 70 20 Q 70 15 75 15 L 85 15 Q 90 15 90 10 Q 90 8 85 8 L 75 8" 
+        stroke="url(#heroLogoGrad)" 
+        stroke-width="4" 
+        fill="none" 
+        stroke-linecap="round"
+        class="letter-path"
+      >
+        <animate attributeName="stroke-width" values="4;5;4" dur="2.5s" repeatCount="indefinite" begin="0.2s"/>
+      </path>
+      
+      <!-- A -->
+      <path 
+        d="M 105 25 L 115 8 L 125 25 M 110 18 L 120 18" 
+        stroke="url(#heroLogoGrad)" 
+        stroke-width="4" 
+        fill="none" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+        class="letter-path"
+      >
+        <animate attributeName="stroke-width" values="4;5;4" dur="2.5s" repeatCount="indefinite" begin="0.4s"/>
+      </path>
+      
+      <!-- G -->
+      <path 
+        d="M 145 25 Q 140 25 140 16.5 Q 140 8 145 8 L 155 8 Q 160 8 160 13 L 160 16 L 152 16" 
+        stroke="url(#heroLogoGrad)" 
+        stroke-width="4" 
+        fill="none" 
+        stroke-linecap="round"
+        class="letter-path"
+      >
+        <animate attributeName="stroke-width" values="4;5;4" dur="2.5s" repeatCount="indefinite" begin="0.6s"/>
+      </path>
+    </g>
+  </svg>
+  
+  <div class="text-center">
+    <h1 class="text-2xl md:text-3xl font-bold text-gray-700 mb-2">
+      {t.organizationName}
+    </h1>
+  </div>
+</div>
+
+<style>
+  .hero-logo-svg {
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+  }
+  
+  .hero-logo-svg:hover {
+    transform: scale(1.02);
+  }
+  
+  .connection-nodes .node {
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  }
+  
+  .data-flow .flow-line {
+    stroke-linecap: round;
+  }
+  
+  .wsag-text .letter-path {
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .hero-logo-svg * {
+      animation: none !important;
+    }
+  }
+</style>

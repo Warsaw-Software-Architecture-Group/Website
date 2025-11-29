@@ -1,0 +1,26 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://wsag.org/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 1
+
+# Allow all pages
+Allow: /
+Allow: /en/
+Allow: /contact
+Allow: /en/contact
+Allow: /privacy
+Allow: /en/privacy
+Allow: /code-of-conduct
+Allow: /en/code-of-conduct
+Allow: /events/
+Allow: /en/events/
+
+# Block temporary or development files
+Disallow: /*.js$
+Disallow: /*.css$
+Disallow: /api/
+Disallow: /_astro/

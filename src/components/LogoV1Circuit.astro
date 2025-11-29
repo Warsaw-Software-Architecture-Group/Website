@@ -1,0 +1,111 @@
+---
+---
+
+<div class="flex items-center space-x-3">
+  <svg 
+    width="40" 
+    height="40" 
+    viewBox="0 0 40 40" 
+    xmlns="http://www.w3.org/2000/svg"
+    class="logo-svg-v1"
+  >
+    <defs>
+      <linearGradient id="circuitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+        <stop offset="50%" style="stop-color:#3b82f6;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      </linearGradient>
+      
+      <linearGradient id="nodeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#ef4444;stop-opacity:1" />
+      </linearGradient>
+    </defs>
+    
+    <!-- Circuit board background -->
+    <rect width="40" height="40" rx="4" fill="#1f2937" opacity="0.9"/>
+    
+    <!-- Circuit traces -->
+    <g class="circuit-traces" stroke="url(#circuitGrad)" stroke-width="1.5" fill="none">
+      <!-- Horizontal traces -->
+      <line x1="5" y1="12" x2="35" y2="12" class="trace trace-1">
+        <animate attributeName="stroke-dasharray" values="0,30;30,0;0,30" dur="3s" repeatCount="indefinite"/>
+      </line>
+      <line x1="5" y1="20" x2="35" y2="20" class="trace trace-2">
+        <animate attributeName="stroke-dasharray" values="0,30;30,0;0,30" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+      </line>
+      <line x1="5" y1="28" x2="35" y2="28" class="trace trace-3">
+        <animate attributeName="stroke-dasharray" values="0,30;30,0;0,30" dur="3s" repeatCount="indefinite" begin="1s"/>
+      </line>
+      
+      <!-- Vertical traces -->
+      <line x1="12" y1="5" x2="12" y2="35" class="trace trace-4">
+        <animate attributeName="stroke-dasharray" values="0,30;30,0;0,30" dur="4s" repeatCount="indefinite" begin="1.5s"/>
+      </line>
+      <line x1="20" y1="5" x2="20" y2="35" class="trace trace-5">
+        <animate attributeName="stroke-dasharray" values="0,30;30,0;0,30" dur="4s" repeatCount="indefinite" begin="2s"/>
+      </line>
+      <line x1="28" y1="5" x2="28" y2="35" class="trace trace-6">
+        <animate attributeName="stroke-dasharray" values="0,30;30,0;0,30" dur="4s" repeatCount="indefinite" begin="2.5s"/>
+      </line>
+    </g>
+    
+    <!-- Circuit nodes (chips/components) -->
+    <g class="circuit-nodes">
+      <rect x="10" y="10" width="4" height="4" rx="1" fill="url(#nodeGrad)" class="node node-1">
+        <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite" begin="0s"/>
+      </rect>
+      <rect x="26" y="10" width="4" height="4" rx="1" fill="url(#nodeGrad)" class="node node-2">
+        <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite" begin="0.3s"/>
+      </rect>
+      <rect x="18" y="18" width="4" height="4" rx="1" fill="url(#nodeGrad)" class="node node-3">
+        <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite" begin="0.6s"/>
+      </rect>
+      <rect x="10" y="26" width="4" height="4" rx="1" fill="url(#nodeGrad)" class="node node-4">
+        <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite" begin="0.9s"/>
+      </rect>
+      <rect x="26" y="26" width="4" height="4" rx="1" fill="url(#nodeGrad)" class="node node-5">
+        <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite" begin="1.2s"/>
+      </rect>
+    </g>
+    
+    <!-- Central "W" -->
+    <g class="w-letter-circuit">
+      <text x="20" y="25" font-family="monospace" font-size="12" font-weight="bold" text-anchor="middle" fill="#ffffff" class="circuit-w">
+        W
+        <animate attributeName="fill" values="#ffffff;#10b981;#ffffff" dur="2s" repeatCount="indefinite"/>
+      </text>
+    </g>
+  </svg>
+  
+  <div class="logo-text">
+    <span class="text-xl font-bold bg-gradient-to-r from-green-500 to-blue-600 bg-clip-text text-transparent">
+      WSAG
+    </span>
+  </div>
+</div>
+
+<style>
+  .logo-svg-v1 {
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+  }
+  
+  .logo-svg-v1:hover {
+    transform: scale(1.1);
+  }
+  
+  .circuit-traces .trace {
+    stroke-linecap: round;
+  }
+  
+  .circuit-nodes .node {
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .logo-svg-v1 * {
+      animation: none !important;
+    }
+  }
+</style>

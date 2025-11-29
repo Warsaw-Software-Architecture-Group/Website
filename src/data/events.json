@@ -1,0 +1,327 @@
+[
+  {
+    "id": "2025-01-15",
+    "meetupId": 1,
+    "title": "Microservices Architecture Patterns",
+    "slug": "microservices-architecture-patterns",
+    "date": "January 15, 2025",
+    "time": "18:00",
+    "endTime": "20:30",
+    "description": "Deep dive into modern microservices patterns, including saga, CQRS, and event sourcing.",
+    "longDescription": "Join us for an in-depth exploration of microservices architecture patterns that are transforming how we build scalable applications. This session will cover practical implementation strategies, common pitfalls, and real-world case studies from large-scale systems.\n\nWe'll explore the Saga pattern for managing distributed transactions, Command Query Responsibility Segregation (CQRS) for separating read and write operations, and Event Sourcing for maintaining application state through immutable event logs.",
+    "location": {
+      "name": "Warsaw University of Technology",
+      "address": "Nowy Świat 15/19",
+      "city": "00-029 Warsaw, Poland",
+      "mapUrl": "https://maps.google.com/embed?pb=!1m18!1m12!1m3!1d2443.6585859798344!2d20.98462631580052!3d52.22104397975899",
+      "directions": "Metro: Nowy Świat-Uniwersytet station (2 min walk)",
+      "parking": "Paid parking nearby, public transport recommended",
+      "accessibility": "Wheelchair accessible venue"
+    },
+    "speakers": [
+      {
+        "name": "Anna Kowalska",
+        "role": "Principal Architect",
+        "company": "TechCorp",
+        "bio": "Anna is a Principal Software Architect with over 12 years of experience designing large-scale distributed systems. She has led the architecture for several successful microservices transformations and is passionate about sharing knowledge with the community.",
+        "linkedin": "https://linkedin.com/in/anna-kowalska",
+        "github": "https://github.com/akowalska",
+        "twitter": "https://twitter.com/annatech"
+      },
+      {
+        "name": "Piotr Nowicki",
+        "role": "Senior DevOps Engineer",
+        "company": "CloudNative Solutions",
+        "bio": "Piotr specializes in Kubernetes orchestration and cloud-native architectures. He has implemented microservices platforms for Fortune 500 companies and is an active contributor to open-source projects.",
+        "linkedin": "https://linkedin.com/in/piotr-nowicki",
+        "github": "https://github.com/pnowicki"
+      },
+      {
+        "name": "Maria Wiśniewska",
+        "role": "Tech Lead",
+        "company": "FinTech Innovations",
+        "bio": "Maria leads a team of 15 engineers building high-frequency trading systems. She has deep expertise in event sourcing and CQRS patterns in financial applications.",
+        "linkedin": "https://linkedin.com/in/maria-wisniewska"
+      }
+    ],
+    "presentations": [
+      {
+        "id": "saga-patterns",
+        "title": "Saga Pattern: Managing Distributed Transactions",
+        "description": "Deep dive into implementing saga patterns for complex business workflows across microservices, including choreography vs orchestration approaches.",
+        "speakerId": "anna-kowalska",
+        "duration": 45,
+        "level": "intermediate",
+        "tags": ["saga", "transactions", "patterns"]
+      },
+      {
+        "id": "k8s-microservices",
+        "title": "Kubernetes Deployment Strategies for Microservices",
+        "description": "Best practices for deploying and managing microservices in Kubernetes, covering service mesh, monitoring, and scaling strategies.",
+        "speakerId": "piotr-nowicki",
+        "duration": 40,
+        "level": "intermediate",
+        "tags": ["kubernetes", "deployment", "devops"]
+      },
+      {
+        "id": "cqrs-event-sourcing",
+        "title": "CQRS & Event Sourcing in High-Performance Systems",
+        "description": "Real-world implementation of CQRS and Event Sourcing patterns in financial trading systems, handling millions of transactions per day.",
+        "speakerId": "maria-wisniewska",
+        "duration": 35,
+        "level": "advanced",
+        "tags": ["cqrs", "event-sourcing", "performance"]
+      }
+    ],
+    "agenda": [
+      {
+        "time": "18:00",
+        "title": "Welcome & Networking",
+        "description": "Grab a coffee and connect with fellow architects",
+        "type": "networking"
+      },
+      {
+        "time": "18:15",
+        "title": "Introduction to Microservices Patterns",
+        "speaker": "Anna Kowalska",
+        "description": "Overview of key patterns and when to use them",
+        "type": "talk"
+      },
+      {
+        "time": "18:45",
+        "title": "Deep Dive: Saga Pattern",
+        "speaker": "Anna Kowalska",
+        "description": "Managing distributed transactions across microservices",
+        "type": "talk"
+      },
+      {
+        "time": "19:15",
+        "title": "Break",
+        "description": "Coffee break and Q&A",
+        "type": "break"
+      },
+      {
+        "time": "19:30",
+        "title": "CQRS & Event Sourcing",
+        "speaker": "Anna Kowalska",
+        "description": "Separating reads and writes, maintaining state through events",
+        "type": "talk"
+      },
+      {
+        "time": "20:00",
+        "title": "Hands-on Workshop",
+        "speaker": "Anna Kowalska",
+        "description": "Implementing patterns with code examples",
+        "type": "workshop"
+      },
+      {
+        "time": "20:25",
+        "title": "Closing & Next Steps",
+        "description": "Wrap-up and announcements",
+        "type": "talk"
+      }
+    ],
+    "maxAttendees": 50,
+    "registeredAttendees": 25,
+    "registrationUrl": "#register",
+    "status": "upcoming",
+    "tags": ["microservices", "patterns", "saga", "cqrs", "event-sourcing"],
+    "prerequisites": [
+      "Basic understanding of distributed systems",
+      "Experience with REST APIs",
+      "Familiarity with event-driven architecture concepts"
+    ],
+    "targetAudience": [
+      "Software Architects",
+      "Senior Developers",
+      "Tech Leads",
+      "System Designers"
+    ]
+  },
+  {
+    "id": "2024-12-10",
+    "meetupId": 2,
+    "title": "Event-Driven Architecture in Practice",
+    "slug": "event-driven-architecture-practice",
+    "date": "December 10, 2024",
+    "time": "18:00",
+    "endTime": "20:30",
+    "description": "Real-world implementation of event-driven systems with Apache Kafka and event streaming.",
+    "longDescription": "Explore how event-driven architecture can transform your application design and enable real-time data processing at scale. This session covered practical implementation strategies using Apache Kafka, event streaming patterns, and lessons learned from production systems.",
+    "location": {
+      "name": "TechHub Warsaw",
+      "address": "ul. Koszykowa 61",
+      "city": "00-667 Warsaw, Poland",
+      "mapUrl": "https://maps.google.com/embed?pb=!1m18!1m12!1m3!1d2443.6585859798344!2d20.98462631580052!3d52.22104397975899",
+      "directions": "Metro: Politechnika station (5 min walk)",
+      "parking": "Free parking available on-site",
+      "accessibility": "Wheelchair accessible venue"
+    },
+    "speakers": [
+      {
+        "name": "Michał Nowak",
+        "role": "CTO",
+        "company": "StartupXYZ",
+        "bio": "Michał is the CTO at StartupXYZ where he leads the technical vision for event-driven platforms. He has extensive experience with Kafka, event streaming, and building resilient distributed systems.",
+        "linkedin": "https://linkedin.com/in/michal-nowak",
+        "github": "https://github.com/mnowak"
+      }
+    ],
+    "agenda": [
+      {
+        "time": "18:00",
+        "title": "Welcome & Networking",
+        "description": "Welcome drinks and networking",
+        "type": "networking"
+      },
+      {
+        "time": "18:15",
+        "title": "Event-Driven Architecture Fundamentals",
+        "speaker": "Michał Nowak",
+        "description": "Core concepts and benefits of event-driven systems",
+        "type": "talk"
+      },
+      {
+        "time": "18:45",
+        "title": "Apache Kafka in Production",
+        "speaker": "Michał Nowak",
+        "description": "Real-world Kafka implementation and best practices",
+        "type": "talk"
+      },
+      {
+        "time": "19:30",
+        "title": "Break",
+        "description": "Coffee and discussions",
+        "type": "break"
+      },
+      {
+        "time": "19:45",
+        "title": "Event Streaming Patterns",
+        "speaker": "Michał Nowak",
+        "description": "Common patterns and anti-patterns in event streaming",
+        "type": "talk"
+      },
+      {
+        "time": "20:15",
+        "title": "Q&A and Wrap-up",
+        "description": "Questions and future topics",
+        "type": "talk"
+      }
+    ],
+    "maxAttendees": 50,
+    "registeredAttendees": 45,
+    "status": "completed",
+    "resources": {
+      "slides": "/events/2024-12-10/slides.pdf",
+      "video": "https://youtube.com/watch?v=example",
+      "code": "https://github.com/wsag/event-driven-examples",
+      "blog": "/blog/event-driven-architecture-recap"
+    },
+    "tags": ["event-driven", "kafka", "streaming", "real-time"],
+    "prerequisites": [
+      "Basic understanding of messaging systems",
+      "Experience with distributed systems"
+    ],
+    "targetAudience": [
+      "Software Architects",
+      "Backend Developers",
+      "Tech Leads"
+    ]
+  },
+  {
+    "id": "2024-11-15",
+    "meetupId": 3,
+    "title": "Domain-Driven Design Workshop",
+    "slug": "domain-driven-design-workshop",
+    "date": "November 15, 2024",
+    "time": "18:00",
+    "endTime": "21:00",
+    "description": "Hands-on workshop on applying DDD principles to complex business domains.",
+    "longDescription": "A comprehensive hands-on workshop exploring Domain-Driven Design principles and their practical application in complex business scenarios. Participants worked through real-world examples, learned strategic and tactical DDD patterns, and practiced event storming techniques.",
+    "location": {
+      "name": "Innovation Center Warsaw",
+      "address": "ul. Emilii Plater 53",
+      "city": "00-113 Warsaw, Poland",
+      "mapUrl": "https://maps.google.com/embed?pb=!1m18!1m12!1m3!1d2443.6585859798344!2d20.98462631580052!3d52.22104397975899",
+      "directions": "Metro: Centrum station (3 min walk)",
+      "parking": "Paid parking nearby",
+      "accessibility": "Fully accessible"
+    },
+    "speakers": [
+      {
+        "name": "Katarzyna Wiśniewska",
+        "role": "Software Architect",
+        "company": "FinTech Solutions",
+        "bio": "Katarzyna specializes in domain modeling and has helped numerous organizations implement DDD successfully. She is a certified DDD practitioner and regular conference speaker.",
+        "linkedin": "https://linkedin.com/in/katarzyna-wisniewska"
+      }
+    ],
+    "agenda": [
+      {
+        "time": "18:00",
+        "title": "Welcome & Workshop Setup",
+        "description": "Introduction and team formation",
+        "type": "networking"
+      },
+      {
+        "time": "18:15",
+        "title": "DDD Strategic Patterns",
+        "speaker": "Katarzyna Wiśniewska",
+        "description": "Bounded contexts, ubiquitous language, and context mapping",
+        "type": "talk"
+      },
+      {
+        "time": "19:00",
+        "title": "Event Storming Session",
+        "speaker": "Katarzyna Wiśniewska",
+        "description": "Hands-on event storming workshop",
+        "type": "workshop"
+      },
+      {
+        "time": "19:45",
+        "title": "Break",
+        "description": "Coffee and snacks",
+        "type": "break"
+      },
+      {
+        "time": "20:00",
+        "title": "Tactical DDD Patterns",
+        "speaker": "Katarzyna Wiśniewska",
+        "description": "Aggregates, entities, value objects, and domain services",
+        "type": "workshop"
+      },
+      {
+        "time": "20:30",
+        "title": "Implementation Exercise",
+        "speaker": "Katarzyna Wiśniewska",
+        "description": "Coding exercise implementing DDD patterns",
+        "type": "workshop"
+      },
+      {
+        "time": "20:55",
+        "title": "Wrap-up",
+        "description": "Summary and next steps",
+        "type": "talk"
+      }
+    ],
+    "maxAttendees": 30,
+    "registeredAttendees": 28,
+    "status": "completed",
+    "resources": {
+      "slides": "/events/2024-11-15/ddd-workshop-slides.pdf",
+      "video": "https://youtube.com/watch?v=ddd-example",
+      "blog": "/blog/ddd-workshop-summary"
+    },
+    "tags": ["ddd", "domain-modeling", "workshop", "event-storming"],
+    "prerequisites": [
+      "Object-oriented programming experience",
+      "Basic understanding of software architecture"
+    ],
+    "targetAudience": [
+      "Software Architects",
+      "Domain Experts",
+      "Senior Developers",
+      "Product Managers"
+    ]
+  }
+]

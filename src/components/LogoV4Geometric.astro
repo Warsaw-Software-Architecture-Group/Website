@@ -1,0 +1,149 @@
+---
+---
+
+<div class="flex items-center space-x-3">
+  <svg 
+    width="40" 
+    height="40" 
+    viewBox="0 0 40 40" 
+    xmlns="http://www.w3.org/2000/svg"
+    class="logo-svg-v4"
+  >
+    <defs>
+      <linearGradient id="geomGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      </linearGradient>
+      
+      <linearGradient id="geomGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+      </linearGradient>
+      
+      <linearGradient id="geomGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+      </linearGradient>
+    </defs>
+    
+    <!-- Background pattern -->
+    <rect width="40" height="40" rx="6" fill="none" stroke="#e5e7eb" stroke-width="1" opacity="0.3"/>
+    
+    <!-- Geometric shapes representing architecture patterns -->
+    <g class="geometric-shapes">
+      <!-- Hexagons for microservices -->
+      <polygon points="20,5 25,8 25,14 20,17 15,14 15,8" fill="url(#geomGrad1)" class="hexagon hex-1">
+        <animateTransform attributeName="transform" type="rotate" values="0 20 11;120 20 11;0 20 11" dur="6s" repeatCount="indefinite"/>
+      </polygon>
+      
+      <!-- Triangles for API gateways -->
+      <polygon points="8,15 14,15 11,22" fill="url(#geomGrad2)" class="triangle tri-1">
+        <animateTransform attributeName="transform" type="rotate" values="0 11 17.5;360 11 17.5" dur="8s" repeatCount="indefinite"/>
+      </polygon>
+      <polygon points="26,15 32,15 29,22" fill="url(#geomGrad2)" class="triangle tri-2">
+        <animateTransform attributeName="transform" type="rotate" values="0 29 17.5;-360 29 17.5" dur="8s" repeatCount="indefinite"/>
+      </polygon>
+      
+      <!-- Squares for databases -->
+      <rect x="6" y="28" width="8" height="8" rx="1" fill="url(#geomGrad3)" class="square sq-1">
+        <animateTransform attributeName="transform" type="scale" values="1;1.2;1" dur="3s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="26" y="28" width="8" height="8" rx="1" fill="url(#geomGrad3)" class="square sq-2">
+        <animateTransform attributeName="transform" type="scale" values="1;1.2;1" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+      </rect>
+      
+      <!-- Central diamond for orchestrator -->
+      <polygon points="20,23 24,27 20,31 16,27" fill="url(#geomGrad1)" class="diamond">
+        <animateTransform attributeName="transform" type="rotate" values="0 20 27;45 20 27;0 20 27" dur="4s" repeatCount="indefinite"/>
+      </polygon>
+    </g>
+    
+    <!-- Connection lines showing relationships -->
+    <g class="geometric-connections" stroke="#6b7280" stroke-width="1" fill="none" opacity="0.6">
+      <!-- From hexagon to triangles -->
+      <line x1="20" y1="17" x2="11" y2="15" class="geo-connection">
+        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite"/>
+      </line>
+      <line x1="20" y1="17" x2="29" y2="15" class="geo-connection">
+        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite" begin="0.3s"/>
+      </line>
+      
+      <!-- From triangles to diamond -->
+      <line x1="11" y1="22" x2="20" y2="23" class="geo-connection">
+        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite" begin="0.6s"/>
+      </line>
+      <line x1="29" y1="22" x2="20" y2="23" class="geo-connection">
+        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite" begin="0.9s"/>
+      </line>
+      
+      <!-- From diamond to squares -->
+      <line x1="16" y1="27" x2="10" y2="28" class="geo-connection">
+        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite" begin="1.2s"/>
+      </line>
+      <line x1="24" y1="27" x2="30" y2="28" class="geo-connection">
+        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite" begin="1.5s"/>
+      </line>
+    </g>
+    
+    <!-- Central "W" in hexagon -->
+    <g class="w-letter-geometric">
+      <text x="20" y="13" font-family="Arial, sans-serif" font-size="6" font-weight="bold" text-anchor="middle" fill="#ffffff" class="geometric-w">
+        W
+      </text>
+    </g>
+    
+    <!-- Orbiting dots representing data flow -->
+    <g class="orbiting-dots" fill="#f59e0b">
+      <circle r="1.5" class="orbit-dot dot-1">
+        <animateMotion dur="4s" repeatCount="indefinite" path="M 20,11 A 12,12 0 1,1 19.9,11"/>
+        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <circle r="1.5" class="orbit-dot dot-2">
+        <animateMotion dur="4s" repeatCount="indefinite" begin="1s" path="M 20,11 A 12,12 0 1,1 19.9,11"/>
+        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite" begin="1s"/>
+      </circle>
+      <circle r="1.5" class="orbit-dot dot-3">
+        <animateMotion dur="4s" repeatCount="indefinite" begin="2s" path="M 20,11 A 12,12 0 1,1 19.9,11"/>
+        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite" begin="2s"/>
+      </circle>
+    </g>
+  </svg>
+  
+  <div class="logo-text">
+    <span class="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+      WSAG
+    </span>
+  </div>
+</div>
+
+<style>
+  .logo-svg-v4 {
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  }
+  
+  .logo-svg-v4:hover {
+    transform: scale(1.05) rotate(-5deg);
+  }
+  
+  .geometric-shapes .hexagon,
+  .geometric-shapes .triangle,
+  .geometric-shapes .square,
+  .geometric-shapes .diamond {
+    filter: drop-shadow(0 1px 3px rgba(0,0,0,0.2));
+  }
+  
+  .geometric-connections .geo-connection {
+    stroke-linecap: round;
+  }
+  
+  .orbiting-dots .orbit-dot {
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .logo-svg-v4 * {
+      animation: none !important;
+    }
+  }
+</style>

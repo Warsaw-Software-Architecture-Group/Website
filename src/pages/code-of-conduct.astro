@@ -1,0 +1,398 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import { getTranslations } from '../i18n/translations';
+
+const lang = 'pl';
+const t = getTranslations(lang);
+---
+
+<Layout title="Code of Conduct - WSAG" description="Warsaw Software Architecture Group's code of conduct ensures a welcoming, inclusive, and harassment-free environment for all community members." lang={lang}>
+  <Navigation lang={lang} isMainPage={false} />
+  <div class="min-h-screen bg-gray-50">
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="text-center">
+          <div class="inline-flex items-center px-4 py-2 rounded-full bg-white/20 text-sm font-medium mb-6">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+            Community Guidelines
+          </div>
+          <h1 class="text-4xl md:text-6xl font-bold mb-6">{t.codeOfConduct.title}</h1>
+          <p class="text-xl opacity-90 max-w-3xl mx-auto leading-relaxed">
+            {t.codeOfConduct.subtitle}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      
+      <!-- Our Commitment -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+        <div class="flex items-center mb-6">
+          <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
+            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            </svg>
+          </div>
+          <h2 class="text-3xl font-bold text-gray-900">{t.codeOfConduct.ourCommitment}</h2>
+        </div>
+        <div class="prose prose-lg max-w-none text-gray-600">
+          <p>
+            We as members, contributors, speakers, and leaders pledge to make participation in the Warsaw Software Architecture Group 
+            a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, 
+            sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, 
+            personal appearance, race, religion, or sexual identity and orientation.
+          </p>
+          <p>
+            We pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community 
+            focused on learning, sharing knowledge, and advancing the field of software architecture.
+          </p>
+        </div>
+      </div>
+
+      <!-- Our Standards -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+        <div class="flex items-center mb-6">
+          <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4">
+            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h2 class="text-3xl font-bold text-gray-900">{t.codeOfConduct.ourStandardsHardcoded}</h2>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Positive Behaviors -->
+          <div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+              <svg class="w-5 h-5 text-green-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              {t.codeOfConduct.encouragedBehavior}
+            </h3>
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <svg class="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-600">{t.codeOfConduct.encouragedBehaviors[0]}</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-600">{t.codeOfConduct.encouragedBehaviors[1]}</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-600">{t.codeOfConduct.encouragedBehaviors[2]}</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-600">{t.codeOfConduct.encouragedBehaviors[3]}</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-600">{t.codeOfConduct.encouragedBehaviors[4]}</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-600">{t.codeOfConduct.encouragedBehaviors[5]}</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Unacceptable Behaviors -->
+          <div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+              <svg class="w-5 h-5 text-red-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+              </svg>
+              Unacceptable Behavior
+            </h3>
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <svg class="w-4 h-4 text-red-500 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-600">{t.codeOfConduct.discouragedBehaviors[5]}</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-4 h-4 text-red-500 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-600">{t.codeOfConduct.discouragedBehaviors[4]}</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-4 h-4 text-red-500 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-600">{t.codeOfConduct.discouragedBehaviors[0]}</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-4 h-4 text-red-500 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-600">{t.codeOfConduct.discouragedBehaviors[5]}</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-4 h-4 text-red-500 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-600">{t.codeOfConduct.discouragedBehaviors[4]}</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-4 h-4 text-red-500 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-600">{t.codeOfConduct.discouragedBehaviors[5]}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scope -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+        <div class="flex items-center mb-6">
+          <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mr-4">
+            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h2 class="text-3xl font-bold text-gray-900">{t.codeOfConduct.scope}</h2>
+        </div>
+        <div class="prose prose-lg max-w-none text-gray-600">
+          <p>
+            This Code of Conduct applies within all WSAG community spaces, including but not limited to:
+          </p>
+          <ul class="grid md:grid-cols-2 gap-2 mt-4">
+            <li class="flex items-center">
+              <svg class="w-4 h-4 text-blue-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              In-person meetups and events
+            </li>
+            <li class="flex items-center">
+              <svg class="w-4 h-4 text-blue-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              Online virtual events
+            </li>
+            <li class="flex items-center">
+              <svg class="w-4 h-4 text-blue-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              Social media platforms
+            </li>
+            <li class="flex items-center">
+              <svg class="w-4 h-4 text-blue-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              Community forums and chat
+            </li>
+            <li class="flex items-center">
+              <svg class="w-4 h-4 text-blue-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              Email communications
+            </li>
+            <li class="flex items-center">
+              <svg class="w-4 h-4 text-blue-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              When representing WSAG publicly
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Enforcement -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+        <div class="flex items-center mb-6">
+          <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mr-4">
+            <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+            </svg>
+          </div>
+          <h2 class="text-3xl font-bold text-gray-900">{t.codeOfConduct.enforcementResponsibilities}</h2>
+        </div>
+        <div class="prose prose-lg max-w-none text-gray-600">
+          <p>
+            Community leaders are responsible for clarifying and enforcing our standards of acceptable behavior and will take appropriate and fair corrective action in response to any behavior that they deem inappropriate, threatening, offensive, or harmful.
+          </p>
+          <p>
+            Community leaders have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, and will communicate reasons for moderation decisions when appropriate.
+          </p>
+        </div>
+      </div>
+
+      <!-- Reporting Violations -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+        <div class="flex items-center mb-6">
+          <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mr-4">
+            <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path>
+            </svg>
+          </div>
+          <h2 class="text-3xl font-bold text-gray-900">{t.codeOfConduct.reportingViolations}</h2>
+        </div>
+        <div class="prose prose-lg max-w-none text-gray-600 mb-8">
+          <p>
+            Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement.
+          </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+              <svg class="w-5 h-5 text-orange-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+              Contact Methods
+            </h3>
+            <div class="space-y-3">
+              <div class="text-gray-600">
+                <span class="font-medium text-gray-900">Email:</span> conduct@wsag.dev
+              </div>
+              <div class="text-gray-600">
+                <span class="font-medium text-gray-900">Direct Message:</span> Contact organizers directly
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+              <svg class="w-5 h-5 text-orange-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              Response Promise
+            </h3>
+            <div class="space-y-3">
+              <div class="text-gray-600">
+                <span class="font-medium text-gray-900">Response Time:</span> 24-48 hours
+              </div>
+              <div class="text-gray-600">
+                <span class="font-medium text-gray-900">Handling:</span> All reports are confidential
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Enforcement Guidelines -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+        <div class="flex items-center mb-6">
+          <div class="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center mr-4">
+            <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path>
+            </svg>
+          </div>
+          <h2 class="text-3xl font-bold text-gray-900">{t.codeOfConduct.enforcementGuidelines}</h2>
+        </div>
+        
+        <div class="grid gap-6">
+          <!-- Warning -->
+          <div class="border-l-4 border-yellow-400 bg-yellow-50 p-4 rounded-r-lg">
+            <div class="flex items-center mb-2">
+              <svg class="w-5 h-5 text-yellow-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+              </svg>
+              <h3 class="text-lg font-semibold text-yellow-800">1. Correction</h3>
+            </div>
+            <p class="text-yellow-700"><strong>Community Impact:</strong> Use of inappropriate language or other behavior deemed unprofessional or unwelcome.</p>
+            <p class="text-yellow-700 mt-1"><strong>Consequence:</strong> A private, written warning with clarity around the violation and explanation of why the behavior was inappropriate.</p>
+          </div>
+
+          <!-- Temporary Ban -->
+          <div class="border-l-4 border-orange-400 bg-orange-50 p-4 rounded-r-lg">
+            <div class="flex items-center mb-2">
+              <svg class="w-5 h-5 text-orange-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636m12.728 12.728L18.364 5.636M5.636 18.364l12.728-12.728"></path>
+              </svg>
+              <h3 class="text-lg font-semibold text-orange-800">2. Warning</h3>
+            </div>
+            <p class="text-orange-700"><strong>Community Impact:</strong> A violation through a single incident or series of actions.</p>
+            <p class="text-orange-700 mt-1"><strong>Consequence:</strong> A warning with consequences for continued behavior. No interaction with the people involved for a specified period.</p>
+          </div>
+
+          <!-- Permanent Ban -->
+          <div class="border-l-4 border-red-400 bg-red-50 p-4 rounded-r-lg">
+            <div class="flex items-center mb-2">
+              <svg class="w-5 h-5 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636m12.728 12.728L18.364 5.636M5.636 18.364l12.728-12.728"></path>
+              </svg>
+              <h3 class="text-lg font-semibold text-red-800">3. Temporary Ban</h3>
+            </div>
+            <p class="text-red-700"><strong>Community Impact:</strong> A serious violation of community standards, including sustained inappropriate behavior.</p>
+            <p class="text-red-700 mt-1"><strong>Consequence:</strong> A temporary ban from any sort of interaction or public communication with the community for a specified period.</p>
+          </div>
+
+          <div class="border-l-4 border-gray-800 bg-gray-50 p-4 rounded-r-lg">
+            <div class="flex items-center mb-2">
+              <svg class="w-5 h-5 text-gray-800 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+              <h3 class="text-lg font-semibold text-gray-800">4. Permanent Ban</h3>
+            </div>
+            <p class="text-gray-700"><strong>Community Impact:</strong> Demonstrating a pattern of violation of community standards, harassment, or aggression.</p>
+            <p class="text-gray-700 mt-1"><strong>Consequence:</strong> A permanent ban from any sort of public interaction within the community.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Attribution -->
+      <div class="bg-gray-100 rounded-2xl p-6 text-center">
+        <p class="text-gray-600">
+          This Code of Conduct is adapted from the 
+          <a href="https://www.contributor-covenant.org/" class="text-blue-600 hover:text-blue-700 font-medium">Contributor Covenant</a>, 
+          version 2.1, available at 
+          <a href="https://www.contributor-covenant.org/version/2/1/code_of_conduct.html" class="text-blue-600 hover:text-blue-700 font-medium">https://www.contributor-covenant.org/version/2/1/code_of_conduct.html</a>
+        </p>
+        <p class="text-gray-500 text-sm mt-2">{t.eventDetails.lastUpdated}</p>
+      </div>
+
+      <!-- Navigation -->
+      <div class="mt-12 flex justify-between items-center">
+        <a href="/" class="flex items-center text-blue-600 hover:text-blue-700 font-medium">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+          Back to Home
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <Footer />
+</Layout>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  .reporting-violations * {
+    color: white !important;
+    background: transparent !important;
+  }
+  
+  .reporting-violations svg {
+    color: white !important;
+    stroke: white !important;
+  }
+</style>

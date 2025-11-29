@@ -1,0 +1,140 @@
+---
+import { getTranslations } from '../i18n/translations';
+
+export interface Props {
+  lang?: 'pl' | 'en';
+}
+
+const { lang = 'pl' } = Astro.props;
+const t = getTranslations(lang);
+---
+
+<section id="speakers" class="py-24 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{t.speakers.speakersCorner}</h2>
+      <p class="text-xl text-gray-600">{t.speakers.speakersCornerSubtitle}</p>
+    </div>
+    
+    <div class="grid lg:grid-cols-2 gap-12">
+      <div>
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h3 class="text-2xl font-bold text-gray-900 mb-6">{t.speakers.becomeASpeaker}</h3>
+          <p class="text-gray-600 mb-6">
+            {t.speakers.becomeASpeakerDesc}
+          </p>
+          
+          <div class="space-y-4 mb-8">
+            <div class="flex items-start">
+              <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-900">{t.speakers.talkFormats.fullTalks}</p>
+                <p class="text-sm text-gray-600">{t.speakers.talkFormats.fullTalksDesc}</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-900">{t.speakers.talkFormats.lightningTalks}</p>
+                <p class="text-sm text-gray-600">{t.speakers.talkFormats.lightningTalksDesc}</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <div>
+                <p class="font-semibold text-gray-900">{t.speakers.talkFormats.workshops}</p>
+                <p class="text-sm text-gray-600">{t.speakers.talkFormats.workshopsDesc}</p>
+              </div>
+            </div>
+          </div>
+          
+          <a href={lang === 'en' ? '/en/contact' : '/contact'} class="inline-block w-full text-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium">
+            {t.speakers.submitProposal}
+          </a>
+        </div>
+        
+        <div class="bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl p-8 text-white">
+          <h3 class="text-xl font-bold mb-4">{t.speakers.speakerBenefits}</h3>
+          <ul class="space-y-3">
+            <li class="flex items-center">
+              <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              {t.speakers.benefits.recording}
+            </li>
+            <li class="flex items-center">
+              <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              {t.speakers.benefits.recognition}
+            </li>
+            <li class="flex items-center">
+              <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              {t.speakers.benefits.networking}
+            </li>
+            <li class="flex items-center">
+              <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              {t.speakers.benefits.support}
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div>
+        <div class="bg-white rounded-2xl shadow-lg p-8">
+          <h3 class="text-2xl font-bold text-gray-900 mb-6">{t.speakers.wishList.title}</h3>
+          <p class="text-gray-600 mb-6">
+            {t.speakers.wishList.description}
+          </p>
+          
+          <div class="flex flex-wrap gap-3 mb-8">
+            {t.speakers.wishList.topics.map(topic => (
+              <span class="px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-sm font-medium hover:bg-blue-100 transition-colors duration-200">
+                {topic}
+              </span>
+            ))}
+          </div>
+          
+          <div class="border-t pt-6">
+            <h4 class="font-semibold text-gray-900 mb-3">{t.speakers.wishList.differentTopic}</h4>
+            <p class="text-gray-600 mb-4">
+              {t.speakers.wishList.differentTopicDesc}
+            </p>
+            <a href={lang === 'en' ? '/en/contact' : '/contact'} class="text-blue-600 hover:text-blue-700 font-medium inline-flex items-center transition-colors duration-200">
+              {t.speakers.wishList.suggest}
+              <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <div class="mt-8 bg-yellow-50 border border-yellow-200 rounded-xl p-6">
+          <div class="flex items-start">
+            <svg class="w-6 h-6 text-yellow-600 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <div>
+              <h4 class="font-semibold text-gray-900 mb-2">{t.speakers.firstTime.title}</h4>
+              <p class="text-gray-600 text-sm">
+                {t.speakers.firstTime.description}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,158 @@
+---
+---
+
+<div class="flex items-center space-x-3">
+  <svg 
+    width="40" 
+    height="40" 
+    viewBox="0 0 40 40" 
+    xmlns="http://www.w3.org/2000/svg"
+    class="logo-svg-v3"
+  >
+    <defs>
+      <radialGradient id="nodeGradMain" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#1e40af;stop-opacity:1" />
+      </radialGradient>
+      
+      <radialGradient id="nodeGradSecondary" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#6d28d9;stop-opacity:1" />
+      </radialGradient>
+      
+      <radialGradient id="nodeGradAccent" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#0891b2;stop-opacity:1" />
+      </radialGradient>
+      
+      <linearGradient id="connectionGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.8" />
+        <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.8" />
+      </linearGradient>
+    </defs>
+    
+    <!-- Network connections -->
+    <g class="network-connections" stroke="url(#connectionGrad)" stroke-width="1.5" fill="none">
+      <!-- Central hub connections -->
+      <line x1="20" y1="20" x2="8" y2="8" class="connection connection-1">
+        <animate attributeName="stroke-dasharray" values="0,20;20,0;0,20" dur="2s" repeatCount="indefinite" begin="0s"/>
+      </line>
+      <line x1="20" y1="20" x2="32" y2="8" class="connection connection-2">
+        <animate attributeName="stroke-dasharray" values="0,20;20,0;0,20" dur="2s" repeatCount="indefinite" begin="0.2s"/>
+      </line>
+      <line x1="20" y1="20" x2="8" y2="32" class="connection connection-3">
+        <animate attributeName="stroke-dasharray" values="0,20;20,0;0,20" dur="2s" repeatCount="indefinite" begin="0.4s"/>
+      </line>
+      <line x1="20" y1="20" x2="32" y2="32" class="connection connection-4">
+        <animate attributeName="stroke-dasharray" values="0,20;20,0;0,20" dur="2s" repeatCount="indefinite" begin="0.6s"/>
+      </line>
+      <line x1="20" y1="20" x2="4" y2="20" class="connection connection-5">
+        <animate attributeName="stroke-dasharray" values="0,20;20,0;0,20" dur="2s" repeatCount="indefinite" begin="0.8s"/>
+      </line>
+      <line x1="20" y1="20" x2="36" y2="20" class="connection connection-6">
+        <animate attributeName="stroke-dasharray" values="0,20;20,0;0,20" dur="2s" repeatCount="indefinite" begin="1s"/>
+      </line>
+      
+      <!-- Peripheral connections -->
+      <line x1="8" y1="8" x2="32" y2="8" class="connection connection-7" opacity="0.5">
+        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite" begin="1.2s"/>
+      </line>
+      <line x1="8" y1="32" x2="32" y2="32" class="connection connection-8" opacity="0.5">
+        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite" begin="1.4s"/>
+      </line>
+    </g>
+    
+    <!-- Network nodes -->
+    <g class="network-nodes">
+      <!-- Central main node -->
+      <circle cx="20" cy="20" r="5" fill="url(#nodeGradMain)" class="node main-node">
+        <animate attributeName="r" values="5;6;5" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      
+      <!-- Corner nodes -->
+      <circle cx="8" cy="8" r="3" fill="url(#nodeGradSecondary)" class="node corner-node">
+        <animate attributeName="r" values="3;4;3" dur="2.5s" repeatCount="indefinite" begin="0.2s"/>
+      </circle>
+      <circle cx="32" cy="8" r="3" fill="url(#nodeGradSecondary)" class="node corner-node">
+        <animate attributeName="r" values="3;4;3" dur="2.5s" repeatCount="indefinite" begin="0.4s"/>
+      </circle>
+      <circle cx="8" cy="32" r="3" fill="url(#nodeGradSecondary)" class="node corner-node">
+        <animate attributeName="r" values="3;4;3" dur="2.5s" repeatCount="indefinite" begin="0.6s"/>
+      </circle>
+      <circle cx="32" cy="32" r="3" fill="url(#nodeGradSecondary)" class="node corner-node">
+        <animate attributeName="r" values="3;4;3" dur="2.5s" repeatCount="indefinite" begin="0.8s"/>
+      </circle>
+      
+      <!-- Side nodes -->
+      <circle cx="4" cy="20" r="2.5" fill="url(#nodeGradAccent)" class="node side-node">
+        <animate attributeName="r" values="2.5;3.5;2.5" dur="3s" repeatCount="indefinite" begin="1s"/>
+      </circle>
+      <circle cx="36" cy="20" r="2.5" fill="url(#nodeGradAccent)" class="node side-node">
+        <animate attributeName="r" values="2.5;3.5;2.5" dur="3s" repeatCount="indefinite" begin="1.2s"/>
+      </circle>
+    </g>
+    
+    <!-- Central "W" -->
+    <g class="w-letter-network">
+      <text x="20" y="24" font-family="Arial, sans-serif" font-size="8" font-weight="bold" text-anchor="middle" fill="#ffffff" class="network-w">
+        W
+        <animate attributeName="fill" values="#ffffff;#fbbf24;#ffffff" dur="3s" repeatCount="indefinite"/>
+      </text>
+    </g>
+    
+    <!-- Data packets moving through network -->
+    <g class="data-packets" fill="#fbbf24" opacity="0.8">
+      <circle r="1" class="packet packet-1">
+        <animateMotion dur="3s" repeatCount="indefinite" path="M20,20 L8,8"/>
+        <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      <circle r="1" class="packet packet-2">
+        <animateMotion dur="3s" repeatCount="indefinite" begin="0.5s" path="M20,20 L32,8"/>
+        <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+      </circle>
+      <circle r="1" class="packet packet-3">
+        <animateMotion dur="3s" repeatCount="indefinite" begin="1s" path="M20,20 L36,20"/>
+        <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite" begin="1s"/>
+      </circle>
+    </g>
+  </svg>
+  
+  <div class="logo-text">
+    <span class="text-xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+      WSAG
+    </span>
+  </div>
+</div>
+
+<style>
+  .logo-svg-v3 {
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  }
+  
+  .logo-svg-v3:hover {
+    transform: scale(1.05);
+  }
+  
+  .network-connections .connection {
+    stroke-linecap: round;
+  }
+  
+  .network-nodes .node {
+    filter: drop-shadow(0 1px 3px rgba(0,0,0,0.2));
+  }
+  
+  .network-nodes .main-node {
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  }
+  
+  .data-packets .packet {
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .logo-svg-v3 * {
+      animation: none !important;
+    }
+  }
+</style>
