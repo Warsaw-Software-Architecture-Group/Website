@@ -1,141 +1,74 @@
 [
   {
-    "id": "2025-01-15",
+    "id": "2026-01-13",
     "meetupId": 1,
-    "title": "Microservices Architecture Patterns",
-    "slug": "microservices-architecture-patterns",
-    "date": "January 15, 2025",
+    "title": "WSAG Meetup #1",
+    "slug": "wsag-meetup-1",
+    "date": "January 13, 2026",
     "time": "18:00",
-    "endTime": "20:30",
-    "description": "Deep dive into modern microservices patterns, including saga, CQRS, and event sourcing.",
-    "longDescription": "Join us for an in-depth exploration of microservices architecture patterns that are transforming how we build scalable applications. This session will cover practical implementation strategies, common pitfalls, and real-world case studies from large-scale systems.\n\nWe'll explore the Saga pattern for managing distributed transactions, Command Query Responsibility Segregation (CQRS) for separating read and write operations, and Event Sourcing for maintaining application state through immutable event logs.",
+    "endTime": "21:00",
+    "description": "Join us for the inaugural Warsaw Software Architecture Group meetup! Agenda and speakers to be announced soon.",
+    "longDescription": "We're excited to launch the Warsaw Software Architecture Group with our first meetup! This event will feature three excellent presentations covering software architecture topics. Stay tuned for speaker announcements and detailed agenda.\n\nThis is a great opportunity to meet fellow software architects, share knowledge, and build our local architecture community.",
     "location": {
-      "name": "Warsaw University of Technology",
-      "address": "Nowy Świat 15/19",
-      "city": "00-029 Warsaw, Poland",
+      "name": "Circle K",
+      "address": "Puławska 86",
+      "city": "Warsaw, Poland",
       "mapUrl": "https://maps.google.com/embed?pb=!1m18!1m12!1m3!1d2443.6585859798344!2d20.98462631580052!3d52.22104397975899",
-      "directions": "Metro: Nowy Świat-Uniwersytet station (2 min walk)",
-      "parking": "Paid parking nearby, public transport recommended",
-      "accessibility": "Wheelchair accessible venue"
+      "directions": "Details to be announced",
+      "parking": "Details to be announced",
+      "accessibility": "Details to be announced"
     },
-    "speakers": [
-      {
-        "name": "Anna Kowalska",
-        "role": "Principal Architect",
-        "company": "TechCorp",
-        "bio": "Anna is a Principal Software Architect with over 12 years of experience designing large-scale distributed systems. She has led the architecture for several successful microservices transformations and is passionate about sharing knowledge with the community.",
-        "linkedin": "https://linkedin.com/in/anna-kowalska",
-        "github": "https://github.com/akowalska",
-        "twitter": "https://twitter.com/annatech"
-      },
-      {
-        "name": "Piotr Nowicki",
-        "role": "Senior DevOps Engineer",
-        "company": "CloudNative Solutions",
-        "bio": "Piotr specializes in Kubernetes orchestration and cloud-native architectures. He has implemented microservices platforms for Fortune 500 companies and is an active contributor to open-source projects.",
-        "linkedin": "https://linkedin.com/in/piotr-nowicki",
-        "github": "https://github.com/pnowicki"
-      },
-      {
-        "name": "Maria Wiśniewska",
-        "role": "Tech Lead",
-        "company": "FinTech Innovations",
-        "bio": "Maria leads a team of 15 engineers building high-frequency trading systems. She has deep expertise in event sourcing and CQRS patterns in financial applications.",
-        "linkedin": "https://linkedin.com/in/maria-wisniewska"
-      }
-    ],
-    "presentations": [
-      {
-        "id": "saga-patterns",
-        "title": "Saga Pattern: Managing Distributed Transactions",
-        "description": "Deep dive into implementing saga patterns for complex business workflows across microservices, including choreography vs orchestration approaches.",
-        "speakerId": "anna-kowalska",
-        "duration": 45,
-        "level": "intermediate",
-        "tags": ["saga", "transactions", "patterns"]
-      },
-      {
-        "id": "k8s-microservices",
-        "title": "Kubernetes Deployment Strategies for Microservices",
-        "description": "Best practices for deploying and managing microservices in Kubernetes, covering service mesh, monitoring, and scaling strategies.",
-        "speakerId": "piotr-nowicki",
-        "duration": 40,
-        "level": "intermediate",
-        "tags": ["kubernetes", "deployment", "devops"]
-      },
-      {
-        "id": "cqrs-event-sourcing",
-        "title": "CQRS & Event Sourcing in High-Performance Systems",
-        "description": "Real-world implementation of CQRS and Event Sourcing patterns in financial trading systems, handling millions of transactions per day.",
-        "speakerId": "maria-wisniewska",
-        "duration": 35,
-        "level": "advanced",
-        "tags": ["cqrs", "event-sourcing", "performance"]
-      }
-    ],
+    "speakers": [],
+    "presentations": [],
     "agenda": [
       {
         "time": "18:00",
         "title": "Welcome & Networking",
-        "description": "Grab a coffee and connect with fellow architects",
+        "description": "Registration and networking",
         "type": "networking"
       },
       {
-        "time": "18:15",
-        "title": "Introduction to Microservices Patterns",
-        "speaker": "Anna Kowalska",
-        "description": "Overview of key patterns and when to use them",
-        "type": "talk"
-      },
-      {
-        "time": "18:45",
-        "title": "Deep Dive: Saga Pattern",
-        "speaker": "Anna Kowalska",
-        "description": "Managing distributed transactions across microservices",
+        "time": "18:30",
+        "title": "Presentation Slot 1",
+        "description": "Speaker and topic to be announced",
         "type": "talk"
       },
       {
         "time": "19:15",
         "title": "Break",
-        "description": "Coffee break and Q&A",
+        "description": "Coffee break and networking",
         "type": "break"
       },
       {
         "time": "19:30",
-        "title": "CQRS & Event Sourcing",
-        "speaker": "Anna Kowalska",
-        "description": "Separating reads and writes, maintaining state through events",
+        "title": "Presentation Slot 2",
+        "description": "Speaker and topic to be announced",
         "type": "talk"
       },
       {
-        "time": "20:00",
-        "title": "Hands-on Workshop",
-        "speaker": "Anna Kowalska",
-        "description": "Implementing patterns with code examples",
-        "type": "workshop"
+        "time": "20:15",
+        "title": "Presentation Slot 3",
+        "description": "Speaker and topic to be announced",
+        "type": "talk"
       },
       {
-        "time": "20:25",
-        "title": "Closing & Next Steps",
-        "description": "Wrap-up and announcements",
-        "type": "talk"
+        "time": "20:45",
+        "title": "Closing & Networking",
+        "description": "Final Q&A and networking",
+        "type": "networking"
       }
     ],
     "maxAttendees": 50,
-    "registeredAttendees": 25,
+    "registeredAttendees": 0,
     "registrationUrl": "#register",
     "status": "upcoming",
-    "tags": ["microservices", "patterns", "saga", "cqrs", "event-sourcing"],
-    "prerequisites": [
-      "Basic understanding of distributed systems",
-      "Experience with REST APIs",
-      "Familiarity with event-driven architecture concepts"
-    ],
+    "tags": ["architecture", "community", "networking"],
+    "prerequisites": [],
     "targetAudience": [
       "Software Architects",
       "Senior Developers",
       "Tech Leads",
-      "System Designers"
+      "Engineering Managers"
     ]
   },
   {

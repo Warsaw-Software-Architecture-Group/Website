@@ -2,14 +2,13 @@
 import Layout from '../../layouts/Layout.astro';
 import Navigation from '../../components/Navigation.astro';
 import Footer from '../../components/Footer.astro';
-import { events, getUpcomingEvents, getPastEvents, generateEventUrl } from '../../data/events';
+import { events, getUpcomingEvents, generateEventUrl } from '../../data/events';
 import { getTranslations } from '../../i18n/translations';
 
 const lang = 'pl';
 const t = getTranslations(lang);
 
 const upcomingEvents = getUpcomingEvents();
-const pastEvents = getPastEvents();
 
 const formatTime = (time: string) => {
   return new Date(`2000-01-01T${time}`).toLocaleTimeString(lang === 'pl' ? 'pl-PL' : 'en-US', {
@@ -20,12 +19,12 @@ const formatTime = (time: string) => {
 };
 ---
 
-<Layout title="All Events - WSAG" description="Browse all Warsaw Software Architecture Group events, including upcoming meetups and past session recordings.">
+<Layout title="All Events - WSAG" description="Browse all Warsaw Software Architecture Group events, including upcoming meetups and past session recordings." lang={lang}>
   <Navigation lang={lang} isMainPage={false} />
   <div class="min-h-screen bg-gray-50">
     <!-- Header -->
     <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
         <div class="text-center">
           <h1 class="text-4xl md:text-5xl font-bold mb-4">{t.events.allEvents}</h1>
           <p class="text-xl opacity-90 max-w-2xl mx-auto">
@@ -46,7 +45,10 @@ const formatTime = (time: string) => {
           
           <div class="grid md:grid-cols-2 gap-6">
             {upcomingEvents.map(event => (
-              <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
+              <a
+                href={generateEventUrl(event)}
+                class="block bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group cursor-pointer"
+              >
                 <div class="p-8">
                   <div class="flex items-center justify-between mb-4">
                     <div class="flex items-center text-sm text-gray-500">
@@ -62,144 +64,40 @@ const formatTime = (time: string) => {
                       {formatTime(event.time)} - {formatTime(event.endTime)}
                     </div>
                   </div>
-                  
+
                   <h3 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-200">
                     {event.title}
                   </h3>
-                  
+
                   <p class="text-gray-600 mb-4 line-clamp-3">{event.description}</p>
-                  
-                  <div class="flex items-center justify-between mb-6">
-                    <div class="flex items-center">
-                      <svg class="w-4 h-4 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                      </svg>
-                      <span class="text-sm text-gray-600">{event.location.name}</span>
-                    </div>
-                    {event.registeredAttendees && event.maxAttendees && (
-                      <div class="text-sm text-gray-600">
-                        <span class="font-semibold">{event.maxAttendees - event.registeredAttendees}</span> {t.events.spotsLeft}
-                      </div>
+
+                  <div class="flex items-center mb-6">
+                    <svg class="w-4 h-4 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    <span class="text-sm text-gray-600">{event.location.name}</span>
+                  </div>
+
+                  <div class="flex flex-wrap gap-2">
+                    {event.tags.slice(0, 2).map(tag => (
+                      <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
+                        #{tag}
+                      </span>
+                    ))}
+                    {event.tags.length > 2 && (
+                      <span class="text-xs text-gray-500">
+                        +{event.tags.length - 2} {t.events.more}
+                      </span>
                     )}
                   </div>
-                  
-                  <div class="flex items-center justify-between">
-                    <div class="flex flex-wrap gap-2">
-                      {event.tags.slice(0, 2).map(tag => (
-                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
-                          #{tag}
-                        </span>
-                      ))}
-                      {event.tags.length > 2 && (
-                        <span class="text-xs text-gray-500">
-                          +{event.tags.length - 2} more
-                        </span>
-                      )}
-                    </div>
-                    <a 
-                      href={generateEventUrl(event)}
-                      class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 text-sm font-medium"
-                    >
-                      {t.events.viewDetails}
-                    </a>
-                  </div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
       )}
-      
-      <!-- Past Events -->
-      <div>
-        <div class="flex items-center mb-8">
-          <span class="w-3 h-8 bg-gray-400 mr-4 rounded-full"></span>
-          <h2 class="text-3xl font-bold text-gray-900">{t.events.pastEvents}</h2>
-        </div>
-        
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {pastEvents.map(event => (
-            <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 group">
-              <div class="flex justify-between items-start mb-4">
-                <div>
-                  <p class="text-sm text-gray-500 mb-1">{event.date}</p>
-                  <h3 class="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-200 line-clamp-2">
-                    {event.title}
-                  </h3>
-                </div>
-                <div class="flex items-center text-sm text-gray-500 flex-shrink-0 ml-2">
-                  <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"></path>
-                  </svg>
-                  {event.registeredAttendees || event.maxAttendees}
-                </div>
-              </div>
-              
-              <div class="mb-4">
-                {event.speakers.slice(0, 2).map(speaker => (
-                  <div class="mb-2">
-                    <p class="font-medium text-gray-700">{speaker.name}</p>
-                    <p class="text-sm text-gray-600">{speaker.role} @ {speaker.company}</p>
-                  </div>
-                ))}
-                {event.speakers.length > 2 && (
-                  <p class="text-sm text-gray-500 mt-1">+{event.speakers.length - 2} {t.events.moreSpeakers}</p>
-                )}
-                
-                {event.presentations && event.presentations.length > 0 && (
-                  <div class="mt-3 pt-3 border-t border-gray-100">
-                    <p class="text-sm font-medium text-gray-700 mb-1">{event.presentations.length} {t.events.presentations}</p>
-                    <div class="text-xs text-gray-600">
-                      {event.presentations.slice(0, 2).map(p => p.title).join(', ')}
-                      {event.presentations.length > 2 && ` +${event.presentations.length - 2} more`}
-                    </div>
-                  </div>
-                )}
-              </div>
-              
-              <p class="text-gray-600 text-sm mb-4 line-clamp-2">{event.description}</p>
-              
-              <div class="flex items-center justify-between pt-4 border-t border-gray-100">
-                <div class="flex items-center space-x-3">
-                  {event.resources?.slides && (
-                    <a href={event.resources.slides} class="flex items-center text-sm text-gray-600 hover:text-blue-600 transition-colors duration-200">
-                      <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                      </svg>
-                      {t.events.slides}
-                    </a>
-                  )}
-                  {event.resources?.video && (
-                    <a href={event.resources.video} class="flex items-center text-sm text-gray-600 hover:text-blue-600 transition-colors duration-200">
-                      <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                      </svg>
-                      {t.events.video}
-                    </a>
-                  )}
-                  {event.resources?.code && (
-                    <a href={event.resources.code} class="flex items-center text-sm text-gray-600 hover:text-blue-600 transition-colors duration-200">
-                      <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                      </svg>
-                      {t.events.code}
-                    </a>
-                  )}
-                </div>
-                <a 
-                  href={generateEventUrl(event)}
-                  class="text-blue-600 hover:text-blue-700 font-medium text-sm"
-                >
-                  {t.events.viewDetails} →
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-      
+
       <!-- Call to Action -->
       <div class="mt-16 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl p-8 md:p-12 text-center text-white">
         <h3 class="text-2xl md:text-3xl font-bold mb-4">{t.events.speakAtWSAG}</h3>
@@ -215,7 +113,7 @@ const formatTime = (time: string) => {
     </div>
   </div>
 
-  <Footer />
+  <Footer lang={lang} />
 </Layout>
 
 <style>

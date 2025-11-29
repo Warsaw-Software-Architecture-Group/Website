@@ -1,5 +1,5 @@
 ---
-import { getUpcomingEvents, getPastEvents, generateEventUrl } from '../data/events';
+import { getUpcomingEvents, generateEventUrl } from '../data/events';
 import { getTranslations } from '../i18n/translations';
 
 export interface Props {
@@ -10,7 +10,6 @@ const { lang = 'pl' } = Astro.props;
 const t = getTranslations(lang);
 
 const upcomingEvents = getUpcomingEvents();
-const pastEvents = getPastEvents().slice(0, 4); // Show only first 4 past events
 
 const formatTime = (time: string) => {
   return new Date(`2000-01-01T${time}`).toLocaleTimeString(lang === 'pl' ? 'pl-PL' : 'en-US', {
@@ -37,7 +36,10 @@ const formatTime = (time: string) => {
       
       <div class="grid md:grid-cols-2 gap-6">
         {upcomingEvents.map(event => (
-          <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
+          <a
+            href={generateEventUrl(event)}
+            class="block bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group cursor-pointer"
+          >
             <div class="p-8">
               <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center text-sm text-gray-500">
@@ -53,11 +55,11 @@ const formatTime = (time: string) => {
                   {formatTime(event.time)} - {formatTime(event.endTime)}
                 </div>
               </div>
-              
+
               <h4 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-200">
                 {t.events.meetup} #{event.meetupId}
               </h4>
-              
+
               <div class="text-gray-600 mb-4 space-y-1">
                 {event.presentations && event.presentations.map(presentation => (
                   <div class="text-sm">
@@ -65,7 +67,7 @@ const formatTime = (time: string) => {
                   </div>
                 ))}
               </div>
-              
+
               <div class="flex items-center mb-6">
                 <svg class="w-4 h-4 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
@@ -73,29 +75,21 @@ const formatTime = (time: string) => {
                 </svg>
                 <span class="text-sm text-gray-600">{event.location.name}</span>
               </div>
-              
-              <div class="flex items-center justify-between">
-                <div class="flex flex-wrap gap-2">
-                  {event.tags.slice(0, 2).map(tag => (
-                    <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
-                      #{tag}
-                    </span>
-                  ))}
-                  {event.tags.length > 2 && (
-                    <span class="text-xs text-gray-500">
-                      +{event.tags.length - 2} {t.events.more}
-                    </span>
-                  )}
-                </div>
-                <a 
-                  href={generateEventUrl(event)}
-                  class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 text-sm font-medium"
-                >
-                  {t.events.viewDetails}
-                </a>
+
+              <div class="flex flex-wrap gap-2">
+                {event.tags.slice(0, 2).map(tag => (
+                  <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
+                    #{tag}
+                  </span>
+                ))}
+                {event.tags.length > 2 && (
+                  <span class="text-xs text-gray-500">
+                    +{event.tags.length - 2} {t.events.more}
+                  </span>
+                )}
               </div>
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </div>

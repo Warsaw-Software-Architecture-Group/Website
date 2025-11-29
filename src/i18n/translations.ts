@@ -271,7 +271,7 @@ export const translations = {
         },
         cookies: {
           title: 'Pliki cookie',
-          content: 'Nasza strona może używać plików cookie w celu poprawy doświadczenia użytkownika. Możesz wyłączyć pliki cookie w ustawieniach przeglądarki.'
+          content: 'Nasza strona nie wykorzystuje żadnych plików cookie. Nie zbieramy żadnych danych poprzez pliki cookie ani inne mechanizmy śledzenia.'
         },
         rights: {
           title: 'Twoje prawa',
@@ -626,7 +626,7 @@ export const translations = {
         },
         cookies: {
           title: 'Cookies',
-          content: 'Our website may use cookies to improve user experience. You can disable cookies in your browser settings.'
+          content: 'Our website does not use any cookies. We do not collect any data through cookies or other tracking mechanisms.'
         },
         rights: {
           title: 'Your Rights',
