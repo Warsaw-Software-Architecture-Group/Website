@@ -14,7 +14,7 @@ export const translations = {
       joinEvent: 'Dołącz do wydarzenia'
     },
     hero: {
-      nextMeetup: 'Następne spotkanie: 15 stycznia 2025',
+      nextMeetup: 'Następne spotkanie: 13 stycznia 2026',
       description: 'Połącz się z warszawską społecznością architektury oprogramowania. Ucz się, dziel wiedzą i rozwijaj razem z nami poprzez miesięczne spotkania, warsztaty i dyskusje.',
       joinButton: 'Dołącz do następnego spotkania',
       eventsButton: 'Zobacz poprzednie wydarzenia'
@@ -369,7 +369,7 @@ export const translations = {
       joinEvent: 'Join Next Event'
     },
     hero: {
-      nextMeetup: 'Next Meetup: January 15, 2025',
+      nextMeetup: 'Next Meetup: January 13, 2026',
       description: 'Connect with Warsaw\'s software architecture community. Learn, share, and grow together through monthly meetups, workshops, and discussions.',
       joinButton: 'Join Next Meetup',
       eventsButton: 'View Past Events'

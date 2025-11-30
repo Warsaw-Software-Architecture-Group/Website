@@ -1,5 +1,4 @@
 ---
-import Logo from './LogoV2Blocks.astro';
 import { getTranslations } from '../i18n/translations';
 
 export interface Props {
@@ -21,12 +20,16 @@ const footerLinks = {
 };
 ---
 
-<footer class="bg-gray-900 text-gray-300">
+<footer class="text-gray-300" style="background-color: #0E2337;">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="grid md:grid-cols-5 gap-8">
       <div class="md:col-span-2">
         <div class="mb-4">
-          <Logo />
+          <img
+            src="/images/logo-dark.png"
+            alt="Warsaw Software Architecture Group Logo"
+            class="h-20 w-auto"
+          />
         </div>
         <p class="text-sm mb-4">
           {t.footer.description}
@@ -39,7 +42,7 @@ const footerLinks = {
             {lang === 'pl' ? 'Napisz do nas na LinkedIn!' : 'Write to us on LinkedIn!'}
           </p>
           <a
-            href="https://www.linkedin.com/company/wsag"
+            href="https://www.linkedin.com/company/warsaw-software-architecture-group/"
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center mt-3 text-blue-400 hover:text-blue-300 transition-colors duration-200"

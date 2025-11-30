@@ -35,6 +35,13 @@ const formatTime = (time: string) => {
     hour12: false
   });
 };
+
+const getLocationName = (locationName: string, language: string) => {
+  if (locationName === 'Siedziba Circle K') {
+    return language === 'en' ? 'Circle K Headquarters' : 'Siedziba Circle K';
+  }
+  return locationName;
+};
 ---
 
 <Layout title={`${event.title} - WSAG Event`} description={event.description} type="article" lang={lang}>
@@ -89,7 +96,7 @@ const formatTime = (time: string) => {
   <div class="min-h-screen bg-gray-50">
     <!-- Header -->
     <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16">
         <div class="text-center">
           <div class="inline-flex items-center px-3 py-1 rounded-full bg-white/20 text-sm font-medium mb-4">
             {event.status === 'upcoming' ? (
@@ -125,7 +132,7 @@ const formatTime = (time: string) => {
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
               </svg>
-              {event.location.name}
+              {getLocationName(event.location.name, lang)}
             </div>
           </div>
           
@@ -301,28 +308,17 @@ const formatTime = (time: string) => {
             <h3 class="text-lg font-semibold text-gray-900 mb-4">{t.eventDetails.eventDetailsTitle}</h3>
             <div class="space-y-4">
               <div>
-                <h4 class="font-medium text-gray-900 mb-1">Event ID</h4>
-                <p class="text-gray-600 text-sm">Meetup #{event.meetupId}</p>
-              </div>
-              
-              <div>
                 <h4 class="font-medium text-gray-900 mb-1">{t.eventDetails.location}</h4>
-                <p class="text-gray-600 text-sm">{event.location.name}</p>
+                <p class="text-gray-600 text-sm">{getLocationName(event.location.name, lang)}</p>
                 <p class="text-gray-600 text-sm">{event.location.address}</p>
                 <p class="text-gray-600 text-sm">{event.location.city}</p>
               </div>
-              
-              <div>
-                <h4 class="font-medium text-gray-900 mb-1">{t.eventDetails.gettingThere}</h4>
-                <p class="text-gray-600 text-sm">{event.location.directions}</p>
-                <p class="text-gray-600 text-sm">{event.location.parking}</p>
-              </div>
-              
+
               <div>
                 <h4 class="font-medium text-gray-900 mb-1">{t.eventDetails.accessibility}</h4>
                 <p class="text-gray-600 text-sm">{event.location.accessibility}</p>
               </div>
-              
+
               <div>
                 <h4 class="font-medium text-gray-900 mb-1">{t.eventDetails.capacity}</h4>
                 <p class="text-gray-600 text-sm">{t.eventDetails.upToAttendees.replace('{count}', event.maxAttendees)}</p>
@@ -385,9 +381,9 @@ const formatTime = (time: string) => {
           </div>
           
           <!-- Location Details -->
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="grid md:grid-cols-2 gap-6">
             <div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-3">{event.location.name}</h3>
+              <h3 class="text-lg font-semibold text-gray-900 mb-3">{getLocationName(event.location.name, lang)}</h3>
               <div class="flex items-start text-gray-600">
                 <svg class="w-5 h-5 mr-2 mt-0.5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
@@ -399,33 +395,23 @@ const formatTime = (time: string) => {
                 </div>
               </div>
             </div>
-            
+
             <div>
-              <h4 class="text-lg font-semibold text-gray-900 mb-3">{t.eventDetails.gettingThere}</h4>
-              <div class="space-y-2">
-                <div class="flex items-start text-gray-600">
-                  <svg class="w-5 h-5 mr-2 mt-0.5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg>
-                  <span>{event.location.directions}</span>
-                </div>
-                <div class="flex items-start text-gray-600">
-                  <svg class="w-5 h-5 mr-2 mt-0.5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                  </svg>
-                  <span>{event.location.parking}</span>
-                </div>
-              </div>
-            </div>
-            
-            <div>
-              <h4 class="text-lg font-semibold text-gray-900 mb-3">{t.eventDetails.accessibility}</h4>
-              <div class="flex items-start text-gray-600">
-                <svg class="w-5 h-5 mr-2 mt-0.5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                </svg>
-                <span>{event.location.accessibility}</span>
-              </div>
+              <h4 class="text-lg font-semibold text-gray-900 mb-3">
+                {lang === 'pl' ? 'Partner miejsca' : 'Venue Partner'}
+              </h4>
+              <a
+                href="https://www.circlek.pl/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 transition-colors duration-200"
+              >
+                <img
+                  src="/images/circle-k-logo.png"
+                  alt="Circle K Logo"
+                  class="h-12 w-auto"
+                />
+              </a>
             </div>
           </div>
         </div>
