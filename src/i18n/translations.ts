@@ -123,6 +123,12 @@ export const translations = {
       becomeASpeaker: 'Zostań prelegentem',
       backToHome: 'Powrót do strony głównej'
     },
+    callForPapers: {
+      title: 'Call for Papers',
+      subtitle: 'Podziel się swoją wiedzą i doświadczeniem z warszawską społecznością architektury oprogramowania',
+      description: 'Szukamy prelegentów, którzy chcą podzielić się swoimi doświadczeniami, najlepszymi praktykami i wiedzą na temat architektury oprogramowania. Niezależnie od tego, czy jesteś doświadczonym architektem, czy dopiero zaczynasz swoją przygodę z architekturą, chcemy Cię usłyszeć!',
+      submitButton: 'Zgłoś swoją prezentację'
+    },
     speakers: {
       title: 'Dla Prelegentów',
       subtitle: 'Podziel się swoją wiedzą z warszawską społecznością architektury oprogramowania',
@@ -477,6 +483,12 @@ export const translations = {
       speakAtWSAGDesc: 'Share your knowledge and experience with Warsaw\'s software architecture community. We\'re always looking for passionate speakers!',
       becomeASpeaker: 'Become a Speaker',
       backToHome: 'Back to Home'
+    },
+    callForPapers: {
+      title: 'Call for Papers',
+      subtitle: 'Share your knowledge and experience with Warsaw\'s software architecture community',
+      description: 'We\'re looking for speakers who want to share their experiences, best practices, and knowledge about software architecture. Whether you\'re a seasoned architect or just starting your architecture journey, we want to hear from you!',
+      submitButton: 'Submit Your Talk'
     },
     speakers: {
       title: 'For Speakers',

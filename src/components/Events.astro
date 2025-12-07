@@ -35,11 +35,16 @@ const formatTime = (time: string) => {
       </h3>
       
       <div class="grid md:grid-cols-2 gap-6">
-        {upcomingEvents.map(event => (
+        {upcomingEvents.map((event, index) => (
           <a
             href={generateEventUrl(event)}
             class="block bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group cursor-pointer"
           >
+            <!-- Map at the top -->
+            <div class="h-48 bg-gray-100 relative overflow-hidden">
+              <div id={`event-map-${index}`} class="w-full h-full"></div>
+            </div>
+
             <div class="p-8">
               <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center text-sm text-gray-500">
@@ -68,12 +73,16 @@ const formatTime = (time: string) => {
                 ))}
               </div>
 
-              <div class="flex items-center mb-6">
-                <svg class="w-4 h-4 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div class="flex items-start mb-6">
+                <svg class="w-4 h-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                 </svg>
-                <span class="text-sm text-gray-600">{event.location.name}</span>
+                <div class="text-sm text-gray-600">
+                  <div class="font-medium">{event.location.name}</div>
+                  <div>{event.location.address}</div>
+                  <div>{event.location.zipCode ? `${event.location.zipCode} ` : ''}{event.location.city}</div>
+                </div>
               </div>
 
               <div class="flex flex-wrap gap-2">
@@ -93,6 +102,88 @@ const formatTime = (time: string) => {
         ))}
       </div>
     </div>
-    
+
   </div>
 </section>
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script define:vars={{ upcomingEvents }}>
+  document.addEventListener('DOMContentLoaded', function() {
+    upcomingEvents.forEach((event, index) => {
+      const address = `${event.location.address}, ${event.location.city}`;
+
+      // Use geocoding service to get coordinates
+      fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data && data.length > 0) {
+            const lat = parseFloat(data[0].lat);
+            const lon = parseFloat(data[0].lon);
+
+            // Initialize the map
+            const map = L.map(`event-map-${index}`, {
+              dragging: false,
+              zoomControl: false,
+              scrollWheelZoom: false,
+              doubleClickZoom: false,
+              touchZoom: false
+            }).setView([lat, lon], 15);
+
+            // Add OpenStreetMap tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+              attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            // Add a marker for the event location
+            L.marker([lat, lon])
+              .addTo(map)
+              .bindPopup(`
+                <div style="text-align: center;">
+                  <strong>${event.location.name}</strong><br/>
+                  ${event.location.address}
+                </div>
+              `);
+          } else {
+            // Fallback: show a default map centered on Warsaw
+            const map = L.map(`event-map-${index}`, {
+              dragging: false,
+              zoomControl: false,
+              scrollWheelZoom: false,
+              doubleClickZoom: false,
+              touchZoom: false
+            }).setView([52.2297, 21.0122], 13);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+              attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+          }
+        })
+        .catch(error => {
+          console.error('Error geocoding address:', error);
+          // Fallback map
+          const map = L.map(`event-map-${index}`, {
+            dragging: false,
+            zoomControl: false,
+            scrollWheelZoom: false,
+            doubleClickZoom: false,
+            touchZoom: false
+          }).setView([52.2297, 21.0122], 13);
+
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          }).addTo(map);
+        });
+    });
+  });
+</script>
+
+<style>
+  .leaflet-container {
+    border-radius: 0;
+  }
+</style>
