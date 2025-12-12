@@ -1,4 +1,5 @@
 export interface Speaker {
+  id: string;
   name: string;
   role: string;
   company: string;
@@ -87,9 +88,10 @@ export function getEventByDateAndId(dateStr: string, meetupId: number): Event | 
   });
 }
 
-export function generateEventUrl(event: Event): string {
+export function generateEventUrl(event: Event, lang: 'pl' | 'en' = 'pl'): string {
   const eventDate = new Date(event.date).toISOString().split('T')[0];
-  return `/events/${eventDate}/meetup-${event.meetupId}`;
+  const prefix = lang === 'en' ? '/en' : '';
+  return `${prefix}/events/${eventDate}/meetup-${event.meetupId}`;
 }
 
 export function getUpcomingEvents(): Event[] {

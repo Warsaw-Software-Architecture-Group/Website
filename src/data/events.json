@@ -19,8 +19,58 @@
       "parking": "Details to be announced",
       "accessibility": "Details to be announced"
     },
-    "speakers": [],
-    "presentations": [],
+    "speakers": [
+      {
+        "id": "kamil-kielbasa",
+        "name": "Kamil Kiełbasa",
+        "role": "",
+        "company": "",
+        "bio": ""
+      },
+      {
+        "id": "maciej-kacprzak",
+        "name": "Maciej Kacprzak",
+        "role": "",
+        "company": "",
+        "bio": ""
+      },
+      {
+        "id": "tomasz-ducin",
+        "name": "Tomasz Ducin",
+        "role": "",
+        "company": "",
+        "bio": ""
+      }
+    ],
+    "presentations": [
+      {
+        "id": "capability-mapping-raci-daci",
+        "title": "Capability Mapping & Raci / Daci Matrix - w praktyce",
+        "description": "",
+        "speakerId": "kamil-kielbasa",
+        "duration": 30,
+        "level": "intermediate",
+        "tags": []
+      },
+      {
+        "id": "piekny-kod-to-za-malo",
+        "title": "Piękny kod to za mało – mój kurs startupowy za 100 tys. zł",
+        "description": "",
+        "speakerId": "maciej-kacprzak",
+        "duration": 30,
+        "level": "intermediate",
+        "tags": []
+      },
+      {
+        "id": "techniki-efektywnej-nauki-z-llmami",
+        "title": "Techniki efektywnej nauki z LLMami",
+        "description": "",
+        "speakerId": "tomasz-ducin",
+        "duration": 30,
+        "level": "intermediate",
+        "tags": []
+      }
+    ],
     "agenda": [
       {
         "time": "18:00",
@@ -29,31 +79,34 @@
         "type": "networking"
       },
       {
-        "time": "18:30",
-        "title": "Presentation Slot 1",
-        "description": "Speaker and topic to be announced",
-        "type": "talk"
+        "time": "18:10",
+        "title": "Capability Mapping & Raci / Daci Matrix - w praktyce",
+        "speaker": "Kamil Kiełbasa",
+        "speakerIds": ["kamil-kielbasa"],
+        "presentationId": "capability-mapping-raci-daci",
+        "description": "",
+        "type": "presentation"
       },
       {
-        "time": "19:15",
-        "title": "Break",
-        "description": "Coffee break and networking",
-        "type": "break"
+        "time": "19:05",
+        "title": "Piękny kod to za mało – mój kurs startupowy za 100 tys. zł",
+        "speaker": "Maciej Kacprzak",
+        "speakerIds": ["maciej-kacprzak"],
+        "presentationId": "piekny-kod-to-za-malo",
+        "description": "",
+        "type": "presentation"
       },
       {
-        "time": "19:30",
-        "title": "Presentation Slot 2",
-        "description": "Speaker and topic to be announced",
-        "type": "talk"
+        "time": "20:00",
+        "title": "Techniki efektywnej nauki z LLMami",
+        "speaker": "Tomasz Ducin",
+        "speakerIds": ["tomasz-ducin"],
+        "presentationId": "techniki-efektywnej-nauki-z-llmami",
+        "description": "",
+        "type": "presentation"
       },
       {
-        "time": "20:15",
-        "title": "Presentation Slot 3",
-        "description": "Speaker and topic to be announced",
-        "type": "talk"
-      },
-      {
-        "time": "20:45",
+        "time": "20:55",
         "title": "Closing & Networking",
         "description": "Final Q&A and networking",
         "type": "networking"
@@ -61,7 +114,7 @@
     ],
     "maxAttendees": 50,
     "registeredAttendees": 0,
-    "registrationUrl": "#register",
+    "registrationUrl": "https://pragmaticmeet.com/events/5018716c-5c2d-44f4-ae13-7cae31792322",
     "status": "upcoming",
     "tags": ["architecture", "community", "networking"],
     "prerequisites": [],

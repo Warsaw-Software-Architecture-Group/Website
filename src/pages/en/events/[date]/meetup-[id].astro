@@ -1,15 +1,15 @@
 ---
-import Layout from '../../../layouts/Layout.astro';
-import Navigation from '../../../components/Navigation.astro';
-import Footer from '../../../components/Footer.astro';
-import { events, getEventByDateAndId, generateEventUrl, type Event } from '../../../data/events';
-import { getTranslations } from '../../../i18n/translations';
+import Layout from '../../../../layouts/Layout.astro';
+import Navigation from '../../../../components/Navigation.astro';
+import Footer from '../../../../components/Footer.astro';
+import { events, getEventByDateAndId, generateEventUrl, type Event } from '../../../../data/events';
+import { getTranslations } from '../../../../i18n/translations';
 
 export async function getStaticPaths() {
   return events.map(event => {
     const eventDate = new Date(event.date).toISOString().split('T')[0];
     return {
-      params: { 
+      params: {
         date: eventDate,
         id: event.meetupId.toString()
       },
@@ -22,10 +22,10 @@ const { date, id } = Astro.params;
 const { event } = Astro.props as { event: Event };
 
 if (!event) {
-  return Astro.redirect('/404');
+  return Astro.redirect('/en/404');
 }
 
-const lang = 'pl';
+const lang = 'en';
 const t = getTranslations(lang);
 
 const formatTime = (time: string) => {
@@ -110,10 +110,10 @@ const getLocationName = (locationName: string, language: string) => {
             )}
             {event.status === 'upcoming' ? 'Upcoming Event' : 'Past Event'} - Meetup #{event.meetupId}
           </div>
-          
+
           <h1 class="text-4xl md:text-5xl font-bold mb-4">{event.title}</h1>
           <p class="text-xl opacity-90 max-w-2xl mx-auto">{event.description}</p>
-          
+
           <div class="flex flex-wrap justify-center gap-4 mt-8">
             <div class="flex items-center bg-white/10 px-4 py-2 rounded-lg">
               <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -135,7 +135,7 @@ const getLocationName = (locationName: string, language: string) => {
               {getLocationName(event.location.name, lang)}
             </div>
           </div>
-          
+
           {event.status === 'upcoming' && event.registrationUrl && (
             <div class="mt-8">
               <a href={event.registrationUrl} class="inline-block px-8 py-4 bg-white text-blue-600 rounded-lg hover:bg-gray-50 transition-colors duration-200 font-bold text-lg shadow-lg">
@@ -146,7 +146,7 @@ const getLocationName = (locationName: string, language: string) => {
         </div>
       </div>
     </div>
-    
+
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div class="grid lg:grid-cols-3 gap-8">
         <!-- Main Content -->
@@ -160,7 +160,7 @@ const getLocationName = (locationName: string, language: string) => {
               ))}
             </div>
           </div>
-          
+
           <!-- Presentations -->
           {event.presentations && event.presentations.length > 0 && (
           <div class="bg-white rounded-xl shadow-md p-8">
@@ -254,7 +254,7 @@ const getLocationName = (locationName: string, language: string) => {
             </div>
           </div>
           )}
-          
+
           {/* Resources (for completed events) */}
           {event.status === 'completed' && event.resources && (
             <div class="bg-white rounded-xl shadow-md p-8">
@@ -297,7 +297,7 @@ const getLocationName = (locationName: string, language: string) => {
             </div>
           )}
         </div>
-        
+
         <!-- Sidebar -->
         <div class="space-y-6">
           <!-- Event Details -->
@@ -322,7 +322,7 @@ const getLocationName = (locationName: string, language: string) => {
               </div>
             </div>
           </div>
-          
+
           <!-- Prerequisites -->
           {event.prerequisites && event.prerequisites.length > 0 && (
             <div class="bg-white rounded-xl shadow-md p-6">
@@ -339,7 +339,7 @@ const getLocationName = (locationName: string, language: string) => {
               </ul>
             </div>
           )}
-          
+
           <!-- Target Audience -->
           <div class="bg-white rounded-xl shadow-md p-6">
             <h3 class="text-lg font-semibold text-gray-900 mb-4">{t.eventDetails.targetAudience}</h3>
@@ -351,7 +351,7 @@ const getLocationName = (locationName: string, language: string) => {
               ))}
             </div>
           </div>
-          
+
           <!-- Tags -->
           <div class="bg-white rounded-xl shadow-md p-6">
             <h3 class="text-lg font-semibold text-gray-900 mb-4">{t.eventDetails.topics}</h3>
@@ -365,7 +365,7 @@ const getLocationName = (locationName: string, language: string) => {
           </div>
         </div>
       </div>
-      
+
       <!-- Location Map - Full Width -->
       <div class="bg-white rounded-xl shadow-md p-8 mt-8">
         <h2 class="text-2xl font-bold text-gray-900 mb-6">{t.eventDetails.location}</h2>
@@ -376,7 +376,7 @@ const getLocationName = (locationName: string, language: string) => {
               <div id="event-map" class="w-full h-full"></div>
             </div>
           </div>
-          
+
           <!-- Location Details -->
           <div class="grid md:grid-cols-2 gap-6">
             <div>
@@ -395,7 +395,7 @@ const getLocationName = (locationName: string, language: string) => {
 
             <div>
               <h4 class="text-lg font-semibold text-gray-900 mb-3">
-                {lang === 'pl' ? 'Partner miejsca' : 'Venue Partner'}
+                Venue Partner
               </h4>
               <a
                 href="https://www.circlek.pl/"
@@ -413,17 +413,17 @@ const getLocationName = (locationName: string, language: string) => {
           </div>
         </div>
       </div>
-      
+
       <!-- Navigation -->
       <div class="mt-12 flex justify-between items-center">
-        <a href="/events" class="flex items-center text-blue-600 hover:text-blue-700 font-medium">
+        <a href="/en/events" class="flex items-center text-blue-600 hover:text-blue-700 font-medium">
           <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
           </svg>
           Back to All Events
         </a>
-        
-        <a href="/" class="text-gray-600 hover:text-gray-900">
+
+        <a href="/en" class="text-gray-600 hover:text-gray-900">
           Back to Home
         </a>
       </div>
@@ -443,7 +443,7 @@ const getLocationName = (locationName: string, language: string) => {
   document.addEventListener('DOMContentLoaded', function() {
     // Geocode the address to get coordinates
     const address = `${eventLocation.address}, ${eventLocation.city}`;
-    
+
     // Use a geocoding service to get coordinates
     fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`)
       .then(response => response.json())
@@ -451,15 +451,15 @@ const getLocationName = (locationName: string, language: string) => {
         if (data && data.length > 0) {
           const lat = parseFloat(data[0].lat);
           const lon = parseFloat(data[0].lon);
-          
+
           // Initialize the map
           const map = L.map('event-map').setView([lat, lon], 16);
-          
+
           // Add OpenStreetMap tiles
           L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           }).addTo(map);
-          
+
           // Add a marker for the event location
           L.marker([lat, lon])
             .addTo(map)
@@ -474,21 +474,17 @@ const getLocationName = (locationName: string, language: string) => {
         } else {
           // Fallback: show a default map centered on Warsaw
           const map = L.map('event-map').setView([52.2297, 21.0122], 13);
-          
+
           L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           }).addTo(map);
-          
-          // Show location not found message
-          const mapElement = document.getElementById('event-map');
-          mapElement.innerHTML = '<div class="flex items-center justify-center h-full text-gray-500"><p>${t.eventDetails.locationNotFound}</p></div>';
         }
       })
       .catch(error => {
         console.error('Error geocoding address:', error);
         // Fallback map
         const map = L.map('event-map').setView([52.2297, 21.0122], 13);
-        
+
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
@@ -500,7 +496,7 @@ const getLocationName = (locationName: string, language: string) => {
   html {
     scroll-behavior: smooth;
   }
-  
+
   .leaflet-container {
     border-radius: 0.5rem;
   }

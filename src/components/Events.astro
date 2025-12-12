@@ -37,7 +37,7 @@ const formatTime = (time: string) => {
       <div class="grid md:grid-cols-2 gap-6">
         {upcomingEvents.map((event, index) => (
           <a
-            href={generateEventUrl(event)}
+            href={generateEventUrl(event, lang)}
             class="block bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group cursor-pointer"
           >
             <!-- Map at the top -->
