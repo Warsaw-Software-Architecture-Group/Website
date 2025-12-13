@@ -36,12 +36,51 @@ const formatTime = (time: string) => {
   });
 };
 
+const formatDate = (dateString: string, language: string) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString(language === 'pl' ? 'pl-PL' : 'en-US', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
+};
+
 const getLocationName = (locationName: string, language: string) => {
   if (locationName === 'Siedziba Circle K') {
     return language === 'en' ? 'Circle K Headquarters' : 'Siedziba Circle K';
   }
   return locationName;
 };
+
+// Generate Google Calendar URL
+const generateGoogleCalendarUrl = (event: Event) => {
+  const eventDate = new Date(event.date);
+  const [startHour, startMinute] = event.time.split(':').map(Number);
+  const [endHour, endMinute] = event.endTime.split(':').map(Number);
+
+  const startDate = new Date(eventDate);
+  startDate.setHours(startHour, startMinute, 0);
+
+  const endDate = new Date(eventDate);
+  endDate.setHours(endHour, endMinute, 0);
+
+  const formatDateForGoogle = (date: Date) => {
+    return date.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+  };
+
+  const params = new URLSearchParams({
+    action: 'TEMPLATE',
+    text: event.title,
+    dates: `${formatDateForGoogle(startDate)}/${formatDateForGoogle(endDate)}`,
+    details: event.description + (event.registrationUrl ? `\n\nRegistration: ${event.registrationUrl}` : ''),
+    location: `${event.location.name}, ${event.location.address}, ${event.location.city}`,
+    ctz: 'Europe/Warsaw'
+  });
+
+  return `https://calendar.google.com/calendar/render?${params.toString()}`;
+};
+
+const googleCalendarUrl = generateGoogleCalendarUrl(event);
 ---
 
 <Layout title={`${event.title} - WSAG Event`} description={event.description} type="article" lang={lang}>
@@ -119,7 +158,7 @@ const getLocationName = (locationName: string, language: string) => {
               <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
               </svg>
-              {event.date}
+              {formatDate(event.date, lang)}
             </div>
             <div class="flex items-center bg-white/10 px-4 py-2 rounded-lg">
               <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -136,11 +175,41 @@ const getLocationName = (locationName: string, language: string) => {
             </div>
           </div>
 
-          {event.status === 'upcoming' && event.registrationUrl && (
+          {event.status === 'upcoming' && (
             <div class="mt-8">
-              <a href={event.registrationUrl} class="inline-block px-8 py-4 bg-white text-blue-600 rounded-lg hover:bg-gray-50 transition-colors duration-200 font-bold text-lg shadow-lg">
-                Register Now
-              </a>
+              <!-- Countdown Timer -->
+              <div id="countdown" class="flex justify-center gap-4 mb-8">
+                <div class="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-3 min-w-[80px] text-center">
+                  <div id="countdown-days" class="text-3xl font-bold">--</div>
+                  <div class="text-sm opacity-80">days</div>
+                </div>
+                <div class="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-3 min-w-[80px] text-center">
+                  <div id="countdown-hours" class="text-3xl font-bold">--</div>
+                  <div class="text-sm opacity-80">hours</div>
+                </div>
+                <div class="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-3 min-w-[80px] text-center">
+                  <div id="countdown-minutes" class="text-3xl font-bold">--</div>
+                  <div class="text-sm opacity-80">minutes</div>
+                </div>
+                <div class="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-3 min-w-[80px] text-center">
+                  <div id="countdown-seconds" class="text-3xl font-bold">--</div>
+                  <div class="text-sm opacity-80">seconds</div>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap justify-center gap-4">
+                {event.registrationUrl && (
+                  <a href={event.registrationUrl} class="inline-block px-8 py-4 bg-white text-blue-600 rounded-lg hover:bg-gray-50 transition-colors duration-200 font-bold text-lg shadow-lg">
+                    Register Now
+                  </a>
+                )}
+                <a href={googleCalendarUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-6 py-4 bg-white/20 text-white border border-white/30 rounded-lg hover:bg-white/30 transition-colors duration-200 font-medium">
+                  <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zM9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm-8 4H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/>
+                  </svg>
+                  Add to Calendar
+                </a>
+              </div>
             </div>
           )}
         </div>
@@ -161,93 +230,56 @@ const getLocationName = (locationName: string, language: string) => {
             </div>
           </div>
 
-          <!-- Presentations -->
-          {event.presentations && event.presentations.length > 0 && (
+          <!-- Agenda -->
+          {event.agenda && event.agenda.length > 0 && (
           <div class="bg-white rounded-xl shadow-md p-8">
-            <h2 class="text-2xl font-bold text-gray-900 mb-6">{t.eventDetails.presentations}</h2>
-            <div class="space-y-8">
-              {event.presentations.map(presentation => {
-                const speaker = event.speakers.find(s => s.id === presentation.speakerId);
-                const agendaItem = event.agenda.find(a => a.presentationId === presentation.id);
-                const startTime = agendaItem?.time || '';
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Agenda</h2>
+            <div class="divide-y divide-gray-100">
+              {event.agenda.map((item) => {
+                const isPresentation = item.type === 'presentation' || item.type === 'talk';
+                const speaker = isPresentation && item.speakerIds?.[0]
+                  ? event.speakers.find(s => s.id === item.speakerIds[0])
+                  : null;
+                const presentation = isPresentation && item.presentationId
+                  ? event.presentations.find(p => p.id === item.presentationId)
+                  : null;
+
                 return (
-                  <div class="border border-gray-200 rounded-lg p-6">
-                    {/* Presentation Header */}
-                    <div class="flex items-start justify-between mb-4">
-                      <div class="flex-1">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">{presentation.title}</h3>
-
-                        {/* Tags */}
-                        {presentation.tags.length > 0 && (
-                          <div class="flex flex-wrap gap-2 mb-4">
-                            {presentation.tags.map(tag => (
-                              <span class="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-full">
-                                #{tag}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-
-                        {/* Speaker Info */}
-                        <div class="flex items-center space-x-3">
-                          <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full flex items-center justify-center">
-                            <span class="text-white text-sm font-bold">
-                              {speaker ? speaker.name.split(' ').map(n => n[0]).join('') : '??'}
-                            </span>
-                          </div>
-                          <div>
-                            <p class="font-semibold text-gray-900">{speaker?.name}</p>
-                            {speaker?.role && speaker?.company && (
-                              <p class="text-sm text-blue-600">{speaker.role} @ {speaker.company}</p>
+                  <div class="py-4 first:pt-0 last:pb-0">
+                    <div class="flex gap-4">
+                      <div class="flex-shrink-0 w-14">
+                        <span class="text-sm font-medium text-gray-500">{item.time}</span>
+                      </div>
+                      <div class="flex-1 min-w-0">
+                        <div class="flex items-start gap-3">
+                          {speaker?.photo && (
+                            <img src={speaker.photo} alt={speaker.name} class="w-10 h-10 rounded-full object-cover flex-shrink-0" />
+                          )}
+                          <div class="flex-1 min-w-0">
+                            <h4 class="font-medium text-gray-900">{item.title}</h4>
+                            {speaker && (
+                              <p class="text-sm text-gray-500">{speaker.name}</p>
+                            )}
+                            {isPresentation && presentation && (
+                              <div class="flex items-center gap-3 mt-2 text-sm text-gray-500">
+                                {presentation.language && (
+                                  <span class="inline-flex items-center gap-1">
+                                    <span class="text-base">{presentation.language === 'pl' ? '🇵🇱' : '🇬🇧'}</span>
+                                    <span>{presentation.language === 'pl' ? 'Polish' : 'English'}</span>
+                                  </span>
+                                )}
+                              </div>
+                            )}
+                            {isPresentation && presentation?.description && (
+                              <p class="text-sm text-gray-600 mt-2" set:html={presentation.description} />
+                            )}
+                            {!isPresentation && item.description && (
+                              <p class="text-sm text-gray-500">{item.description}</p>
                             )}
                           </div>
                         </div>
                       </div>
-                      {startTime && (
-                        <div class="flex flex-col items-end space-y-2">
-                          <span class="text-sm text-gray-500">{startTime}</span>
-                        </div>
-                      )}
                     </div>
-
-                    {/* Presentation Description */}
-                    {presentation.description && (
-                      <div class="mb-4">
-                        <p class="text-gray-600">{presentation.description}</p>
-                      </div>
-                    )}
-
-                    {/* Speaker Description */}
-                    {speaker && speaker.bio && (
-                      <div class="pt-4 border-t border-gray-100">
-                        <p class="text-gray-600 mb-3">{speaker.bio}</p>
-
-                        {/* Social Links */}
-                        <div class="flex space-x-3">
-                          {speaker.linkedin && (
-                            <a href={speaker.linkedin} class="text-gray-400 hover:text-blue-600 transition-colors" title="LinkedIn">
-                              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                              </svg>
-                            </a>
-                          )}
-                          {speaker.github && (
-                            <a href={speaker.github} class="text-gray-400 hover:text-gray-900 transition-colors" title="GitHub">
-                              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.30 3.297-1.30.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                              </svg>
-                            </a>
-                          )}
-                          {speaker.twitter && (
-                            <a href={speaker.twitter} class="text-gray-400 hover:text-blue-400 transition-colors" title="Twitter">
-                              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                              </svg>
-                            </a>
-                          )}
-                        </div>
-                      </div>
-                    )}
                   </div>
                 );
               })}
@@ -489,6 +521,40 @@ const getLocationName = (locationName: string, language: string) => {
           attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
       });
+  });
+</script>
+
+<script define:vars={{ eventDate: event.date, eventTime: event.time }}>
+  document.addEventListener('DOMContentLoaded', function() {
+    const countdownElement = document.getElementById('countdown');
+    if (!countdownElement) return;
+
+    const targetDate = new Date(eventDate);
+    const [hours, minutes] = eventTime.split(':').map(Number);
+    targetDate.setHours(hours, minutes, 0, 0);
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        countdownElement.innerHTML = '<div class="text-xl font-bold">Event is happening now!</div>';
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hoursLeft = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutesLeft = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const secondsLeft = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('countdown-days').textContent = days.toString().padStart(2, '0');
+      document.getElementById('countdown-hours').textContent = hoursLeft.toString().padStart(2, '0');
+      document.getElementById('countdown-minutes').textContent = minutesLeft.toString().padStart(2, '0');
+      document.getElementById('countdown-seconds').textContent = secondsLeft.toString().padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
   });
 </script>
 

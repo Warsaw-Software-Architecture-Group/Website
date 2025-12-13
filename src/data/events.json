@@ -25,49 +25,55 @@
         "name": "Kamil Kiełbasa",
         "role": "",
         "company": "",
-        "bio": ""
+        "bio": "",
+        "photo": "/images/speakers/meetup-1/kamil.jpeg"
       },
       {
         "id": "maciej-kacprzak",
         "name": "Maciej Kacprzak",
         "role": "",
         "company": "",
-        "bio": ""
+        "bio": "",
+        "photo": "/images/speakers/meetup-1/maciej.jpeg"
       },
       {
         "id": "tomasz-ducin",
         "name": "Tomasz Ducin",
         "role": "",
         "company": "",
-        "bio": ""
+        "bio": "",
+        "photo": "/images/speakers/meetup-1/tomasz.jpeg"
       }
     ],
     "presentations": [
       {
         "id": "capability-mapping-raci-daci",
         "title": "Capability Mapping & Raci / Daci Matrix - w praktyce",
-        "description": "",
+        "description": "Capability Mapping oraz macierze RACI / DACI to proste, ale bardzo skuteczne narzędzia, które pomagają uporządkować sposób działania organizacji. Podczas prezentacji pokażę, jak wykorzystać je w praktyce do zrozumienia i zaprojektowania flow decyzyjności, jasnego podziału odpowiedzialności oraz świadomego doboru wymaganego skillsetu.<br/><br/>Na realnych przykładach omówimy, jak te techniki wspierają architektów i liderów w budowaniu organizacji, które podejmują decyzje szybciej, działają spójniej i lepiej radzą sobie ze skalą oraz zmianą.",
         "speakerId": "kamil-kielbasa",
         "duration": 30,
         "level": "intermediate",
+        "language": "pl",
         "tags": []
       },
       {
         "id": "piekny-kod-to-za-malo",
         "title": "Piękny kod to za mało – mój kurs startupowy za 100 tys. zł",
-        "description": "",
+        "description": "TBD",
         "speakerId": "maciej-kacprzak",
         "duration": 30,
         "level": "intermediate",
+        "language": "pl",
         "tags": []
       },
       {
         "id": "techniki-efektywnej-nauki-z-llmami",
         "title": "Techniki efektywnej nauki z LLMami",
-        "description": "",
+        "description": "TBD",
         "speakerId": "tomasz-ducin",
         "duration": 30,
         "level": "intermediate",
+        "language": "pl",
         "tags": []
       }
     ],

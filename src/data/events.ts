@@ -17,6 +17,7 @@ export interface Presentation {
   speakerId: string;
   duration: number; // in minutes
   level: 'beginner' | 'intermediate' | 'advanced';
+  language: 'pl' | 'en';
   tags: string[];
 }
 
