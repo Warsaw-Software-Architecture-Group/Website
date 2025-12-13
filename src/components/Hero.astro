@@ -9,12 +9,12 @@ const { lang = 'pl' } = Astro.props;
 const t = getTranslations(lang);
 ---
 
-<section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+<section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-primary/5 to-primary/10">
   <div class="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] bg-fixed"></div>
 
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
     <div class="text-center">
-      <div class="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-medium mb-8">
+      <div class="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary-dark text-sm font-medium mb-8">
         <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
           <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM9 12H7v-2h2V7h2v3h2v2h-2v1H9v-1z"/>
         </svg>

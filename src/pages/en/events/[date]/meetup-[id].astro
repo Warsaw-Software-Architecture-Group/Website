@@ -134,7 +134,7 @@ const googleCalendarUrl = generateGoogleCalendarUrl(event);
 
   <div class="min-h-screen bg-gray-50">
     <!-- Header -->
-    <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+    <div class="bg-gradient-to-r from-[#29B7C0] to-[#1e959c] text-white">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16">
         <div class="text-center">
           <div class="inline-flex items-center px-3 py-1 rounded-full bg-white/20 text-sm font-medium mb-4">
@@ -199,7 +199,7 @@ const googleCalendarUrl = generateGoogleCalendarUrl(event);
 
               <div class="flex flex-wrap justify-center gap-4">
                 {event.registrationUrl && (
-                  <a href={event.registrationUrl} class="inline-block px-8 py-4 bg-white text-blue-600 rounded-lg hover:bg-gray-50 transition-colors duration-200 font-bold text-lg shadow-lg">
+                  <a href={event.registrationUrl} class="inline-block px-8 py-4 bg-white text-[#29B7C0] rounded-lg hover:bg-gray-50 transition-colors duration-200 font-bold text-lg shadow-lg">
                     Register Now
                   </a>
                 )}
@@ -294,7 +294,7 @@ const googleCalendarUrl = generateGoogleCalendarUrl(event);
               <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {event.resources.slides && (
                   <a href={event.resources.slides} class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                    <svg class="w-8 h-8 text-blue-600 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-8 h-8 text-[#29B7C0] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
                     </svg>
                     <span class="text-sm font-medium text-gray-900">{t.eventDetails.slides}</span>
@@ -377,7 +377,7 @@ const googleCalendarUrl = generateGoogleCalendarUrl(event);
             <h3 class="text-lg font-semibold text-gray-900 mb-4">{t.eventDetails.targetAudience}</h3>
             <div class="flex flex-wrap gap-2">
               {event.targetAudience.map(audience => (
-                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">
+                <span class="px-3 py-1 bg-[#29B7C0]/10 text-[#1e959c] text-sm rounded-full">
                   {audience}
                 </span>
               ))}
@@ -433,7 +433,7 @@ const googleCalendarUrl = generateGoogleCalendarUrl(event);
                 href="https://www.circlek.pl/"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 transition-colors duration-200"
+                class="inline-block bg-white p-4 rounded-lg border border-gray-200 hover:border-[#29B7C0] transition-colors duration-200"
               >
                 <img
                   src="/images/circle-k-logo.png"
@@ -448,7 +448,7 @@ const googleCalendarUrl = generateGoogleCalendarUrl(event);
 
       <!-- Navigation -->
       <div class="mt-12 flex justify-between items-center">
-        <a href="/en/events" class="flex items-center text-blue-600 hover:text-blue-700 font-medium">
+        <a href="/en/events" class="flex items-center text-[#29B7C0] hover:text-[#1e959c] font-medium">
           <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
           </svg>

@@ -61,7 +61,7 @@ const formatTime = (time: string) => {
                 </div>
               </div>
 
-              <h4 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-200">
+              <h4 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors duration-200">
                 {t.events.meetup} #{event.meetupId}
               </h4>
 
@@ -87,7 +87,7 @@ const formatTime = (time: string) => {
 
               <div class="flex flex-wrap gap-2">
                 {event.tags.slice(0, 2).map(tag => (
-                  <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
+                  <span class="px-2 py-1 bg-primary/10 text-primary-dark text-xs rounded-full">
                     #{tag}
                   </span>
                 ))}
