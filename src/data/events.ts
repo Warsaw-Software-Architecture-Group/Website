@@ -10,15 +10,28 @@ export interface Speaker {
   photo?: string;
 }
 
+export interface BilingualText {
+  pl: string;
+  en: string;
+}
+
 export interface Presentation {
   id: string;
-  title: string;
-  description: string;
+  title: string | BilingualText;
+  description: string | BilingualText;
   speakerId: string;
   duration: number; // in minutes
   level: 'beginner' | 'intermediate' | 'advanced';
-  language: 'pl' | 'en';
+  language: 'pl' | 'en'; // Language the presentation is given in
   tags: string[];
+}
+
+// Helper function to get localized text from a string or BilingualText object
+export function getLocalizedText(text: string | BilingualText, lang: 'pl' | 'en'): string {
+  if (typeof text === 'string') {
+    return text;
+  }
+  return text[lang] || text.pl || text.en || '';
 }
 
 export interface AgendaItem {

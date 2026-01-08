@@ -48,8 +48,14 @@
     "presentations": [
       {
         "id": "capability-mapping-raci-daci",
-        "title": "Capability Mapping & Raci / Daci Matrix - w praktyce",
-        "description": "Capability Mapping oraz macierze RACI / DACI to proste, ale bardzo skuteczne narzędzia, które pomagają uporządkować sposób działania organizacji. Podczas prezentacji pokażę, jak wykorzystać je w praktyce do zrozumienia i zaprojektowania flow decyzyjności, jasnego podziału odpowiedzialności oraz świadomego doboru wymaganego skillsetu.<br/><br/>Na realnych przykładach omówimy, jak te techniki wspierają architektów i liderów w budowaniu organizacji, które podejmują decyzje szybciej, działają spójniej i lepiej radzą sobie ze skalą oraz zmianą.",
+        "title": {
+          "pl": "Capability Mapping & Raci / Daci Matrix - w praktyce",
+          "en": "Capability Mapping & RACI / DACI Matrix - in Practice"
+        },
+        "description": {
+          "pl": "Capability Mapping oraz macierze RACI / DACI to proste, ale bardzo skuteczne narzędzia, które pomagają uporządkować sposób działania organizacji. Podczas prezentacji pokażę, jak wykorzystać je w praktyce do zrozumienia i zaprojektowania flow decyzyjności, jasnego podziału odpowiedzialności oraz świadomego doboru wymaganego skillsetu.<br/><br/>Na realnych przykładach omówimy, jak te techniki wspierają architektów i liderów w budowaniu organizacji, które podejmują decyzje szybciej, działają spójniej i lepiej radzą sobie ze skalą oraz zmianą.",
+          "en": "Capability Mapping and RACI / DACI matrices are simple yet highly effective tools that help organize how an organization operates. During this presentation, I will show how to use them in practice to understand and design decision-making flows, clear division of responsibilities, and conscious selection of required skill sets.<br/><br/>Using real-world examples, we will discuss how these techniques support architects and leaders in building organizations that make decisions faster, operate more cohesively, and better handle scale and change."
+        },
         "speakerId": "kamil-kielbasa",
         "duration": 30,
         "level": "intermediate",
@@ -58,8 +64,14 @@
       },
       {
         "id": "piekny-kod-to-za-malo",
-        "title": "Piękny kod to za mało – mój kurs startupowy za 100 tys. zł",
-        "description": "TBD",
+        "title": {
+          "pl": "Piękny kod to za mało – mój kurs startupowy za 100 tys. zł",
+          "en": "Beautiful Code Is Not Enough – My 100k PLN Startup Course"
+        },
+        "description": {
+          "pl": "Jeśli jesteś programistą, który myśli o własnym startupie, ta prezentacja pomoże Ci nie powtórzyć błędów, za które ja zapłaciłem ok. 100 tys. zł. Na przykładzie mojego startupu pokażę, dlaczego piękny kod i dopięta architektura są niewystarczające. Bez sprzedaży, marketingu i ciągłej <b>walidacji na klientach, którzy wyciągają gotówkę, a nie tylko chwalą pomysł</b>, nawet najlepiej napisana aplikacja ma małe szanse na przetrwanie. Opowiem o kluczowych błędach w myśleniu, założeniach i decyzjach biznesowych, które popełniłem po drodze – tak, abyś mógł zobaczyć je zboku, zanim zainwestujesz własny czas i pieniądze.",
+          "en": "If you're a programmer thinking about starting your own startup, this presentation will help you avoid the mistakes I paid about 100k PLN for. Using my startup as an example, I'll show why beautiful code and polished architecture are not enough. Without sales, marketing, and constant <b>validation with customers who actually pay money, not just praise your idea</b>, even the best-written application has little chance of survival. I'll share the key mistakes in thinking, assumptions, and business decisions I made along the way – so you can see them from the outside before investing your own time and money."
+        },
         "speakerId": "maciej-kacprzak",
         "duration": 30,
         "level": "intermediate",
@@ -68,8 +80,14 @@
       },
       {
         "id": "techniki-efektywnej-nauki-z-llmami",
-        "title": "Techniki efektywnej nauki z LLMami",
-        "description": "TBD",
+        "title": {
+          "pl": "Techniki efektywnej nauki z LLMami",
+          "en": "Effective Learning Techniques with LLMs"
+        },
+        "description": {
+          "pl": "TBD",
+          "en": "TBD"
+        },
         "speakerId": "tomasz-ducin",
         "duration": 30,
         "level": "intermediate",

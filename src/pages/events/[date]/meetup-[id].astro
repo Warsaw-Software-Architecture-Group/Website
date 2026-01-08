@@ -2,7 +2,7 @@
 import Layout from '../../../layouts/Layout.astro';
 import Navigation from '../../../components/Navigation.astro';
 import Footer from '../../../components/Footer.astro';
-import { events, getEventByDateAndId, generateEventUrl, type Event } from '../../../data/events';
+import { events, getEventByDateAndId, generateEventUrl, getLocalizedText, type Event } from '../../../data/events';
 import { getTranslations } from '../../../i18n/translations';
 
 export async function getStaticPaths() {
@@ -256,7 +256,7 @@ const googleCalendarUrl = generateGoogleCalendarUrl(event);
                             <img src={speaker.photo} alt={speaker.name} class="w-10 h-10 rounded-full object-cover flex-shrink-0" />
                           )}
                           <div class="flex-1 min-w-0">
-                            <h4 class="font-medium text-gray-900">{item.title}</h4>
+                            <h4 class="font-medium text-gray-900">{presentation ? getLocalizedText(presentation.title, lang) : item.title}</h4>
                             {speaker && (
                               <p class="text-sm text-gray-500">{speaker.name}</p>
                             )}
@@ -271,7 +271,7 @@ const googleCalendarUrl = generateGoogleCalendarUrl(event);
                               </div>
                             )}
                             {isPresentation && presentation?.description && (
-                              <p class="text-sm text-gray-600 mt-2" set:html={presentation.description} />
+                              <p class="text-sm text-gray-600 mt-2" set:html={getLocalizedText(presentation.description, lang)} />
                             )}
                             {!isPresentation && item.description && (
                               <p class="text-sm text-gray-500">{item.description}</p>

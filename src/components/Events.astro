@@ -1,5 +1,5 @@
 ---
-import { getUpcomingEvents, generateEventUrl } from '../data/events';
+import { getUpcomingEvents, generateEventUrl, getLocalizedText } from '../data/events';
 import { getTranslations } from '../i18n/translations';
 
 export interface Props {
@@ -68,7 +68,7 @@ const formatTime = (time: string) => {
               <div class="text-gray-600 mb-4 space-y-1">
                 {event.presentations && event.presentations.map(presentation => (
                   <div class="text-sm">
-                    - {presentation.title}
+                    - {getLocalizedText(presentation.title, lang)}
                   </div>
                 ))}
               </div>
