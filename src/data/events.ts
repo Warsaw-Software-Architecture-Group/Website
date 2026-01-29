@@ -15,6 +15,12 @@ export interface BilingualText {
   en: string;
 }
 
+export interface PresentationResource {
+  type: 'recording' | 'slides' | 'template' | 'book' | 'code' | 'blog' | 'other';
+  title: string | BilingualText;
+  url: string;
+}
+
 export interface Presentation {
   id: string;
   title: string | BilingualText;
@@ -24,6 +30,7 @@ export interface Presentation {
   level: 'beginner' | 'intermediate' | 'advanced';
   language: 'pl' | 'en'; // Language the presentation is given in
   tags: string[];
+  resources?: PresentationResource[];
 }
 
 // Helper function to get localized text from a string or BilingualText object

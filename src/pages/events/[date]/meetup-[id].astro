@@ -2,7 +2,7 @@
 import Layout from '../../../layouts/Layout.astro';
 import Navigation from '../../../components/Navigation.astro';
 import Footer from '../../../components/Footer.astro';
-import { events, getEventByDateAndId, generateEventUrl, getLocalizedText, type Event } from '../../../data/events';
+import { events, getEventByDateAndId, generateEventUrl, getLocalizedText, type Event, type PresentationResource } from '../../../data/events';
 import { getTranslations } from '../../../i18n/translations';
 
 export async function getStaticPaths() {
@@ -81,6 +81,16 @@ const generateGoogleCalendarUrl = (event: Event) => {
 };
 
 const googleCalendarUrl = generateGoogleCalendarUrl(event);
+
+const resourceColorClasses: Record<string, string> = {
+  recording: 'bg-red-50 text-red-700 hover:bg-red-100',
+  slides: 'bg-teal-50 text-teal-700 hover:bg-teal-100',
+  template: 'bg-purple-50 text-purple-700 hover:bg-purple-100',
+  book: 'bg-green-50 text-green-700 hover:bg-green-100',
+  code: 'bg-gray-100 text-gray-700 hover:bg-gray-200',
+  blog: 'bg-blue-50 text-blue-700 hover:bg-blue-100',
+  other: 'bg-gray-100 text-gray-700 hover:bg-gray-200',
+};
 ---
 
 <Layout title={`${event.title} - WSAG Event`} description={event.description} type="article" lang={lang}>
@@ -229,12 +239,41 @@ const googleCalendarUrl = generateGoogleCalendarUrl(event);
               ))}
             </div>
           </div>
+        </div>
 
-          <!-- Agenda -->
-          {event.agenda && event.agenda.length > 0 && (
-          <div class="bg-white rounded-xl shadow-md p-8">
-            <h2 class="text-2xl font-bold text-gray-900 mb-6">{lang === 'pl' ? 'Agenda' : 'Agenda'}</h2>
-            <div class="divide-y divide-gray-100">
+        <!-- Sidebar -->
+        <div class="space-y-6">
+          <div class="bg-white rounded-xl shadow-md p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">{t.eventDetails.eventDetailsTitle}</h3>
+            <div class="space-y-4">
+              <div>
+                <h4 class="font-medium text-gray-900 mb-1">{t.eventDetails.location}</h4>
+                <p class="text-gray-600 text-sm">{getLocationName(event.location.name, lang)}</p>
+                <p class="text-gray-600 text-sm">{event.location.address}</p>
+                <p class="text-gray-600 text-sm">{event.location.city}</p>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 mb-1">{t.eventDetails.accessibility}</h4>
+                <p class="text-gray-600 text-sm">{event.location.accessibility}</p>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 mb-1">{t.eventDetails.capacity}</h4>
+                <p class="text-gray-600 text-sm">{t.eventDetails.upToAttendees.replace('{count}', event.maxAttendees)}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Agenda (full width) -->
+      {event.agenda && event.agenda.length > 0 && (
+      <div class="bg-white rounded-xl shadow-md p-8 mt-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-8">{lang === 'pl' ? 'Agenda' : 'Agenda'}</h2>
+          <div class="relative">
+            <!-- Timeline line -->
+            <div class="absolute left-[27px] top-2 bottom-2 w-px bg-gray-200"></div>
+
+            <div class="space-y-0">
               {event.agenda.map((item) => {
                 const isPresentation = item.type === 'presentation' || item.type === 'talk';
                 const speaker = isPresentation && item.speakerIds?.[0]
@@ -245,159 +284,114 @@ const googleCalendarUrl = generateGoogleCalendarUrl(event);
                   : null;
 
                 return (
-                  <div class="py-4 first:pt-0 last:pb-0">
-                    <div class="flex gap-4">
-                      <div class="flex-shrink-0 w-14">
-                        <span class="text-sm font-medium text-gray-500">{item.time}</span>
-                      </div>
-                      <div class="flex-1 min-w-0">
-                        <div class="flex items-start gap-3">
-                          {speaker?.photo && (
-                            <img src={speaker.photo} alt={speaker.name} class="w-10 h-10 rounded-full object-cover flex-shrink-0" />
-                          )}
-                          <div class="flex-1 min-w-0">
-                            <h4 class="font-medium text-gray-900">{presentation ? getLocalizedText(presentation.title, lang) : item.title}</h4>
-                            {speaker && (
-                              <p class="text-sm text-gray-500">{speaker.name}</p>
+                  <div class={`relative flex gap-5 ${isPresentation ? 'py-6' : 'py-4'}`}>
+                    <!-- Timeline dot -->
+                    <div class="flex-shrink-0 w-[55px] flex flex-col items-center z-10">
+                      {isPresentation ? (
+                        <div class="w-3 h-3 rounded-full bg-[#29B7C0] ring-4 ring-[#29B7C0]/20 mt-1.5"></div>
+                      ) : (
+                        <div class="w-2.5 h-2.5 rounded-full bg-gray-300 ring-4 ring-gray-100 mt-1.5"></div>
+                      )}
+                      <span class="text-xs font-semibold text-gray-400 mt-2">{item.time}</span>
+                    </div>
+
+                    <!-- Content -->
+                    <div class={`flex-1 min-w-0 ${isPresentation ? 'bg-gray-50 rounded-xl p-6 -my-1' : ''}`}>
+                      {isPresentation ? (
+                        <div>
+                          <div class="flex items-start gap-4">
+                            {speaker?.photo && (
+                              <img src={speaker.photo} alt={speaker.name} class="w-14 h-14 rounded-xl object-cover flex-shrink-0 shadow-sm" />
                             )}
-                            {isPresentation && presentation && (
-                              <div class="flex items-center gap-3 mt-2 text-sm text-gray-500">
-                                {presentation.language && (
-                                  <span class="inline-flex items-center gap-1">
-                                    <span class="text-base">{presentation.language === 'pl' ? '🇵🇱' : '🇬🇧'}</span>
+                            <div class="flex-1 min-w-0">
+                              <h4 class="text-lg font-semibold text-gray-900 leading-snug">
+                                {presentation ? getLocalizedText(presentation.title, lang) : item.title}
+                              </h4>
+                              {speaker && (
+                                <p class="text-sm text-gray-500 mt-1">{speaker.name}</p>
+                              )}
+                              {presentation?.language && (
+                                <div class="flex items-center gap-3 mt-2">
+                                  <span class="inline-flex items-center gap-1 text-xs text-gray-500 bg-white px-2 py-0.5 rounded-full">
+                                    <span>{presentation.language === 'pl' ? '🇵🇱' : '🇬🇧'}</span>
                                     <span>{presentation.language === 'pl' ? 'Polski' : 'English'}</span>
                                   </span>
-                                )}
-                              </div>
-                            )}
-                            {isPresentation && presentation?.description && (
-                              <p class="text-sm text-gray-600 mt-2" set:html={getLocalizedText(presentation.description, lang)} />
-                            )}
-                            {!isPresentation && item.description && (
-                              <p class="text-sm text-gray-500">{item.description}</p>
-                            )}
+                                </div>
+                              )}
+                            </div>
                           </div>
+                          {presentation?.description && (
+                            <div class="text-sm text-gray-600 mt-4 leading-relaxed" set:html={getLocalizedText(presentation.description, lang)} />
+                          )}
+                          {event.status === 'completed' && presentation?.resources && presentation.resources.length > 0 && (
+                            <div class="mt-4 pt-4 border-t border-gray-200">
+                              <h5 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">{t.eventDetails.materials}</h5>
+                              <div class="flex flex-wrap gap-2">
+                                {presentation.resources.map((resource) => {
+                                  const resourceTitle = typeof resource.title === 'string' ? resource.title : resource.title[lang] || resource.title.pl;
+                                  const colorClasses = resourceColorClasses[resource.type] || resourceColorClasses.other;
+                                  return (
+                                    <a
+                                      href={resource.url}
+                                      target={resource.url.startsWith('/') ? '_self' : '_blank'}
+                                      rel={resource.url.startsWith('/') ? undefined : 'noopener noreferrer'}
+                                      class={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${colorClasses}`}
+                                    >
+                                      {resource.type === 'recording' && (
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                                        </svg>
+                                      )}
+                                      {resource.type === 'slides' && (
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                        </svg>
+                                      )}
+                                      {resource.type === 'template' && (
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                                        </svg>
+                                      )}
+                                      {resource.type === 'book' && (
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                        </svg>
+                                      )}
+                                      {resource.type === 'code' && (
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                        </svg>
+                                      )}
+                                      {resource.type === 'blog' && (
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 5c7.18 0 13 5.82 13 13M6 11a7 7 0 017 7m-6 0a1 1 0 110-2 1 1 0 010 2z" />
+                                        </svg>
+                                      )}
+                                      {resourceTitle}
+                                    </a>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          )}
                         </div>
-                      </div>
+                      ) : (
+                        <div>
+                          <h4 class="font-medium text-gray-500">{item.title}</h4>
+                          {item.description && (
+                            <p class="text-sm text-gray-400 mt-0.5">{item.description}</p>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
                 );
               })}
             </div>
           </div>
-          )}
-
-          {/* Resources (for completed events) */}
-          {event.status === 'completed' && event.resources && (
-            <div class="bg-white rounded-xl shadow-md p-8">
-              <h2 class="text-2xl font-bold text-gray-900 mb-6">{t.eventDetails.eventResources}</h2>
-              <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {event.resources.slides && (
-                  <a href={event.resources.slides} class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                    <svg class="w-8 h-8 text-[#29B7C0] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                    </svg>
-                    <span class="text-sm font-medium text-gray-900">{t.eventDetails.slides}</span>
-                  </a>
-                )}
-                {event.resources.video && (
-                  <a href={event.resources.video} class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                    <svg class="w-8 h-8 text-red-600 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                    <span class="text-sm font-medium text-gray-900">{t.eventDetails.video}</span>
-                  </a>
-                )}
-                {event.resources.code && (
-                  <a href={event.resources.code} class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                    <svg class="w-8 h-8 text-gray-600 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                    </svg>
-                    <span class="text-sm font-medium text-gray-900">{t.eventDetails.code}</span>
-                  </a>
-                )}
-                {event.resources.blog && (
-                  <a href={event.resources.blog} class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                    <svg class="w-8 h-8 text-green-600 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                    </svg>
-                    <span class="text-sm font-medium text-gray-900">{t.eventDetails.blog}</span>
-                  </a>
-                )}
-              </div>
-            </div>
-          )}
         </div>
-        
-        <!-- Sidebar -->
-        <div class="space-y-6">
-          <!-- Event Details -->
-          <div class="bg-white rounded-xl shadow-md p-6">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">{t.eventDetails.eventDetailsTitle}</h3>
-            <div class="space-y-4">
-              <div>
-                <h4 class="font-medium text-gray-900 mb-1">{t.eventDetails.location}</h4>
-                <p class="text-gray-600 text-sm">{getLocationName(event.location.name, lang)}</p>
-                <p class="text-gray-600 text-sm">{event.location.address}</p>
-                <p class="text-gray-600 text-sm">{event.location.city}</p>
-              </div>
+        )}
 
-              <div>
-                <h4 class="font-medium text-gray-900 mb-1">{t.eventDetails.accessibility}</h4>
-                <p class="text-gray-600 text-sm">{event.location.accessibility}</p>
-              </div>
-
-              <div>
-                <h4 class="font-medium text-gray-900 mb-1">{t.eventDetails.capacity}</h4>
-                <p class="text-gray-600 text-sm">{t.eventDetails.upToAttendees.replace('{count}', event.maxAttendees)}</p>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Prerequisites -->
-          {event.prerequisites && event.prerequisites.length > 0 && (
-            <div class="bg-white rounded-xl shadow-md p-6">
-              <h3 class="text-lg font-semibold text-gray-900 mb-4">{t.eventDetails.prerequisites}</h3>
-              <ul class="space-y-2">
-                {event.prerequisites.map(prerequisite => (
-                  <li class="flex items-start text-sm">
-                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                    </svg>
-                    <span class="text-gray-600">{prerequisite}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-          
-          <!-- Target Audience -->
-          <div class="bg-white rounded-xl shadow-md p-6">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">{t.eventDetails.targetAudience}</h3>
-            <div class="flex flex-wrap gap-2">
-              {event.targetAudience.map(audience => (
-                <span class="px-3 py-1 bg-[#29B7C0]/10 text-[#1e959c] text-sm rounded-full">
-                  {audience}
-                </span>
-              ))}
-            </div>
-          </div>
-          
-          <!-- Tags -->
-          <div class="bg-white rounded-xl shadow-md p-6">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">{t.eventDetails.topics}</h3>
-            <div class="flex flex-wrap gap-2">
-              {event.tags.map(tag => (
-                <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">
-                  #{tag}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-      
       <!-- Location Map - Full Width -->
       <div class="bg-white rounded-xl shadow-md p-8 mt-8">
         <h2 class="text-2xl font-bold text-gray-900 mb-6">{t.eventDetails.location}</h2>
@@ -436,7 +430,7 @@ const googleCalendarUrl = generateGoogleCalendarUrl(event);
                 class="inline-block bg-white p-4 rounded-lg border border-gray-200 hover:border-[#29B7C0] transition-colors duration-200"
               >
                 <img
-                  src="/images/circle-k-logo.png"
+                  src="/assets/2026_01/logo-full-color-rgb_logo-Warsaw.png"
                   alt="Circle K Logo"
                   class="h-12 w-auto"
                 />

@@ -60,7 +60,29 @@
         "duration": 30,
         "level": "intermediate",
         "language": "pl",
-        "tags": []
+        "tags": [],
+        "resources": [
+          {
+            "type": "recording",
+            "title": { "pl": "Nagranie", "en": "Recording" },
+            "url": "https://youtu.be/eLx0FYplzUw"
+          },
+          {
+            "type": "slides",
+            "title": { "pl": "Slajdy", "en": "Slides" },
+            "url": "https://www.canva.com/design/DAG-GQblNzw/qB2bGPx3UXiZQMVxTRYBMQ/view"
+          },
+          {
+            "type": "template",
+            "title": { "pl": "Szablon RACI", "en": "RACI Template" },
+            "url": "https://miro.com/templates/raci-matrix-template/"
+          },
+          {
+            "type": "template",
+            "title": { "pl": "Szablon Business Capability Canvas", "en": "Business Capability Canvas Template" },
+            "url": "https://miro.com/templates/business-capability-canvas-template/"
+          }
+        ]
       },
       {
         "id": "piekny-kod-to-za-malo",
@@ -76,7 +98,24 @@
         "duration": 30,
         "level": "intermediate",
         "language": "pl",
-        "tags": []
+        "tags": [],
+        "resources": [
+          {
+            "type": "recording",
+            "title": { "pl": "Nagranie", "en": "Recording" },
+            "url": "https://youtu.be/RIp9T8E3juc"
+          },
+          {
+            "type": "book",
+            "title": { "pl": "Książka", "en": "Book" },
+            "url": "https://www.amazon.pl/dp/1492180742"
+          },
+          {
+            "type": "slides",
+            "title": { "pl": "Slajdy", "en": "Slides" },
+            "url": "/assets/2026_01/Pi_kny kod to za ma_o_fixed.pptx"
+          }
+        ]
       },
       {
         "id": "techniki-efektywnej-nauki-z-llmami",
@@ -92,7 +131,14 @@
         "duration": 30,
         "level": "intermediate",
         "language": "pl",
-        "tags": []
+        "tags": [],
+        "resources": [
+          {
+            "type": "recording",
+            "title": { "pl": "Nagranie", "en": "Recording" },
+            "url": "https://youtu.be/Cs9c7YW3Rnc"
+          }
+        ]
       }
     ],
     "agenda": [
@@ -139,7 +185,7 @@
     "maxAttendees": 50,
     "registeredAttendees": 0,
     "registrationUrl": "https://pragmaticmeet.com/events/5018716c-5c2d-44f4-ae13-7cae31792322",
-    "status": "upcoming",
+    "status": "completed",
     "tags": ["architecture", "community", "networking"],
     "prerequisites": [],
     "targetAudience": [

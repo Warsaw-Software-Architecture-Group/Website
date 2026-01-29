@@ -97,7 +97,11 @@ export const translations = {
       topics: 'Tematy',
       locationNotFound: 'Lokalizacja nie została znaleziona na mapie',
       upToAttendees: 'Do {count} uczestników',
-      lastUpdated: 'Ostatnio zaktualizowano: grudzień 2024'
+      lastUpdated: 'Ostatnio zaktualizowano: grudzień 2024',
+      recording: 'Nagranie',
+      template: 'Szablon',
+      book: 'Książka',
+      materials: 'Materiały'
     },
     logos: {
       allVersionsAtScale: 'Wszystkie wersje w skali'
@@ -121,7 +125,9 @@ export const translations = {
       speakAtWSAG: 'Chcesz wystąpić na WSAG?',
       speakAtWSAGDesc: 'Podziel się swoją wiedzą i doświadczeniem z warszawską społecznością architektury oprogramowania. Zawsze szukamy pasjonatów-prelegentów!',
       becomeASpeaker: 'Zostań prelegentem',
-      backToHome: 'Powrót do strony głównej'
+      backToHome: 'Powrót do strony głównej',
+      stayTuned: 'Pracujemy nad kolejnym wydarzeniem — bądź na bieżąco!',
+      followUs: 'Obserwuj nas na LinkedIn, żeby nie przegapić ogłoszenia.'
     },
     callForPapers: {
       title: 'Call for Papers',
@@ -458,7 +464,11 @@ export const translations = {
       topics: 'Topics',
       locationNotFound: 'Location not found on map',
       upToAttendees: 'Up to {count} attendees',
-      lastUpdated: 'Last updated: December 2024'
+      lastUpdated: 'Last updated: December 2024',
+      recording: 'Recording',
+      template: 'Template',
+      book: 'Book',
+      materials: 'Materials'
     },
     logos: {
       allVersionsAtScale: 'All Versions at Scale'
@@ -482,7 +492,9 @@ export const translations = {
       speakAtWSAG: 'Want to speak at WSAG?',
       speakAtWSAGDesc: 'Share your knowledge and experience with Warsaw\'s software architecture community. We\'re always looking for passionate speakers!',
       becomeASpeaker: 'Become a Speaker',
-      backToHome: 'Back to Home'
+      backToHome: 'Back to Home',
+      stayTuned: 'We\'re working on the next event — stay tuned!',
+      followUs: 'Follow us on LinkedIn so you don\'t miss the announcement.'
     },
     callForPapers: {
       title: 'Call for Papers',
