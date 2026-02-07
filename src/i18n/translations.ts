@@ -237,8 +237,6 @@ export const translations = {
         title: 'Informacje kontaktowe',
         email: 'Email',
         emailAddress: 'contact@wsag.org.pl',
-        meetups: 'Spotkania',
-        meetupsInfo: 'Trzeci wtorek każdego miesiąca o 18:30',
         social: 'Media społecznościowe',
         socialInfo: 'Śledź nas, aby być na bieżąco z wydarzeniami'
       },
@@ -604,8 +602,6 @@ export const translations = {
         title: 'Contact Information',
         email: 'Email',
         emailAddress: 'contact@wsag.org.pl',
-        meetups: 'Meetups',
-        meetupsInfo: 'Third Tuesday of every month at 6:30 PM',
         social: 'Social Media',
         socialInfo: 'Follow us to stay updated with events'
       },
