@@ -1,5 +1,6 @@
 ---
 import { getTranslations } from '../i18n/translations';
+import { getUpcomingEvents } from '../data/events';
 
 export interface Props {
   lang?: 'pl' | 'en';
@@ -7,6 +8,17 @@ export interface Props {
 
 const { lang = 'pl' } = Astro.props;
 const t = getTranslations(lang);
+
+const upcomingEvents = getUpcomingEvents();
+const nextEvent = upcomingEvents.length > 0 ? upcomingEvents[0] : null;
+
+const nextEventDateFormatted = nextEvent
+  ? new Date(nextEvent.date).toLocaleDateString(lang === 'pl' ? 'pl-PL' : 'en-US', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    })
+  : null;
 ---
 
 <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-primary/5 to-primary/10">
@@ -14,12 +26,14 @@ const t = getTranslations(lang);
 
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
     <div class="text-center">
+      {nextEvent && nextEventDateFormatted && (
       <div class="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary-dark text-sm font-medium mb-8">
         <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
           <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM9 12H7v-2h2V7h2v3h2v2h-2v1H9v-1z"/>
         </svg>
-        {t.hero.nextMeetup}
+        {lang === 'pl' ? `Następne spotkanie: ${nextEventDateFormatted}` : `Next Meetup: ${nextEventDateFormatted}`}
       </div>
+      )}
 
       <div class="flex flex-col items-center mb-6">
         <img

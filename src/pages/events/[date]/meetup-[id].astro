@@ -2,12 +2,12 @@
 import Layout from '../../../layouts/Layout.astro';
 import Navigation from '../../../components/Navigation.astro';
 import Footer from '../../../components/Footer.astro';
-import { events, getEventByDateAndId, generateEventUrl, getLocalizedText, type Event, type PresentationResource } from '../../../data/events';
+import { events, getEventByDateAndId, generateEventUrl, getLocalizedText, toLocalDateString, type Event, type PresentationResource } from '../../../data/events';
 import { getTranslations } from '../../../i18n/translations';
 
 export async function getStaticPaths() {
   return events.map(event => {
-    const eventDate = new Date(event.date).toISOString().split('T')[0];
+    const eventDate = toLocalDateString(new Date(event.date));
     return {
       params: { 
         date: eventDate,
@@ -72,7 +72,7 @@ const generateGoogleCalendarUrl = (event: Event) => {
     action: 'TEMPLATE',
     text: event.title,
     dates: `${formatDateForGoogle(startDate)}/${formatDateForGoogle(endDate)}`,
-    details: event.description + (event.registrationUrl ? `\n\nRejestracja: ${event.registrationUrl}` : ''),
+    details: getLocalizedText(event.description, lang) + (event.registrationUrl ? `\n\nRejestracja: ${event.registrationUrl}` : ''),
     location: `${event.location.name}, ${event.location.address}, ${event.location.city}`,
     ctz: 'Europe/Warsaw'
   });
@@ -93,7 +93,7 @@ const resourceColorClasses: Record<string, string> = {
 };
 ---
 
-<Layout title={`${event.title} - WSAG Event`} description={event.description} type="article" lang={lang}>
+<Layout title={`${event.title} - WSAG Event`} description={getLocalizedText(event.description, lang)} type="article" lang={lang}>
   <Navigation lang={lang} isMainPage={false} />
 
   <!-- Event Schema.org JSON-LD -->
@@ -101,7 +101,7 @@ const resourceColorClasses: Record<string, string> = {
     "@context": "https://schema.org",
     "@type": "Event",
     "name": event.title,
-    "description": event.description,
+    "description": getLocalizedText(event.description, lang),
     "startDate": `${event.date}T${event.time}`,
     "endDate": `${event.date}T${event.endTime || '21:00'}`,
     "eventStatus": event.status === 'upcoming' ? "https://schema.org/EventScheduled" : "https://schema.org/EventPostponed",
@@ -161,7 +161,7 @@ const resourceColorClasses: Record<string, string> = {
           </div>
           
           <h1 class="text-4xl md:text-5xl font-bold mb-4">{event.title}</h1>
-          <p class="text-xl opacity-90 max-w-2xl mx-auto">{event.description}</p>
+          <p class="text-xl opacity-90 max-w-2xl mx-auto">{getLocalizedText(event.description, lang)}</p>
           
           <div class="flex flex-wrap justify-center gap-4 mt-8">
             <div class="flex items-center bg-white/10 px-4 py-2 rounded-lg">
@@ -234,7 +234,7 @@ const resourceColorClasses: Record<string, string> = {
           <div class="bg-white rounded-xl shadow-md p-8">
             <h2 class="text-2xl font-bold text-gray-900 mb-4">{t.eventDetails.aboutThisEvent}</h2>
             <div class="prose prose-blue max-w-none">
-              {event.longDescription.split('\n\n').map(paragraph => (
+              {getLocalizedText(event.longDescription, lang).split('\n\n').map(paragraph => (
                 <p class="text-gray-600 mb-4">{paragraph}</p>
               ))}
             </div>
@@ -419,23 +419,25 @@ const resourceColorClasses: Record<string, string> = {
               </div>
             </div>
 
+            {event.venuePartner && (
             <div>
               <h4 class="text-lg font-semibold text-gray-900 mb-3">
                 {lang === 'pl' ? 'Partner miejsca' : 'Venue Partner'}
               </h4>
               <a
-                href="https://www.circlek.pl/"
+                href={event.venuePartner.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-block bg-white p-4 rounded-lg border border-gray-200 hover:border-[#29B7C0] transition-colors duration-200"
               >
                 <img
-                  src="/assets/2026_01/logo-full-color-rgb_logo-Warsaw.png"
-                  alt="Circle K Logo"
+                  src={event.venuePartner.logo}
+                  alt={event.venuePartner.name}
                   class="h-12 w-auto"
                 />
               </a>
             </div>
+            )}
           </div>
         </div>
       </div>

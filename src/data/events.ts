@@ -70,6 +70,12 @@ export interface EventResources {
   photos?: string;
 }
 
+export interface VenuePartner {
+  name: string;
+  url: string;
+  logo: string;
+}
+
 export interface Event {
   id: string;
   meetupId: number;
@@ -78,8 +84,8 @@ export interface Event {
   date: string;
   time: string;
   endTime: string;
-  description: string;
-  longDescription: string;
+  description: string | BilingualText;
+  longDescription: string | BilingualText;
   location: EventLocation;
   speakers: Speaker[];
   presentations: Presentation[];
@@ -89,6 +95,7 @@ export interface Event {
   registrationUrl?: string;
   status: 'upcoming' | 'completed' | 'cancelled';
   resources?: EventResources;
+  venuePartner?: VenuePartner;
   tags: string[];
   prerequisites?: string[];
   targetAudience: string[];
@@ -98,19 +105,26 @@ import eventsData from './events.json';
 
 export const events: Event[] = eventsData as Event[];
 
+export function toLocalDateString(date: Date): string {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, '0');
+  const d = String(date.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
+}
+
 export function getEventBySlug(slug: string): Event | undefined {
   return events.find(event => event.slug === slug);
 }
 
 export function getEventByDateAndId(dateStr: string, meetupId: number): Event | undefined {
   return events.find(event => {
-    const eventDate = new Date(event.date).toISOString().split('T')[0];
+    const eventDate = toLocalDateString(new Date(event.date));
     return eventDate === dateStr && event.meetupId === meetupId;
   });
 }
 
 export function generateEventUrl(event: Event, lang: 'pl' | 'en' = 'pl'): string {
-  const eventDate = new Date(event.date).toISOString().split('T')[0];
+  const eventDate = toLocalDateString(new Date(event.date));
   const prefix = lang === 'en' ? '/en' : '';
   return `${prefix}/events/${eventDate}/meetup-${event.meetupId}`;
 }

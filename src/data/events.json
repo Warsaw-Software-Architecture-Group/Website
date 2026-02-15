@@ -7,8 +7,14 @@
     "date": "January 13, 2026",
     "time": "18:00",
     "endTime": "21:00",
-    "description": "Join us for the inaugural Warsaw Software Architecture Group meetup! Agenda and speakers to be announced soon.",
-    "longDescription": "We're excited to launch the Warsaw Software Architecture Group with our first meetup! This event will feature three excellent presentations covering software architecture topics. Stay tuned for speaker announcements and detailed agenda.\n\nThis is a great opportunity to meet fellow software architects, share knowledge, and build our local architecture community.",
+    "description": {
+      "pl": "Dołącz do inauguracyjnego spotkania Warsaw Software Architecture Group! Agenda i prelegenci zostaną wkrótce ogłoszeni.",
+      "en": "Join us for the inaugural Warsaw Software Architecture Group meetup! Agenda and speakers to be announced soon."
+    },
+    "longDescription": {
+      "pl": "Z radością uruchamiamy Warsaw Software Architecture Group z naszym pierwszym spotkaniem! Wydarzenie obejmie trzy doskonałe prezentacje dotyczące tematów architektury oprogramowania.\n\nTo świetna okazja, aby poznać innych architektów oprogramowania, dzielić się wiedzą i budować naszą lokalną społeczność architektury.",
+      "en": "We're excited to launch the Warsaw Software Architecture Group with our first meetup! This event will feature three excellent presentations covering software architecture topics.\n\nThis is a great opportunity to meet fellow software architects, share knowledge, and build our local architecture community."
+    },
     "location": {
       "name": "Siedziba Circle K",
       "address": "Puławska 145",
@@ -186,6 +192,57 @@
     "registeredAttendees": 0,
     "registrationUrl": "https://pragmaticmeet.com/events/5018716c-5c2d-44f4-ae13-7cae31792322",
     "status": "completed",
+    "venuePartner": {
+      "name": "Circle K Business Centre Warsaw",
+      "url": "https://www.circlek.pl/",
+      "logo": "/assets/2026_01/logo-full-color-rgb_logo-Warsaw.png"
+    },
+    "tags": ["architecture", "community", "networking"],
+    "prerequisites": [],
+    "targetAudience": [
+      "Software Architects",
+      "Senior Developers",
+      "Tech Leads",
+      "Engineering Managers"
+    ]
+  },
+  {
+    "id": "2026-02-25",
+    "meetupId": 2,
+    "title": "WSAG Meetup #2",
+    "slug": "wsag-meetup-2",
+    "date": "February 25, 2026",
+    "time": "18:00",
+    "endTime": "21:00",
+    "description": {
+      "pl": "Dołącz do drugiego spotkania Warsaw Software Architecture Group! Agenda i prelegenci zostaną wkrótce ogłoszeni.",
+      "en": "Join us for the second Warsaw Software Architecture Group meetup! Agenda and speakers to be announced soon."
+    },
+    "longDescription": {
+      "pl": "Z radością zapraszamy na drugie spotkanie WSAG w Warszawskiej Wyższej Szkole Informatyki! Wydarzenie obejmie prezentacje dotyczące tematów architektury oprogramowania. Wkrótce ogłosimy prelegentów i szczegółową agendę.\n\nTo świetna okazja, aby poznać innych architektów oprogramowania, dzielić się wiedzą i kontynuować budowanie naszej lokalnej społeczności architektury.",
+      "en": "We're thrilled to host the second WSAG meetup at Warszawska Wyższa Szkoła Informatyki! This event will feature presentations on software architecture topics. Stay tuned for speaker announcements and detailed agenda.\n\nThis is a great opportunity to meet fellow software architects, share knowledge, and continue building our local architecture community."
+    },
+    "location": {
+      "name": "Warszawska Wyższa Szkoła Informatyki",
+      "address": "Józefa Lewartowskiego 17",
+      "zipCode": "00-169",
+      "city": "Warsaw, Poland",
+      "mapUrl": "",
+      "directions": "Details to be announced",
+      "parking": "Details to be announced",
+      "accessibility": "Details to be announced"
+    },
+    "speakers": [],
+    "presentations": [],
+    "agenda": [],
+    "maxAttendees": 150,
+    "registeredAttendees": 0,
+    "status": "upcoming",
+    "venuePartner": {
+      "name": "Warszawska Wyższa Szkoła Informatyki",
+      "url": "https://wwsi.edu.pl/",
+      "logo": "/images/partners/wwsi_logo.png"
+    },
     "tags": ["architecture", "community", "networking"],
     "prerequisites": [],
     "targetAudience": [
