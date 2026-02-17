@@ -126,12 +126,12 @@
       {
         "id": "techniki-efektywnej-nauki-z-llmami",
         "title": {
-          "pl": "Techniki efektywnej nauki z LLMami",
-          "en": "Effective Learning Techniques with LLMs"
+          "pl": "Zapomniana sztuka myślenia. Jak uczyć się z LLMami, aby nie zwiększać cognitive debt?",
+          "en": "The Forgotten Art of Thinking. How to Learn with LLMs Without Increasing Cognitive Debt?"
         },
         "description": {
-          "pl": "TBD",
-          "en": "TBD"
+          "pl": "Istnieją badania wykazujące, że stosowanie LLMów powoduje zaciąganie \"długu poznawczego\" - człowiek intelektualnie idzie na skróty. LLM generuje ścianę tekstu, operator może nawet tego nie czyta - i powstaje złudne wrażenie że \"robota jest zrobiona\". Dotyczy to zarówno researchu (nie weryfikowanie źródeł - np. LLM powołujący się na nieistniejące badania - ała, politycy!), kodowania (\"I don't read what I push to production\") - ale także - i na tym się skupimy - nauki.<br/><br/>A co jeśli LLMy to narzędzie, które jednocześnie wynosi na wyżyny - jak i przerażająco ogłupia (i wszystko pomiędzy)? LLMy \"to tylko narzędzie\" - fajnie, fajnie. Ale jak go używać w praktyce aby zmaksymalizować te \"wyżyny\" i zminimalizować ogłupianie?<br/><br/>Kiedy generowanie tekstu/kodu tanieje, rozumienie i decydowanie relatywnie drożeje.<br/><br/>Sięgniemy do fundamentów kognitywistyki i odkurzymy fundamenty \"krytycznego myślenia\", aby następnie zastosować w praktyce \"naukę z LLMami\" - stosując różnorodne techniki/metody/narzędzia do budowania własnego rozumienia (i modeli mentalnych) dot. określonego zagadnienia, metod weryfikacji, metod \"pogłębiania\" (nie tylko \"zawsze jest wiele pięter wgłąb\" - ale także - gdzie się zatrzymać) - i wiele innych praktycznych wskazówek.",
+          "en": "There is research showing that using LLMs leads to incurring \"cognitive debt\" - people intellectually take shortcuts. An LLM generates a wall of text, the operator may not even read it - and a false impression is created that \"the job is done.\" This applies to research (not verifying sources - e.g., an LLM citing non-existent studies - ouch, politicians!), coding (\"I don't read what I push to production\") - but also - and this is our focus - learning.<br/><br/>What if LLMs are a tool that simultaneously elevates to great heights - and terrifyingly dumbs down (and everything in between)? LLMs are \"just a tool\" - great, great. But how do you use it in practice to maximize those \"heights\" and minimize the dumbing down?<br/><br/>When generating text/code becomes cheap, understanding and decision-making become relatively more expensive.<br/><br/>We'll reach for the fundamentals of cognitive science and dust off the foundations of \"critical thinking,\" then apply \"learning with LLMs\" in practice - using diverse techniques/methods/tools to build your own understanding (and mental models) about a given topic, verification methods, methods of \"going deeper\" (not just \"there are always many levels deep\" - but also - where to stop) - and many other practical tips."
         },
         "speakerId": "tomasz-ducin",
         "duration": 30,
@@ -174,7 +174,7 @@
       },
       {
         "time": "20:00",
-        "title": "Techniki efektywnej nauki z LLMami",
+        "title": "Zapomniana sztuka myślenia. Jak uczyć się z LLMami, aby nie zwiększać cognitive debt?",
         "speaker": "Tomasz Ducin",
         "speakerIds": ["tomasz-ducin"],
         "presentationId": "techniki-efektywnej-nauki-z-llmami",
@@ -215,12 +215,12 @@
     "time": "18:00",
     "endTime": "21:00",
     "description": {
-      "pl": "Dołącz do drugiego spotkania Warsaw Software Architecture Group! Agenda i prelegenci zostaną wkrótce ogłoszeni.",
-      "en": "Join us for the second Warsaw Software Architecture Group meetup! Agenda and speakers to be announced soon."
+      "pl": "Dołącz do drugiego spotkania Warsaw Software Architecture Group! Tym razem porozmawiamy o cyberbezpieczeństwie w CI/CD, HTMX jako alternatywie dla złożonych frameworków JS oraz o efektywnej nauce z LLMami.",
+      "en": "Join us for the second Warsaw Software Architecture Group meetup! This time we'll discuss cybersecurity in CI/CD, HTMX as an alternative to complex JS frameworks, and effective learning with LLMs."
     },
     "longDescription": {
-      "pl": "Z radością zapraszamy na drugie spotkanie WSAG w Warszawskiej Wyższej Szkole Informatyki! Wydarzenie obejmie prezentacje dotyczące tematów architektury oprogramowania. Wkrótce ogłosimy prelegentów i szczegółową agendę.\n\nTo świetna okazja, aby poznać innych architektów oprogramowania, dzielić się wiedzą i kontynuować budowanie naszej lokalnej społeczności architektury.",
-      "en": "We're thrilled to host the second WSAG meetup at Warszawska Wyższa Szkoła Informatyki! This event will feature presentations on software architecture topics. Stay tuned for speaker announcements and detailed agenda.\n\nThis is a great opportunity to meet fellow software architects, share knowledge, and continue building our local architecture community."
+      "pl": "Z radością zapraszamy na drugie spotkanie WSAG w Warszawskiej Wyższej Szkole Informatyki! Wydarzenie obejmie trzy prezentacje: ocena cyberbezpieczeństwa jako część CI/CD, HTMX jako podejście do budowania aplikacji webowych oraz zapomniana sztuka myślenia w kontekście nauki z LLMami.\n\nTo świetna okazja, aby poznać innych architektów oprogramowania, dzielić się wiedzą i kontynuować budowanie naszej lokalnej społeczności architektury.",
+      "en": "We're thrilled to host the second WSAG meetup at Warszawska Wyższa Szkoła Informatyki! This event will feature three presentations: cybersecurity assessment as part of CI/CD, HTMX as an approach to building web applications, and the forgotten art of thinking in the context of learning with LLMs.\n\nThis is a great opportunity to meet fellow software architects, share knowledge, and continue building our local architecture community."
     },
     "location": {
       "name": "Warszawska Wyższa Szkoła Informatyki",
@@ -228,13 +228,130 @@
       "zipCode": "00-169",
       "city": "Warsaw, Poland",
       "mapUrl": "",
-      "directions": "Details to be announced",
+      "directions": "Aula 209",
       "parking": "Details to be announced",
       "accessibility": "Details to be announced"
     },
-    "speakers": [],
-    "presentations": [],
-    "agenda": [],
+    "speakers": [
+      {
+        "id": "mateusz-konicki",
+        "name": "Mateusz Konicki",
+        "role": "",
+        "company": "",
+        "bio": "",
+        "photo": "/images/speakers/meetup-2/mateusz.jpeg"
+      },
+      {
+        "id": "marcin-golenia",
+        "name": "Marcin Golenia",
+        "role": "",
+        "company": "",
+        "bio": "",
+        "photo": "/images/speakers/meetup-2/marcin.png"
+      },
+      {
+        "id": "tomasz-ducin",
+        "name": "Tomasz Ducin",
+        "role": "",
+        "company": "",
+        "bio": "",
+        "photo": "/images/speakers/meetup-2/tomasz.jpeg"
+      }
+    ],
+    "presentations": [
+      {
+        "id": "ocena-cyberbezpieczenstwa-cicd",
+        "title": {
+          "pl": "Ocena cyberbezpieczeństwa jako część CI/CD",
+          "en": "Cybersecurity Assessment as Part of CI/CD"
+        },
+        "description": {
+          "pl": "Cyberbezpieczeństwo to już nie opcja, ale konieczność w każdym projekcie IT. Pojawiające się obecnie regulacje mogą spowodować ból głowy u każdej osoby pracującej w IT, niezależnie od pełnionej roli. Jednym ze sposobów zmniejszenia nakładu pracy jest integracja procesów bezpieczeństwa - SAC, SAST, skanowania podatności oraz testów zgodnych z OWASP - bezpośrednio w pipeline'ach CI/CD. W trakcie prezentacji pokażę zarówno jak mierzyć, ale również analizować wyniki testów, ograniczając zarożenia pojawiające się w projekcie.",
+          "en": "Cybersecurity is no longer optional but a necessity in every IT project. Emerging regulations can cause headaches for anyone working in IT, regardless of their role. One way to reduce the workload is to integrate security processes - SAC, SAST, vulnerability scanning, and OWASP-compliant testing - directly into CI/CD pipelines. During this presentation, I'll show how to both measure and analyze test results, reducing threats that emerge in the project."
+        },
+        "speakerId": "mateusz-konicki",
+        "duration": 30,
+        "level": "intermediate",
+        "language": "pl",
+        "tags": [],
+        "resources": []
+      },
+      {
+        "id": "htmx-aplikacje-webowe",
+        "title": {
+          "pl": "HTMX: Aplikacje webowe dla zmęczonych.",
+          "en": "HTMX: Web Applications for the Weary."
+        },
+        "description": {
+          "pl": "Zmęczeni niekończącą się rotacją frameworków JavaScript, z których każdy obiecuje przyszłość, ale wprowadza tylko większą złożoność? Nie jesteś sam. W tej prezentacji podzielę się moją frustracją związaną z ciągłymi zmianami w świecie frontendowym i wyjaśnię, dlaczego postanowiłem zrobić krok wstecz. Przedstawiam HTMX, prostą, ale potężną bibliotekę, która tchnie nowe życie w renderowanie po stronie serwera (SSR), umożliwiając tworzenie dynamicznych, interaktywnych doświadczeń bez rozdmuchanej ilości JavaScript.<br/><br/>Przyjrzymy się, jak HTMX pozwala budować nowoczesne aplikacje webowe, zachowując prostotę, szybkość i łatwość w utrzymaniu – wykorzystując mocne strony sieci zamiast walczyć z nimi. Jeśli kiedykolwiek marzyłeś o sposobie, aby renderowanie po stronie serwera znów stało się ekscytujące, ta prezentacja jest dla Ciebie.",
+          "en": "Tired of the never-ending rotation of JavaScript frameworks, each promising the future but only introducing more complexity? You're not alone. In this presentation, I'll share my frustration with constant changes in the frontend world and explain why I decided to take a step back. I present HTMX, a simple yet powerful library that breathes new life into server-side rendering (SSR), enabling the creation of dynamic, interactive experiences without bloated JavaScript.<br/><br/>We'll explore how HTMX allows building modern web applications while maintaining simplicity, speed, and ease of maintenance – leveraging the web's strengths instead of fighting against them. If you've ever dreamed of a way to make server-side rendering exciting again, this presentation is for you."
+        },
+        "speakerId": "marcin-golenia",
+        "duration": 30,
+        "level": "intermediate",
+        "language": "pl",
+        "tags": [],
+        "resources": []
+      },
+      {
+        "id": "zapomniana-sztuka-myslenia",
+        "title": {
+          "pl": "Zapomniana sztuka myślenia. Jak uczyć się z LLMami, aby nie zwiększać cognitive debt?",
+          "en": "The Forgotten Art of Thinking. How to Learn with LLMs Without Increasing Cognitive Debt?"
+        },
+        "description": {
+          "pl": "Istnieją badania wykazujące, że stosowanie LLMów powoduje zaciąganie \"długu poznawczego\" - człowiek intelektualnie idzie na skróty. LLM generuje ścianę tekstu, operator może nawet tego nie czyta - i powstaje złudne wrażenie że \"robota jest zrobiona\". Dotyczy to zarówno researchu (nie weryfikowanie źródeł - np. LLM powołujący się na nieistniejące badania - ała, politycy!), kodowania (\"I don't read what I push to production\") - ale także - i na tym się skupimy - nauki.<br/><br/>A co jeśli LLMy to narzędzie, które jednocześnie wynosi na wyżyny - jak i przerażająco ogłupia (i wszystko pomiędzy)? LLMy \"to tylko narzędzie\" - fajnie, fajnie. Ale jak go używać w praktyce aby zmaksymalizować te \"wyżyny\" i zminimalizować ogłupianie?<br/><br/>Kiedy generowanie tekstu/kodu tanieje, rozumienie i decydowanie relatywnie drożeje.<br/><br/>Sięgniemy do fundamentów kognitywistyki i odkurzymy fundamenty \"krytycznego myślenia\", aby następnie zastosować w praktyce \"naukę z LLMami\" - stosując różnorodne techniki/metody/narzędzia do budowania własnego rozumienia (i modeli mentalnych) dot. określonego zagadnienia, metod weryfikacji, metod \"pogłębiania\" (nie tylko \"zawsze jest wiele pięter wgłąb\" - ale także - gdzie się zatrzymać) - i wiele innych praktycznych wskazówek.",
+          "en": "There is research showing that using LLMs leads to incurring \"cognitive debt\" - people intellectually take shortcuts. An LLM generates a wall of text, the operator may not even read it - and a false impression is created that \"the job is done.\" This applies to research (not verifying sources - e.g., an LLM citing non-existent studies - ouch, politicians!), coding (\"I don't read what I push to production\") - but also - and this is our focus - learning.<br/><br/>What if LLMs are a tool that simultaneously elevates to great heights - and terrifyingly dumbs down (and everything in between)? LLMs are \"just a tool\" - great, great. But how do you use it in practice to maximize those \"heights\" and minimize the dumbing down?<br/><br/>When generating text/code becomes cheap, understanding and decision-making become relatively more expensive.<br/><br/>We'll reach for the fundamentals of cognitive science and dust off the foundations of \"critical thinking,\" then apply \"learning with LLMs\" in practice - using diverse techniques/methods/tools to build your own understanding (and mental models) about a given topic, verification methods, methods of \"going deeper\" (not just \"there are always many levels deep\" - but also - where to stop) - and many other practical tips."
+        },
+        "speakerId": "tomasz-ducin",
+        "duration": 30,
+        "level": "intermediate",
+        "language": "pl",
+        "tags": [],
+        "resources": []
+      }
+    ],
+    "agenda": [
+      {
+        "time": "18:00",
+        "title": "Welcome & Networking",
+        "description": "Registration and networking",
+        "type": "networking"
+      },
+      {
+        "time": "18:10",
+        "title": "Ocena cyberbezpieczeństwa jako część CI/CD",
+        "speaker": "Mateusz Konicki",
+        "speakerIds": ["mateusz-konicki"],
+        "presentationId": "ocena-cyberbezpieczenstwa-cicd",
+        "description": "",
+        "type": "presentation"
+      },
+      {
+        "time": "19:05",
+        "title": "HTMX: Aplikacje webowe dla zmęczonych.",
+        "speaker": "Marcin Golenia",
+        "speakerIds": ["marcin-golenia"],
+        "presentationId": "htmx-aplikacje-webowe",
+        "description": "",
+        "type": "presentation"
+      },
+      {
+        "time": "20:00",
+        "title": "Zapomniana sztuka myślenia. Jak uczyć się z LLMami, aby nie zwiększać cognitive debt?",
+        "speaker": "Tomasz Ducin",
+        "speakerIds": ["tomasz-ducin"],
+        "presentationId": "zapomniana-sztuka-myslenia",
+        "description": "",
+        "type": "presentation"
+      },
+      {
+        "time": "20:55",
+        "title": "Closing & Networking",
+        "description": "Final Q&A and networking",
+        "type": "networking"
+      }
+    ],
     "maxAttendees": 150,
     "registeredAttendees": 0,
     "status": "upcoming",

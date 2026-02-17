@@ -251,6 +251,9 @@ const resourceColorClasses: Record<string, string> = {
                 <p class="text-gray-600 text-sm">{getLocationName(event.location.name, lang)}</p>
                 <p class="text-gray-600 text-sm">{event.location.address}</p>
                 <p class="text-gray-600 text-sm">{event.location.city}</p>
+                {event.location.directions && event.location.directions !== 'Details to be announced' && (
+                  <p class="text-gray-600 text-sm font-medium">{event.location.directions}</p>
+                )}
               </div>
               <div>
                 <h4 class="font-medium text-gray-900 mb-1">{t.eventDetails.accessibility}</h4>
@@ -415,6 +418,9 @@ const resourceColorClasses: Record<string, string> = {
                 <div>
                   <div>{event.location.address}</div>
                   <div>{event.location.city}</div>
+                  {event.location.directions && event.location.directions !== 'Details to be announced' && (
+                    <div class="mt-1 font-medium text-gray-700">{event.location.directions}</div>
+                  )}
                 </div>
               </div>
             </div>
