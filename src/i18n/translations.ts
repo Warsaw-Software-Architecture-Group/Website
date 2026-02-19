@@ -129,6 +129,11 @@ export const translations = {
       stayTuned: 'Pracujemy nad kolejnym wydarzeniem — bądź na bieżąco!',
       followUs: 'Obserwuj nas na LinkedIn, żeby nie przegapić ogłoszenia.'
     },
+    videoSlider: {
+      title: 'Nagrania z prezentacji',
+      subtitle: 'Obejrzyj nagrania z naszych poprzednich spotkań',
+      watchOnYouTube: 'Oglądaj na YouTube'
+    },
     callForPapers: {
       title: 'Call for Papers',
       subtitle: 'Podziel się swoją wiedzą i doświadczeniem z warszawską społecznością architektury oprogramowania',
@@ -493,6 +498,11 @@ export const translations = {
       backToHome: 'Back to Home',
       stayTuned: 'We\'re working on the next event — stay tuned!',
       followUs: 'Follow us on LinkedIn so you don\'t miss the announcement.'
+    },
+    videoSlider: {
+      title: 'Presentation Recordings',
+      subtitle: 'Watch recordings from our past meetups',
+      watchOnYouTube: 'Watch on YouTube'
     },
     callForPapers: {
       title: 'Call for Papers',

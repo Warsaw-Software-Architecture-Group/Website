@@ -136,3 +136,42 @@ export function getUpcomingEvents(): Event[] {
 export function getPastEvents(): Event[] {
   return events.filter(event => event.status === 'completed');
 }
+
+export interface RecordingEntry {
+  presentationTitle: string | BilingualText;
+  speakerName: string;
+  speakerPhoto?: string;
+  youtubeUrl: string;
+  eventTitle: string;
+  eventDate: string;
+}
+
+export function getRecentRecordings(limit: number = 10): RecordingEntry[] {
+  const pastEvents = getPastEvents().sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+
+  const recordings: RecordingEntry[] = [];
+
+  for (const event of pastEvents) {
+    for (const presentation of event.presentations) {
+      if (recordings.length >= limit) break;
+
+      const recording = presentation.resources?.find(r => r.type === 'recording');
+      if (!recording) continue;
+
+      const speaker = event.speakers.find(s => s.id === presentation.speakerId);
+
+      recordings.push({
+        presentationTitle: presentation.title,
+        speakerName: speaker?.name ?? '',
+        speakerPhoto: speaker?.photo,
+        youtubeUrl: recording.url,
+        eventTitle: event.title,
+        eventDate: event.date,
+      });
+    }
+  }
+
+  return recordings;
+}

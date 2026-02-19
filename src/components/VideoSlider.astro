@@ -1,0 +1,187 @@
+---
+import { getTranslations } from '../i18n/translations';
+import { getRecentRecordings, getLocalizedText } from '../data/events';
+
+export interface Props {
+  lang?: 'pl' | 'en';
+}
+
+const { lang = 'pl' } = Astro.props;
+const t = getTranslations(lang);
+const recordings = getRecentRecordings(10);
+
+function extractYouTubeId(url: string): string | null {
+  // Handle youtu.be/ID format
+  const shortMatch = url.match(/youtu\.be\/([a-zA-Z0-9_-]+)/);
+  if (shortMatch) return shortMatch[1];
+  // Handle youtube.com/watch?v=ID format
+  const longMatch = url.match(/[?&]v=([a-zA-Z0-9_-]+)/);
+  if (longMatch) return longMatch[1];
+  return null;
+}
+---
+
+{recordings.length > 0 && (
+  <section id="recordings" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          {t.videoSlider.title}
+        </h2>
+        <p class="text-xl text-gray-600">
+          {t.videoSlider.subtitle}
+        </p>
+      </div>
+
+      <div class="relative">
+        <!-- Left Arrow -->
+        <button
+          id="slider-prev"
+          class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-10 h-10 bg-white rounded-full shadow-lg items-center justify-center text-gray-600 hover:text-[#29B7C0] hover:shadow-xl transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+          aria-label="Previous"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        <!-- Slider Container -->
+        <div
+          id="slider-container"
+          class="flex gap-6 overflow-x-auto scroll-snap-x-mandatory pb-4 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide"
+        >
+          {recordings.map((rec) => {
+            const videoId = extractYouTubeId(rec.youtubeUrl);
+            const title = getLocalizedText(rec.presentationTitle, lang);
+            const thumbnailUrl = videoId
+              ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
+              : '';
+
+            return (
+              <a
+                href={rec.youtubeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex-shrink-0 w-[calc(100%-2rem)] sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] scroll-snap-start group"
+              >
+                <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 h-full flex flex-col">
+                  <!-- Thumbnail -->
+                  <div class="relative aspect-video bg-gray-900 overflow-hidden">
+                    {thumbnailUrl && (
+                      <img
+                        src={thumbnailUrl}
+                        alt={title}
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
+                      />
+                    )}
+                    <!-- Play Button Overlay -->
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors duration-300">
+                      <div class="w-14 h-14 bg-[#29B7C0]/90 group-hover:bg-[#29B7C0] rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-all duration-300">
+                        <svg class="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Card Content -->
+                  <div class="p-4 flex flex-col flex-1">
+                    <h3 class="font-semibold text-gray-900 text-sm leading-snug mb-3 line-clamp-2 group-hover:text-[#29B7C0] transition-colors duration-200">
+                      {title}
+                    </h3>
+                    <div class="mt-auto flex items-center gap-3">
+                      {rec.speakerPhoto && (
+                        <img
+                          src={rec.speakerPhoto}
+                          alt={rec.speakerName}
+                          class="w-8 h-8 rounded-full object-cover"
+                          loading="lazy"
+                        />
+                      )}
+                      <div class="min-w-0">
+                        <p class="text-sm font-medium text-gray-700 truncate">{rec.speakerName}</p>
+                        <p class="text-xs text-gray-500 truncate">{rec.eventTitle}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+
+        <!-- Right Arrow -->
+        <button
+          id="slider-next"
+          class="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-10 h-10 bg-white rounded-full shadow-lg items-center justify-center text-gray-600 hover:text-[#29B7C0] hover:shadow-xl transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+          aria-label="Next"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .scroll-snap-x-mandatory {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .scroll-snap-start {
+    scroll-snap-align: start;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
+
+<script>
+  const container = document.getElementById('slider-container');
+  const prevBtn = document.getElementById('slider-prev');
+  const nextBtn = document.getElementById('slider-next');
+
+  if (container && prevBtn && nextBtn) {
+    function getCardWidth() {
+      const firstCard = container!.querySelector('a');
+      if (!firstCard) return 0;
+      const gap = 24; // gap-6 = 1.5rem = 24px
+      return firstCard.offsetWidth + gap;
+    }
+
+    function updateButtons() {
+      if (!container) return;
+      const atStart = container.scrollLeft <= 0;
+      const atEnd = container.scrollLeft + container.offsetWidth >= container.scrollWidth - 1;
+      prevBtn!.disabled = atStart;
+      nextBtn!.disabled = atEnd;
+      prevBtn!.classList.toggle('!hidden', atStart);
+      nextBtn!.classList.toggle('!hidden', atEnd);
+    }
+
+    prevBtn.addEventListener('click', () => {
+      container!.scrollBy({ left: -getCardWidth(), behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      container!.scrollBy({ left: getCardWidth(), behavior: 'smooth' });
+    });
+
+    container.addEventListener('scroll', updateButtons, { passive: true });
+    window.addEventListener('resize', updateButtons);
+    updateButtons();
+  }
+</script>
