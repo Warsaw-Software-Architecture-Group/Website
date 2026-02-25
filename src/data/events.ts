@@ -31,6 +31,8 @@ export interface Presentation {
   language: 'pl' | 'en'; // Language the presentation is given in
   tags: string[];
   resources?: PresentationResource[];
+  cancelled?: boolean;
+  cancellationNote?: string | BilingualText;
 }
 
 // Helper function to get localized text from a string or BilingualText object

@@ -78,8 +78,15 @@ const formatTime = (time: string) => {
 
               <div class="text-gray-600 mb-4 space-y-1">
                 {event.presentations && event.presentations.map(presentation => (
-                  <div class="text-sm">
-                    - {getLocalizedText(presentation.title, lang)}
+                  <div class={`text-sm ${presentation.cancelled ? 'text-gray-400' : ''}`}>
+                    - {presentation.cancelled ? (
+                      <span class="line-through decoration-red-300/70">{getLocalizedText(presentation.title, lang)}</span>
+                    ) : (
+                      getLocalizedText(presentation.title, lang)
+                    )}
+                    {presentation.cancelled && (
+                      <span class="ml-1 text-xs text-red-500 font-medium">({lang === 'pl' ? 'odwołana' : 'cancelled'})</span>
+                    )}
                   </div>
                 ))}
               </div>

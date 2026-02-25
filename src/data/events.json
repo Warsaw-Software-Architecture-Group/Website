@@ -215,12 +215,12 @@
     "time": "18:00",
     "endTime": "21:00",
     "description": {
-      "pl": "Dołącz do drugiego spotkania Warsaw Software Architecture Group! Tym razem porozmawiamy o cyberbezpieczeństwie w CI/CD, HTMX jako alternatywie dla złożonych frameworków JS oraz o efektywnej nauce z LLMami.",
-      "en": "Join us for the second Warsaw Software Architecture Group meetup! This time we'll discuss cybersecurity in CI/CD, HTMX as an alternative to complex JS frameworks, and effective learning with LLMs."
+      "pl": "Dołącz do drugiego spotkania Warsaw Software Architecture Group! Tym razem porozmawiamy o cyberbezpieczeństwie w CI/CD oraz HTMX jako alternatywie dla złożonych frameworków JS.",
+      "en": "Join us for the second Warsaw Software Architecture Group meetup! This time we'll discuss cybersecurity in CI/CD and HTMX as an alternative to complex JS frameworks."
     },
     "longDescription": {
-      "pl": "Z radością zapraszamy na drugie spotkanie WSAG w Warszawskiej Wyższej Szkole Informatyki! Wydarzenie obejmie trzy prezentacje: ocena cyberbezpieczeństwa jako część CI/CD, HTMX jako podejście do budowania aplikacji webowych oraz zapomniana sztuka myślenia w kontekście nauki z LLMami.\n\nTo świetna okazja, aby poznać innych architektów oprogramowania, dzielić się wiedzą i kontynuować budowanie naszej lokalnej społeczności architektury.",
-      "en": "We're thrilled to host the second WSAG meetup at Warszawska Wyższa Szkoła Informatyki! This event will feature three presentations: cybersecurity assessment as part of CI/CD, HTMX as an approach to building web applications, and the forgotten art of thinking in the context of learning with LLMs.\n\nThis is a great opportunity to meet fellow software architects, share knowledge, and continue building our local architecture community."
+      "pl": "Z radością zapraszamy na drugie spotkanie WSAG w Warszawskiej Wyższej Szkole Informatyki! Wydarzenie obejmie dwie prezentacje: ocena cyberbezpieczeństwa jako część CI/CD oraz HTMX jako podejście do budowania aplikacji webowych.\n\nTo świetna okazja, aby poznać innych architektów oprogramowania, dzielić się wiedzą i kontynuować budowanie naszej lokalnej społeczności architektury.",
+      "en": "We're thrilled to host the second WSAG meetup at Warszawska Wyższa Szkoła Informatyki! This event will feature two presentations: cybersecurity assessment as part of CI/CD and HTMX as an approach to building web applications.\n\nThis is a great opportunity to meet fellow software architects, share knowledge, and continue building our local architecture community."
     },
     "location": {
       "name": "Warszawska Wyższa Szkoła Informatyki",
@@ -308,7 +308,12 @@
         "level": "intermediate",
         "language": "pl",
         "tags": [],
-        "resources": []
+        "resources": [],
+        "cancelled": true,
+        "cancellationNote": {
+          "pl": "Prezentacja odwołana z powodu choroby prelegenta",
+          "en": "Presentation cancelled due to speaker illness"
+        }
       }
     ],
     "agenda": [
