@@ -488,6 +488,7 @@
     ],
     "maxAttendees": 150,
     "registeredAttendees": 0,
+    "registrationUrl": "https://pragmaticmeet.com/events/604ef65d-2238-448f-a7bc-7bbf47b566cb",
     "status": "upcoming",
     "venuePartner": {
       "name": "Polsko-Japońska Akademia Technik Komputerowych",
