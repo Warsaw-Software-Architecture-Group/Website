@@ -156,7 +156,7 @@ const formatTime = (time: string) => {
               </h4>
 
               <div class="text-gray-600 mb-4 space-y-1">
-                {event.presentations && event.presentations.map(presentation => (
+                {event.presentations && event.presentations.filter(p => !p.cancelled).map(presentation => (
                   <div class="text-sm">
                     - {getLocalizedText(presentation.title, lang)}
                   </div>

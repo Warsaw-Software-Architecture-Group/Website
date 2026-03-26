@@ -274,7 +274,13 @@
         "level": "intermediate",
         "language": "pl",
         "tags": [],
-        "resources": []
+        "resources": [
+          {
+            "type": "recording",
+            "title": { "pl": "Nagranie", "en": "Recording" },
+            "url": "https://www.youtube.com/watch?v=UBSy7qyMyPA"
+          }
+        ]
       },
       {
         "id": "htmx-aplikacje-webowe",
@@ -291,7 +297,13 @@
         "level": "intermediate",
         "language": "pl",
         "tags": [],
-        "resources": []
+        "resources": [
+          {
+            "type": "recording",
+            "title": { "pl": "Nagranie", "en": "Recording" },
+            "url": "https://www.youtube.com/watch?v=83UTFtZUggM"
+          }
+        ]
       },
       {
         "id": "zapomniana-sztuka-myslenia",
@@ -489,12 +501,53 @@
     "maxAttendees": 150,
     "registeredAttendees": 0,
     "registrationUrl": "https://pragmaticmeet.com/events/604ef65d-2238-448f-a7bc-7bbf47b566cb",
-    "status": "upcoming",
+    "status": "completed",
     "venuePartner": {
       "name": "Polsko-Japońska Akademia Technik Komputerowych",
       "url": "https://pja.edu.pl/",
       "logo": "/images/pj-logo.png"
     },
+    "tags": ["architecture", "community", "networking"],
+    "prerequisites": [],
+    "targetAudience": [
+      "Software Architects",
+      "Senior Developers",
+      "Tech Leads",
+      "Engineering Managers"
+    ]
+  },
+  {
+    "id": "2026-04-21",
+    "meetupId": 4,
+    "title": "WSAG Meetup #4",
+    "slug": "wsag-meetup-4",
+    "date": "April 21, 2026",
+    "time": "18:00",
+    "endTime": "21:00",
+    "description": {
+      "pl": "Dołącz do czwartego spotkania Warsaw Software Architecture Group! Agenda i prelegenci zostaną wkrótce ogłoszeni.",
+      "en": "Join us for the fourth Warsaw Software Architecture Group meetup! Agenda and speakers to be announced soon."
+    },
+    "longDescription": {
+      "pl": "Zapraszamy na czwarte spotkanie WSAG! Szczegóły dotyczące lokalizacji, agendy i prelegentów zostaną wkrótce ogłoszone.\n\nTo świetna okazja, aby poznać innych architektów oprogramowania, dzielić się wiedzą i kontynuować budowanie naszej lokalnej społeczności architektury.",
+      "en": "Join us for the fourth WSAG meetup! Details about the venue, agenda, and speakers will be announced soon.\n\nThis is a great opportunity to meet fellow software architects, share knowledge, and continue building our local architecture community."
+    },
+    "location": {
+      "name": "TBA",
+      "address": "",
+      "zipCode": "",
+      "city": "Warsaw, Poland",
+      "mapUrl": "",
+      "directions": "",
+      "parking": "",
+      "accessibility": ""
+    },
+    "speakers": [],
+    "presentations": [],
+    "agenda": [],
+    "maxAttendees": 80,
+    "registeredAttendees": 0,
+    "status": "upcoming",
     "tags": ["architecture", "community", "networking"],
     "prerequisites": [],
     "targetAudience": [
