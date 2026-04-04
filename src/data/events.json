@@ -533,14 +533,14 @@
       "en": "Join us for the fourth WSAG meetup! Details about the venue, agenda, and speakers will be announced soon.\n\nThis is a great opportunity to meet fellow software architects, share knowledge, and continue building our local architecture community."
     },
     "location": {
-      "name": "TBA",
-      "address": "",
-      "zipCode": "",
+      "name": "Siedziba Circle K",
+      "address": "Puławska 145",
+      "zipCode": "02-715",
       "city": "Warsaw, Poland",
-      "mapUrl": "",
-      "directions": "",
-      "parking": "",
-      "accessibility": ""
+      "mapUrl": "https://maps.google.com/embed?pb=!1m18!1m12!1m3!1d2443.6585859798344!2d20.98462631580052!3d52.22104397975899",
+      "directions": "Details to be announced",
+      "parking": "Details to be announced",
+      "accessibility": "Details to be announced"
     },
     "speakers": [],
     "presentations": [],
@@ -548,6 +548,15 @@
     "maxAttendees": 80,
     "registeredAttendees": 0,
     "status": "upcoming",
+    "venuePartner": {
+      "name": "Circle K Business Centre Warsaw",
+      "url": "https://www.circlek.pl/",
+      "logo": "/assets/2026_01/logo-full-color-rgb_logo-Warsaw.png"
+    },
+    "privacyNotice": {
+      "pl": "Ze względu na politykę bezpieczeństwa Circle K Business Centre, organizatorzy są zobowiązani do przekazania imion i nazwisk uczestników. Rejestrując się na wydarzenie, wyrażasz zgodę na udostępnienie Twojego imienia i nazwiska w celu uzyskania dostępu do budynku.",
+      "en": "Due to the security policy of Circle K Business Centre, organizers are required to provide first names and surnames of participants. By registering for this event, you consent to sharing your name for building access purposes."
+    },
     "tags": ["architecture", "community", "networking"],
     "prerequisites": [],
     "targetAudience": [

@@ -98,6 +98,7 @@ export interface Event {
   status: 'upcoming' | 'completed' | 'cancelled';
   resources?: EventResources;
   venuePartner?: VenuePartner;
+  privacyNotice?: BilingualText;
   tags: string[];
   prerequisites?: string[];
   targetAudience: string[];
