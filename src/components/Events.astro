@@ -10,7 +10,7 @@ const { lang = 'pl' } = Astro.props;
 const t = getTranslations(lang);
 
 const upcomingEvents = getUpcomingEvents();
-const pastEvents = getPastEvents();
+const pastEvents = getPastEvents().reverse();
 
 const formatTime = (time: string) => {
   return new Date(`2000-01-01T${time}`).toLocaleTimeString(lang === 'pl' ? 'pl-PL' : 'en-US', {

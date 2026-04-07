@@ -604,8 +604,8 @@
       {
         "id": "blizny-zamiast-certyfikatow",
         "title": {
-          "pl": "Blizny zamiast Certyfikatów",
-          "en": "Scars Instead of Certificates"
+          "pl": "Blizny zamiast certyfikatów. Pole bitwy jako szkoła architektury.",
+          "en": "Scars Instead of Certificates. The Battlefield as a School of Architecture."
         },
         "description": {
           "pl": "Żaden certyfikat nie nauczy Cię, jak rozmawiać z biznesem, który zmienił zdanie po sześciu miesiącach developmentu.\n\nŻadna książka nie opisuje uczucia, kiedy Twoja perfekcyjna architektura rozsypuje się pod pierwszym prawdziwym obciążeniem produkcyjnym.\n\nTa prezentacja to zbiór case'ów, które wydawały się słuszne i okazały się błędem, uporu, który warto było mieć, i kompromisów, które w perspektywie czasu okazały się mądrymi ruchami.\n\nChcę pokazać, że dobry architekt to nie ktoś, kto nie popełnia błędów, ale ktoś, kto buduje sobie wystarczająco dobry katalog porażek, żeby zawczasu rozpoznawać ich wzorce.",
@@ -646,7 +646,7 @@
       },
       {
         "time": "20:00",
-        "title": "Blizny zamiast Certyfikatów",
+        "title": "Blizny zamiast certyfikatów. Pole bitwy jako szkoła architektury.",
         "speaker": "Maciej Jędrzejewski",
         "speakerIds": ["maciej-jedrzejewski"],
         "presentationId": "blizny-zamiast-certyfikatow",
