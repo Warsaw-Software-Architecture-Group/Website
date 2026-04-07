@@ -522,15 +522,15 @@
     "title": "WSAG Meetup #4",
     "slug": "wsag-meetup-4",
     "date": "April 21, 2026",
-    "time": "18:00",
+    "time": "17:45",
     "endTime": "21:00",
     "description": {
-      "pl": "Dołącz do czwartego spotkania Warsaw Software Architecture Group! Agenda i prelegenci zostaną wkrótce ogłoszeni.",
-      "en": "Join us for the fourth Warsaw Software Architecture Group meetup! Agenda and speakers to be announced soon."
+      "pl": "Dołącz do czwartego spotkania Warsaw Software Architecture Group! Trzy prezentacje o architekturze oprogramowania, DDD i lekcjach wyniesionych z prawdziwych projektów.",
+      "en": "Join us for the fourth Warsaw Software Architecture Group meetup! Three talks on software architecture, DDD, and lessons learned from real-world projects."
     },
     "longDescription": {
-      "pl": "Zapraszamy na czwarte spotkanie WSAG! Szczegóły dotyczące lokalizacji, agendy i prelegentów zostaną wkrótce ogłoszone.\n\nTo świetna okazja, aby poznać innych architektów oprogramowania, dzielić się wiedzą i kontynuować budowanie naszej lokalnej społeczności architektury.",
-      "en": "Join us for the fourth WSAG meetup! Details about the venue, agenda, and speakers will be announced soon.\n\nThis is a great opportunity to meet fellow software architects, share knowledge, and continue building our local architecture community."
+      "pl": "Zapraszamy na czwarte spotkanie WSAG w siedzibie Circle K Business Centre! Tym razem czekają na Was trzy prezentacje: o złych praktykach w architekturze oprogramowania, ewolucji API w kierunku DDD oraz o tym, czego certyfikaty nie nauczą — lekcjach wyniesionych z prawdziwych projektów.\n\nTo świetna okazja, aby poznać innych architektów oprogramowania, dzielić się wiedzą i kontynuować budowanie naszej lokalnej społeczności architektury.",
+      "en": "Join us for the fourth WSAG meetup at Circle K Business Centre! This time we have three talks: on the bad parts of software architecture, evolving APIs toward DDD, and the lessons no certification can teach — hard-won experience from real projects.\n\nThis is a great opportunity to meet fellow software architects, share knowledge, and continue building our local architecture community."
     },
     "location": {
       "name": "Siedziba Circle K",
@@ -542,9 +542,124 @@
       "parking": "Details to be announced",
       "accessibility": "Details to be announced"
     },
-    "speakers": [],
-    "presentations": [],
-    "agenda": [],
+    "speakers": [
+      {
+        "id": "artur-wojnar",
+        "name": "Artur Wojnar",
+        "role": "",
+        "company": "",
+        "bio": "",
+        "photo": "/images/speakers/meetup-4/artur.jpeg"
+      },
+      {
+        "id": "jacek-milewski",
+        "name": "Jacek Milewski",
+        "role": "",
+        "company": "",
+        "bio": "",
+        "photo": "/images/speakers/meetup-4/jacek.png"
+      },
+      {
+        "id": "maciej-jedrzejewski",
+        "name": "Maciej Jędrzejewski",
+        "role": "",
+        "company": "",
+        "bio": "",
+        "photo": "/images/speakers/meetup-4/maciej.jpeg"
+      }
+    ],
+    "presentations": [
+      {
+        "id": "software-architecture-bad-parts",
+        "title": {
+          "pl": "Software Architecture: The Bad Parts",
+          "en": "Software Architecture: The Bad Parts"
+        },
+        "description": {
+          "pl": "W tej prezentacji pokażę, jak tak zwane dobre praktyki w połączeniu z powierzchownym rozumieniem domeny mogą tworzyć niebezpieczną iluzję kontroli.\n\nNa podstawie rzeczywistego przykładu z domeny Connected Health — konkretnie alertowania o ryzyku raka wątroby — pokażę, jak podejście noun-driven prowadzi do nadmiernego sprzężenia i kruchych systemów.\n\nOmówię typowe pułapki architektoniczne, takie jak naruszenia kontekstu, sprzężenie z bazą danych, wyciek domeny i mieszanie modeli odczytu i zapisu. Podważę też popularne przekonanie branżowe, wyjaśniając, dlaczego Clean/Hexagonal Architecture nie jest architekturą.\n\nUczestnicy wyjdą z głębszym rozumieniem tego, jak decyzje projektowe kształtują zachowanie systemu — i jak łatwo „najlepsze praktyki\u201d mogą zawieść, gdy domena jest źle rozumiana.",
+          "en": "In this talk, I will demonstrate how so-called good practices combined with a shallow understanding of the domain can create a dangerous illusion of control.\n\nUsing a real-world example from the Connected Health domain—specifically, liver cancer risk alerting—I will show how a noun-driven design approach leads to excessive coupling and brittle systems.\n\nThe talk will explore common architectural pitfalls such as context violations, database coupling, domain leakage, and mixing read and write models. I will also challenge a popular industry belief by explaining why Clean/Hexagonal Architecture is not an architecture.\n\nAttendees will leave with a clearer understanding of how design decisions shape system behavior—and how easily \"best practices\" can fail when the domain is misunderstood."
+        },
+        "speakerId": "artur-wojnar",
+        "duration": 40,
+        "level": "intermediate",
+        "language": "pl",
+        "resources": []
+      },
+      {
+        "id": "how-we-waste-time-building-apis",
+        "title": {
+          "pl": "How We Waste Time Building APIs — and the Moment DDD Starts to Matter",
+          "en": "How We Waste Time Building APIs — and the Moment DDD Starts to Matter"
+        },
+        "description": {
+          "pl": "Czy Domain-Driven Design to tylko teoretyczna koncepcja?\n\nW okopach większość zespołów nie zaczyna od Bounded Contexts czy Context Maps. Zaczyna od ticketów, kryteriów akceptacji i... konieczności dostarczenia API!\n\nZ czasem API rosną. Pojawiają się nowi konsumenci. Powstają współdzielone zasoby. I nagle zespoły zmagają się z pytaniami takimi jak:\n- Kto jest właścicielem tego API?\n- Czy możemy zmienić ten kontrakt?\n- Dlaczego każda mała decyzja wymaga architekta?\n\nW tej prezentacji opowiem historię o tym, jak zespoły w sposób naturalny rozwijają API w chaosie — i dlaczego nie jest to porażka.\n\nPokażę moment, w którym Domain-Driven Design przestaje być teoretyczny i staje się praktycznym narzędziem do podejmowania decyzji: pomagającym zespołom rozumować o relacjach między bounded contexts, własności i autonomii — bez „robienia pełnego DDD\u201d.",
+          "en": "Is Domain-Driven Design just a theoretical concept?\n\nWhen working in the trenches, most teams don't start with Bounded Contexts or Context Maps. They start with tickets, acceptance criteria, and... the need to ship APIs!\n\nOver time, APIs grow. New consumers appear. Shared resources emerge. And suddenly teams struggle with questions like:\n- Who owns this API?\n- Can we change this contract?\n- Why does every small decision require an architect?\n\nIn this talk, I'll tell the story of how teams naturally evolve APIs in chaos — and why this is not a failure.\n\nI'll show the moment when Domain-Driven Design stops being theoretical and becomes a practical decision-making tool: helping teams reason about relationships between bounded contexts, ownership, and autonomy — without \"doing full DDD\"."
+        },
+        "speakerId": "jacek-milewski",
+        "duration": 40,
+        "level": "intermediate",
+        "language": "pl",
+        "resources": []
+      },
+      {
+        "id": "blizny-zamiast-certyfikatow",
+        "title": {
+          "pl": "Blizny zamiast Certyfikatów",
+          "en": "Scars Instead of Certificates"
+        },
+        "description": {
+          "pl": "Żaden certyfikat nie nauczy Cię, jak rozmawiać z biznesem, który zmienił zdanie po sześciu miesiącach developmentu.\n\nŻadna książka nie opisuje uczucia, kiedy Twoja perfekcyjna architektura rozsypuje się pod pierwszym prawdziwym obciążeniem produkcyjnym.\n\nTa prezentacja to zbiór case'ów, które wydawały się słuszne i okazały się błędem, uporu, który warto było mieć, i kompromisów, które w perspektywie czasu okazały się mądrymi ruchami.\n\nChcę pokazać, że dobry architekt to nie ktoś, kto nie popełnia błędów, ale ktoś, kto buduje sobie wystarczająco dobry katalog porażek, żeby zawczasu rozpoznawać ich wzorce.",
+          "en": "No certification will teach you how to talk to a business that changed its mind after six months of development.\n\nNo book describes the feeling when your perfect architecture crumbles under the first real production load.\n\nThis talk is a collection of cases that seemed right and turned out to be mistakes, stubbornness that was worth having, and compromises that in hindsight proved to be smart moves.\n\nI want to show that a good architect is not someone who doesn't make mistakes, but someone who builds a good enough catalogue of failures to recognize their patterns early."
+        },
+        "speakerId": "maciej-jedrzejewski",
+        "duration": 40,
+        "level": "intermediate",
+        "language": "pl",
+        "tags": ["architecture", "lessons learned", "experience"],
+        "resources": []
+      }
+    ],
+    "agenda": [
+      {
+        "time": "17:45",
+        "title": "Welcome & Networking",
+        "description": "Registration and networking",
+        "type": "networking"
+      },
+      {
+        "time": "18:00",
+        "title": "Software Architecture: The Bad Parts",
+        "speaker": "Artur Wojnar",
+        "speakerIds": ["artur-wojnar"],
+        "presentationId": "software-architecture-bad-parts",
+        "description": "",
+        "type": "presentation"
+      },
+      {
+        "time": "18:50",
+        "title": "How We Waste Time Building APIs — and the Moment DDD Starts to Matter",
+        "speaker": "Jacek Milewski",
+        "speakerIds": ["jacek-milewski"],
+        "presentationId": "how-we-waste-time-building-apis",
+        "description": "",
+        "type": "presentation"
+      },
+      {
+        "time": "20:00",
+        "title": "Blizny zamiast Certyfikatów",
+        "speaker": "Maciej Jędrzejewski",
+        "speakerIds": ["maciej-jedrzejewski"],
+        "presentationId": "blizny-zamiast-certyfikatow",
+        "description": "",
+        "type": "presentation"
+      },
+      {
+        "time": "20:30",
+        "title": "Closing & Networking",
+        "description": "Final Q&A and networking",
+        "type": "networking"
+      }
+    ],
     "maxAttendees": 80,
     "registeredAttendees": 0,
     "status": "upcoming",
