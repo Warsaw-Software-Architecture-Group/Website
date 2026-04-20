@@ -16,7 +16,7 @@
       "en": "We're excited to launch the Warsaw Software Architecture Group with our first meetup! This event will feature three excellent presentations covering software architecture topics.\n\nThis is a great opportunity to meet fellow software architects, share knowledge, and build our local architecture community."
     },
     "location": {
-      "name": "Siedziba Circle K",
+      "name": "Circle K Business Centre",
       "address": "Puławska 145",
       "zipCode": "02-715",
       "city": "Warsaw, Poland",
@@ -533,7 +533,7 @@
       "en": "Join us for the fourth WSAG meetup at Circle K Business Centre! This time we have three talks: on the bad parts of software architecture, evolving APIs toward DDD, and the lessons no certification can teach — hard-won experience from real projects.\n\nThis is a great opportunity to meet fellow software architects, share knowledge, and continue building our local architecture community."
     },
     "location": {
-      "name": "Siedziba Circle K",
+      "name": "Circle K Business Centre",
       "address": "Puławska 145",
       "zipCode": "02-715",
       "city": "Warsaw, Poland",
