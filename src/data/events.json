@@ -662,7 +662,7 @@
     ],
     "maxAttendees": 80,
     "registeredAttendees": 0,
-    "status": "upcoming",
+    "status": "completed",
     "venuePartner": {
       "name": "Circle K Business Centre Warsaw",
       "url": "https://www.circlek.pl/",
@@ -672,6 +672,46 @@
       "pl": "Ze względu na politykę bezpieczeństwa Circle K Business Centre, organizatorzy są zobowiązani do przekazania imion i nazwisk uczestników. Rejestrując się na wydarzenie, wyrażasz zgodę na udostępnienie Twojego imienia i nazwiska w celu uzyskania dostępu do budynku.",
       "en": "Due to the security policy of Circle K Business Centre, organizers are required to provide first names and surnames of participants. By registering for this event, you consent to sharing your name for building access purposes."
     },
+    "tags": ["architecture", "community", "networking"],
+    "prerequisites": [],
+    "targetAudience": [
+      "Software Architects",
+      "Senior Developers",
+      "Tech Leads",
+      "Engineering Managers"
+    ]
+  },
+  {
+    "id": "2026-05-19",
+    "meetupId": 5,
+    "title": "WSAG Meetup #5",
+    "slug": "wsag-meetup-5",
+    "date": "May 19, 2026",
+    "time": "18:00",
+    "endTime": "21:00",
+    "description": {
+      "pl": "Dołącz do piątego spotkania Warsaw Software Architecture Group! Agenda i miejsce zostaną wkrótce ogłoszone.",
+      "en": "Join us for the fifth Warsaw Software Architecture Group meetup! Agenda and venue to be announced soon."
+    },
+    "longDescription": {
+      "pl": "Zapraszamy na piąte spotkanie WSAG! Szczegóły dotyczące agendy, prelegentów oraz miejsca zostaną ogłoszone wkrótce.\n\nTo świetna okazja, aby poznać innych architektów oprogramowania, dzielić się wiedzą i kontynuować budowanie naszej lokalnej społeczności architektury.",
+      "en": "Join us for the fifth WSAG meetup! Details about the agenda, speakers, and venue will be announced soon.\n\nThis is a great opportunity to meet fellow software architects, share knowledge, and continue building our local architecture community."
+    },
+    "location": {
+      "name": "To be announced",
+      "address": "",
+      "city": "Warsaw, Poland",
+      "mapUrl": "",
+      "directions": "Details to be announced",
+      "parking": "Details to be announced",
+      "accessibility": "Details to be announced"
+    },
+    "speakers": [],
+    "presentations": [],
+    "agenda": [],
+    "maxAttendees": 0,
+    "registeredAttendees": 0,
+    "status": "upcoming",
     "tags": ["architecture", "community", "networking"],
     "prerequisites": [],
     "targetAudience": [
