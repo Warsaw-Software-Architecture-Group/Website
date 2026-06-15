@@ -711,7 +711,53 @@
     "agenda": [],
     "maxAttendees": 0,
     "registeredAttendees": 0,
+    "status": "cancelled",
+    "tags": ["architecture", "community", "networking"],
+    "prerequisites": [],
+    "targetAudience": [
+      "Software Architects",
+      "Senior Developers",
+      "Tech Leads",
+      "Engineering Managers"
+    ]
+  },
+  {
+    "id": "2026-06-23",
+    "meetupId": 6,
+    "title": "WSAG Meetup #6",
+    "slug": "wsag-meetup-6",
+    "date": "June 23, 2026",
+    "time": "17:30",
+    "endTime": "21:00",
+    "description": {
+      "pl": "Dołącz do szóstego spotkania Warsaw Software Architecture Group w Polsko-Japońskiej Akademii Technik Komputerowych! Agenda i prelegenci zostaną wkrótce ogłoszeni.",
+      "en": "Join us for the sixth Warsaw Software Architecture Group meetup at the Polish-Japanese Academy of Information Technology! Agenda and speakers to be announced soon."
+    },
+    "longDescription": {
+      "pl": "Zapraszamy na szóste spotkanie WSAG, ponownie goszczone w Polsko-Japońskiej Akademii Technik Komputerowych! Szczegóły dotyczące agendy oraz prelegentów zostaną ogłoszone wkrótce.\n\nTo świetna okazja, aby poznać innych architektów oprogramowania, dzielić się wiedzą i kontynuować budowanie naszej lokalnej społeczności architektury.",
+      "en": "Join us for the sixth WSAG meetup, once again hosted at the Polish-Japanese Academy of Information Technology! Details about the agenda and speakers will be announced soon.\n\nThis is a great opportunity to meet fellow software architects, share knowledge, and continue building our local architecture community."
+    },
+    "location": {
+      "name": "Polsko-Japońska Akademia Technik Komputerowych",
+      "address": "Koszykowa 86",
+      "zipCode": "02-008",
+      "city": "Warsaw, Poland",
+      "mapUrl": "",
+      "directions": "Aula A-1",
+      "parking": "Details to be announced",
+      "accessibility": "Details to be announced"
+    },
+    "speakers": [],
+    "presentations": [],
+    "agenda": [],
+    "maxAttendees": 150,
+    "registeredAttendees": 0,
     "status": "upcoming",
+    "venuePartner": {
+      "name": "Polsko-Japońska Akademia Technik Komputerowych",
+      "url": "https://pja.edu.pl/",
+      "logo": "/images/pj-logo.png"
+    },
     "tags": ["architecture", "community", "networking"],
     "prerequisites": [],
     "targetAudience": [
