@@ -730,12 +730,12 @@
     "time": "17:30",
     "endTime": "21:00",
     "description": {
-      "pl": "Dołącz do szóstego spotkania Warsaw Software Architecture Group w Polsko-Japońskiej Akademii Technik Komputerowych! Agenda i prelegenci zostaną wkrótce ogłoszeni.",
-      "en": "Join us for the sixth Warsaw Software Architecture Group meetup at the Polish-Japanese Academy of Information Technology! Agenda and speakers to be announced soon."
+      "pl": "Dołącz do szóstego spotkania Warsaw Software Architecture Group w Polsko-Japońskiej Akademii Technik Komputerowych! Prezentacje o przyrostowym modelu wytwarzania oprogramowania oraz o uczeniu Stable Diffusion generowania obrazów.",
+      "en": "Join us for the sixth Warsaw Software Architecture Group meetup at the Polish-Japanese Academy of Information Technology! Talks on the incremental software development model and on teaching Stable Diffusion to generate images."
     },
     "longDescription": {
-      "pl": "Zapraszamy na szóste spotkanie WSAG, ponownie goszczone w Polsko-Japońskiej Akademii Technik Komputerowych! Szczegóły dotyczące agendy oraz prelegentów zostaną ogłoszone wkrótce.\n\nTo świetna okazja, aby poznać innych architektów oprogramowania, dzielić się wiedzą i kontynuować budowanie naszej lokalnej społeczności architektury.",
-      "en": "Join us for the sixth WSAG meetup, once again hosted at the Polish-Japanese Academy of Information Technology! Details about the agenda and speakers will be announced soon.\n\nThis is a great opportunity to meet fellow software architects, share knowledge, and continue building our local architecture community."
+      "pl": "Zapraszamy na szóste spotkanie WSAG, ponownie goszczone w Polsko-Japońskiej Akademii Technik Komputerowych! Tym razem czekają na Was prezentacje o tym, jak starzeje się przyrostowy model wytwarzania oprogramowania w świecie zdominowanym przez Scruma, oraz techniczna sesja o uczeniu Stable Diffusion generowania obrazów na własnym komputerze lub w chmurze. Trzecia prezentacja zostanie ogłoszona wkrótce.\n\nTo świetna okazja, aby poznać innych architektów oprogramowania, dzielić się wiedzą i kontynuować budowanie naszej lokalnej społeczności architektury.",
+      "en": "Join us for the sixth WSAG meetup, once again hosted at the Polish-Japanese Academy of Information Technology! This time we have talks on how the incremental software development model ages in a world dominated by Scrum, and a hands-on technical session on teaching Stable Diffusion to generate images on your own computer or in the cloud. A third talk will be announced soon.\n\nThis is a great opportunity to meet fellow software architects, share knowledge, and continue building our local architecture community."
     },
     "location": {
       "name": "Polsko-Japońska Akademia Technik Komputerowych",
@@ -747,9 +747,103 @@
       "parking": "Details to be announced",
       "accessibility": "Details to be announced"
     },
-    "speakers": [],
-    "presentations": [],
-    "agenda": [],
+    "speakers": [
+      {
+        "id": "ola-kucharska",
+        "name": "Ola Kucharska",
+        "role": "",
+        "company": "",
+        "bio": "",
+        "photo": "/images/speakers/meetup-6/ola.jpeg"
+      },
+      {
+        "id": "piotr-stapp",
+        "name": "Piotr Stapp",
+        "role": "",
+        "company": "",
+        "bio": "",
+        "photo": "/images/speakers/meetup-6/piotr.jpeg"
+      }
+    ],
+    "presentations": [
+      {
+        "id": "starzenie-sie-modelu-przyrostowego",
+        "title": {
+          "pl": "Jak starzeje się przyrostowy model oprogramowania i czemu nikt już o nim nie mówi, od kiedy mamy scruma?",
+          "en": "How the incremental software model ages and why no one talks about it anymore since we got Scrum"
+        },
+        "description": {
+          "pl": "Model przyrostowy jest starszy niż się wydaje, bo jego koncepcja była już z powodzeniem - jak na ówczesne możliwości - wykorzystywana w latach 60 XX. wieku. Chociaż takie podejście do wytwarzania oprogramowania osobom technicznym wydaje się bardziej niż oczywiste, ten model powoli zaczął ustępować temu, co dzisiaj określamy szeroko jako podejście zwinne.\n\nCzy w świecie sprintów wszyscy już zapomnieli, że iteracyjność to nie to samo, co model top-down? Popatrzmy na historię i to, co w projektach króluje aktualnie, a potem przypomnijmy sobie, czemu warto nadal mówić biznesowi o modelu przyrostowym i powtarzać, że scrum to nie to samo?",
+          "en": "The incremental model is older than it seems — its concept was already being used successfully, given the capabilities of the time, back in the 1960s. Although this approach to building software seems more than obvious to technical people, the model slowly began to give way to what we today broadly call the agile approach.\n\nIn a world of sprints, has everyone forgotten that being iterative is not the same as a top-down model? Let's look at the history and at what currently reigns in projects, and then remind ourselves why it's still worth talking to the business about the incremental model and repeating that Scrum is not the same thing."
+        },
+        "speakerId": "ola-kucharska",
+        "duration": 40,
+        "level": "beginner",
+        "language": "pl",
+        "resources": []
+      },
+      {
+        "id": "od-selfie-do-ai-stable-diffusion",
+        "title": {
+          "pl": "Od selfie do AI: Jak nauczyć Stable Diffusion swojej twarzy i nie tylko",
+          "en": "From selfie to AI: How to teach Stable Diffusion your face and more"
+        },
+        "description": {
+          "pl": "Na co dzień w social media widzisz obrazki generowane przez AI.\nJednak nawet najnowsze np: w stylu studia Ghibli odbiegają znacząco od rzeczywistości.\nRodzi się więc pytanie, czy da się wygenerować siebie samego w określonym stylu? A jeżeli tak, to ile to będzie kosztować?\nZapraszam Cię na techniczną sesję, w której pokażę, jak nauczyć Stable Diffusion generowania tego, co chcesz na swoim komputerze lub w chmurze.\nSesja będzie pełna praktyki ze szczyptą teorii. Gotowi? No to akcja!",
+          "en": "Every day on social media you see images generated by AI.\nHowever, even the latest ones — e.g. in the Studio Ghibli style — differ significantly from reality.\nThis raises the question: is it possible to generate yourself in a specific style? And if so, how much will it cost?\nI invite you to a technical session where I'll show how to teach Stable Diffusion to generate what you want, on your own computer or in the cloud.\nThe session will be full of practice with a pinch of theory. Ready? Then action!"
+        },
+        "speakerId": "piotr-stapp",
+        "duration": 40,
+        "level": "intermediate",
+        "language": "pl",
+        "tags": ["AI", "Stable Diffusion", "machine learning"],
+        "resources": []
+      }
+    ],
+    "agenda": [
+      {
+        "time": "17:30",
+        "title": "Welcome & Networking",
+        "description": "Registration and networking",
+        "type": "networking"
+      },
+      {
+        "time": "17:45",
+        "title": "Jak starzeje się przyrostowy model oprogramowania i czemu nikt już o nim nie mówi, od kiedy mamy scruma?",
+        "speaker": "Ola Kucharska",
+        "speakerIds": ["ola-kucharska"],
+        "presentationId": "starzenie-sie-modelu-przyrostowego",
+        "description": "",
+        "type": "presentation"
+      },
+      {
+        "time": "18:35",
+        "title": "Od selfie do AI: Jak nauczyć Stable Diffusion swojej twarzy i nie tylko",
+        "speaker": "Piotr Stapp",
+        "speakerIds": ["piotr-stapp"],
+        "presentationId": "od-selfie-do-ai-stable-diffusion",
+        "description": "",
+        "type": "presentation"
+      },
+      {
+        "time": "19:25",
+        "title": "Break & Networking",
+        "description": "Short break and networking",
+        "type": "networking"
+      },
+      {
+        "time": "20:00",
+        "title": "To be announced",
+        "description": "Third talk — to be announced shortly",
+        "type": "presentation"
+      },
+      {
+        "time": "20:40",
+        "title": "Closing & Networking",
+        "description": "Final Q&A and networking",
+        "type": "networking"
+      }
+    ],
     "maxAttendees": 150,
     "registeredAttendees": 0,
     "status": "upcoming",
