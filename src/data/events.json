@@ -727,7 +727,7 @@
     "title": "WSAG Meetup #6",
     "slug": "wsag-meetup-6",
     "date": "June 23, 2026",
-    "time": "17:30",
+    "time": "18:00",
     "endTime": "21:00",
     "description": {
       "pl": "Dołącz do szóstego spotkania Warsaw Software Architecture Group w Polsko-Japońskiej Akademii Technik Komputerowych! Prezentacje o przyrostowym modelu wytwarzania oprogramowania oraz o uczeniu Stable Diffusion generowania obrazów.",
@@ -802,13 +802,7 @@
     ],
     "agenda": [
       {
-        "time": "17:30",
-        "title": "Welcome & Networking",
-        "description": "Registration and networking",
-        "type": "networking"
-      },
-      {
-        "time": "17:45",
+        "time": "18:00",
         "title": "Jak starzeje się przyrostowy model oprogramowania i czemu nikt już o nim nie mówi, od kiedy mamy scruma?",
         "speaker": "Ola Kucharska",
         "speakerIds": ["ola-kucharska"],
@@ -817,7 +811,7 @@
         "type": "presentation"
       },
       {
-        "time": "18:35",
+        "time": "18:50",
         "title": "Od selfie do AI: Jak nauczyć Stable Diffusion swojej twarzy i nie tylko",
         "speaker": "Piotr Stapp",
         "speakerIds": ["piotr-stapp"],
@@ -826,19 +820,13 @@
         "type": "presentation"
       },
       {
-        "time": "19:25",
-        "title": "Break & Networking",
-        "description": "Short break and networking",
-        "type": "networking"
-      },
-      {
-        "time": "20:00",
+        "time": "19:40",
         "title": "To be announced",
         "description": "Third talk — to be announced shortly",
         "type": "presentation"
       },
       {
-        "time": "20:40",
+        "time": "20:30",
         "title": "Closing & Networking",
         "description": "Final Q&A and networking",
         "type": "networking"
