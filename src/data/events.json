@@ -834,7 +834,7 @@
     ],
     "maxAttendees": 150,
     "registeredAttendees": 0,
-    "status": "upcoming",
+    "status": "completed",
     "venuePartner": {
       "name": "Polsko-Japońska Akademia Technik Komputerowych",
       "url": "https://pja.edu.pl/",
@@ -848,5 +848,158 @@
       "Tech Leads",
       "Engineering Managers"
     ]
+  },
+  {
+    "id": "2026-09-22",
+    "meetupId": 7,
+    "title": "WSAG Meetup #7",
+    "slug": "wsag-meetup-7",
+    "date": "September 22, 2026",
+    "time": "18:00",
+    "endTime": "21:00",
+    "description": {
+      "pl": "Dołącz do siódmego spotkania Warsaw Software Architecture Group w siedzibie Jit Team! Prezentacje o tym, czy „Magic: the Gathering” uratuje IT, o wzorcach Context Engineering oraz o tym, co zrobić, gdy RBAC już nie wystarcza.",
+      "en": "Join us for the seventh Warsaw Software Architecture Group meetup hosted by Jit Team! Talks on whether \"Magic: the Gathering\" will save IT, Context Engineering patterns, and what to do when RBAC is not enough."
+    },
+    "longDescription": {
+      "pl": "Zapraszamy na siódme spotkanie WSAG, tym razem goszczone przez Jit Team! Czekają na Was trzy prezentacje: Michał (Hans) Hadrysiak sprawdzi, czy „Magic: the Gathering” uratuje IT, Tomasz Ducin opowie o wzorcach Context Engineering, a Kamil Kiełbasa pokaże, co zrobić, gdy model RBAC przestaje wystarczać.\n\nTo świetna okazja, aby poznać innych architektów oprogramowania, dzielić się wiedzą i kontynuować budowanie naszej lokalnej społeczności architektury.",
+      "en": "Join us for the seventh WSAG meetup, this time hosted by Jit Team! Three talks await you: Michał (Hans) Hadrysiak will check whether \"Magic: the Gathering\" will save IT, Tomasz Ducin will present Context Engineering patterns, and Kamil Kiełbasa will show what to do when the RBAC model is no longer enough.\n\nThis is a great opportunity to meet fellow software architects, share knowledge, and continue building our local architecture community."
+    },
+    "location": {
+      "name": "Jit Team",
+      "address": "Przyokopowa 33",
+      "zipCode": "01-208",
+      "city": "Warsaw, Poland",
+      "mapUrl": "",
+      "directions": "8th floor",
+      "parking": "Details to be announced",
+      "accessibility": "Details to be announced"
+    },
+    "speakers": [
+      {
+        "id": "michal-hadrysiak",
+        "name": "Michał (Hans) Hadrysiak",
+        "role": "Senior Full Stack Engineer",
+        "company": "Makimo",
+        "bio": "",
+        "photo": "/images/speakers/meetup-7/michal.png"
+      },
+      {
+        "id": "tomasz-ducin",
+        "name": "Tomasz Ducin",
+        "role": "",
+        "company": "",
+        "bio": "",
+        "photo": "/images/speakers/meetup-7/tomasz.jpeg"
+      },
+      {
+        "id": "kamil-kielbasa",
+        "name": "Kamil Kiełbasa",
+        "role": ".NET Tech Lead",
+        "company": "Jit Team",
+        "bio": "",
+        "photo": "/images/speakers/meetup-7/kamil.jpeg"
+      }
+    ],
+    "presentations": [
+      {
+        "id": "will-magic-the-gathering-save-it",
+        "title": {
+          "pl": "Will „Magic: the Gathering” Save IT?",
+          "en": "Will \"Magic: the Gathering\" Save IT?"
+        },
+        "description": {
+          "pl": "AI wyręcza nas w coraz większej liczbie rzeczy, przez co sama praca nie jest tak rozwijająca jak kiedyś. Jak zrekompensować sobie ten deficyt wysiłku, by nasze mózgi nie popadły w atrofię? Odpowiedź może kryć się w kartach, a dokładniej w grze Magic: the Gathering.",
+          "en": "AI takes over more and more of what we do, so the work itself is no longer as stimulating as it used to be. How can we make up for this deficit of effort so our brains don't atrophy? The answer may lie in cards, or more precisely in the game Magic: the Gathering."
+        },
+        "speakerId": "michal-hadrysiak",
+        "duration": 40,
+        "level": "intermediate",
+        "language": "pl",
+        "tags": [],
+        "resources": []
+      },
+      {
+        "id": "context-engineering-patterns",
+        "title": {
+          "pl": "Context Engineering Patterns",
+          "en": "Context Engineering Patterns"
+        },
+        "description": {
+          "pl": "Opis prezentacji zostanie ogłoszony wkrótce.",
+          "en": "Talk description will be announced soon."
+        },
+        "speakerId": "tomasz-ducin",
+        "duration": 40,
+        "level": "intermediate",
+        "language": "pl",
+        "tags": ["AI", "LLM", "context engineering"],
+        "resources": []
+      },
+      {
+        "id": "when-rbac-is-not-enough",
+        "title": {
+          "pl": "When RBAC Is Not Enough?",
+          "en": "When RBAC Is Not Enough?"
+        },
+        "description": {
+          "pl": "Pewnego dnia część redaktorów dużego CMS-a przestała się logować. Nie wolniej, tylko w ogóle. Inne konta działały bez zarzutu, a w logach aplikacji panowała cisza, więc na pierwszy rzut oka wyglądało to na magię. Debugowaliśmy to pół dnia, a przyczyna okazała się boleśnie prozaiczna i nie miała nic wspólnego z kodem logowania. Jak to zwykle bywa, wszystko zaczęło się dużo wcześniej, przy tablicy, gdy modelowaliśmy uprawnienia.\n\nOd tej awarii wyjdziemy w stronę trzech modeli autoryzacji, czyli RBAC, ABAC i ReBAC, i zobaczymy, gdzie każdy z nich pęka. Dlaczego RBAC radzi sobie z pytaniem \"czy ten user jest redaktorem\", a przewraca się na pytaniu \"czy ten redaktor ruszy akurat ten artykuł\". Będzie o Casbin.NET jako lekkiej bibliotece in-process, o Zanzibarze od Google i o SpiceDB, który realnie stoi w naszym projekcie, z demo na żywo z terminala. Na koniec uczciwie o kosztach, bo osobny serwis autoryzacji to nie jest darmowy lunch.\n\nWyjdziesz z odpowiedzią na pytanie, czy Twój problem autoryzacyjny da się jeszcze załatwić grubą rolą, czy trzeba już sięgnąć po graf.",
+          "en": "One day, some of the editors of a large CMS stopped being able to log in. Not more slowly, but at all. Other accounts worked flawlessly, and the application logs were silent, so at first glance it looked like magic. We spent half a day debugging it, and the cause turned out to be painfully mundane and had nothing to do with the login code. As usual, it all started much earlier, at the whiteboard, when we were modelling permissions.\n\nStarting from that outage, we'll move on to three authorization models, RBAC, ABAC and ReBAC, and see where each of them breaks. Why RBAC handles the question \"is this user an editor\" but falls over on \"can this editor touch this particular article\". We'll talk about Casbin.NET as a lightweight in-process library, about Google's Zanzibar, and about SpiceDB, which actually runs in our project, with a live demo from the terminal. Finally, an honest look at the costs, because a separate authorization service is not a free lunch.\n\nYou'll leave with an answer to the question of whether your authorization problem can still be solved with a fat role, or whether it's time to reach for a graph."
+        },
+        "speakerId": "kamil-kielbasa",
+        "duration": 40,
+        "level": "intermediate",
+        "language": "pl",
+        "tags": ["security", "authorization", "RBAC"],
+        "resources": []
+      }
+    ],
+    "agenda": [
+      {
+        "time": "18:00",
+        "title": "Will „Magic: the Gathering” Save IT?",
+        "speaker": "Michał (Hans) Hadrysiak",
+        "speakerIds": ["michal-hadrysiak"],
+        "presentationId": "will-magic-the-gathering-save-it",
+        "description": "",
+        "type": "presentation"
+      },
+      {
+        "time": "18:50",
+        "title": "Context Engineering Patterns",
+        "speaker": "Tomasz Ducin",
+        "speakerIds": ["tomasz-ducin"],
+        "presentationId": "context-engineering-patterns",
+        "description": "",
+        "type": "presentation"
+      },
+      {
+        "time": "19:40",
+        "title": "When RBAC Is Not Enough?",
+        "speaker": "Kamil Kiełbasa",
+        "speakerIds": ["kamil-kielbasa"],
+        "presentationId": "when-rbac-is-not-enough",
+        "description": "",
+        "type": "presentation"
+      },
+      {
+        "time": "20:30",
+        "title": "Closing & Networking",
+        "description": "Final Q&A and networking",
+        "type": "networking"
+      }
+    ],
+    "maxAttendees": 75,
+    "registeredAttendees": 0,
+    "registrationUrl": "https://pragmaticmeet.com/en/events/wsag-7",
+    "status": "upcoming",
+    "venuePartner": {
+      "name": "Jit Team",
+      "url": "https://jit.team/",
+      "logo": "/images/partners/Logo_jit_team_2025_black-28_1.png"
+    },
+    "tags": ["architecture", "community", "networking"],
+    "prerequisites": [],
+    "targetAudience": ["Software Architects", "Senior Developers", "Tech Leads", "Engineering Managers"]
   }
 ]
