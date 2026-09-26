@@ -1,7 +1,7 @@
 ---
-import Skyline from './Skyline.astro';
+import HexGlyph from './HexGlyph.astro';
 import { getTranslations } from '../i18n/translations';
-import { getUpcomingEvents, getPastEvents, generateEventUrl } from '../data/events';
+import { getUpcomingEvents, generateEventUrl } from '../data/events';
 
 export interface Props {
   lang?: 'pl' | 'en';
@@ -12,86 +12,54 @@ const t = getTranslations(lang);
 const pl = lang === 'pl';
 
 const nextEvent = getUpcomingEvents()[0] ?? null;
-const pastCount = getPastEvents().length;
 
 const formatDate = (dateString: string) =>
   new Date(dateString).toLocaleDateString(pl ? 'pl-PL' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' });
 
-// Polish plural for "spotkanie"
-const meetingsWord = (n: number) => {
-  if (!pl) return n === 1 ? 'meetup so far' : 'meetups so far';
-  if (n === 1) return 'spotkanie za nami';
-  const last = n % 10, tens = n % 100;
-  if (last >= 2 && last <= 4 && !(tens >= 12 && tens <= 14)) return 'spotkania za nami';
-  return 'spotkań za nami';
-};
-
-// Same trick as the generator: show 2^n when the number is a power of two
-const exponentOf = (n: number) => {
-  if (!Number.isInteger(n) || n < 2) return null;
-  const e = Math.log2(n);
-  return Number.isInteger(e) ? e : null;
-};
-
-const number = nextEvent ? nextEvent.meetupId : pastCount;
-const exponent = exponentOf(number);
-
-const labelText = nextEvent
-  ? `${pl ? 'spotkanie WSAG' : 'WSAG meetup'}, ${formatDate(nextEvent.date)}`
-  : meetingsWord(pastCount);
-
-const headline = nextEvent
-  ? (pl ? 'Widzimy się w Warszawie' : 'See you in Warsaw')
-  : (pl ? 'Kolejne spotkanie już wkrótce' : 'Next meetup coming soon');
-
 const noteText = nextEvent
-  ? `${pl ? 'Następne spotkanie' : 'Next meetup'}: ${formatDate(nextEvent.date)}, ${nextEvent.time}`
+  ? `${pl ? 'Następne spotkanie' : 'Next meetup'}: ${formatDate(nextEvent.date)}, ${nextEvent.time}, ${nextEvent.location.name}`
   : t.events.nextEventSoon;
 ---
 
-<section id="home" class="relative overflow-hidden bg-white">
-  <Skyline class="h-24 sm:h-32 md:h-44" />
+<section id="home" class="dark-panel">
+  <HexGlyph size={860} top="-300px" right="-300px" />
 
-  <div class="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-14 md:pt-20">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-20 md:pt-32">
     <div class="text-center">
       <div class="eyebrow text-[17px] sm:text-[22px] md:text-[26px]">{t.organizationName}</div>
 
-      <div class="mt-5 flex items-start justify-center gap-3 md:gap-5">
-        <div class="num text-[150px] sm:text-[200px] md:text-[260px]" aria-label={String(number)}>{number}</div>
-        {exponent !== null && (
-          <div class="badge text-[24px] md:text-[38px] px-3 py-2 md:px-4 md:py-3 mt-3 md:mt-5" aria-hidden="true">2<sup>{exponent}</sup></div>
-        )}
-      </div>
+      <h1 class="headline text-[34px] sm:text-[56px] md:text-[76px] mt-6 md:mt-8 max-w-5xl mx-auto">
+        {pl ? 'Architektura oprogramowania.' : 'Software architecture.'}<br />
+        {pl ? 'Na żywo, w Warszawie.' : 'Live, in Warsaw.'}
+      </h1>
 
-      <div class="label text-[19px] sm:text-[22px] md:text-[28px] mt-4">{labelText}</div>
+      <p class="body-copy text-[16px] sm:text-[18px] md:text-[21px] mt-6 md:mt-8 max-w-3xl mx-auto">{t.hero.description}</p>
 
-      <h1 class="headline text-[34px] sm:text-[44px] md:text-[56px] mt-8 md:mt-10 max-w-4xl mx-auto">{headline}</h1>
-
-      <p class="body-copy text-[16px] sm:text-[18px] md:text-[21px] mt-5 max-w-3xl mx-auto">{t.hero.description}</p>
-
-      <div class="mt-9 flex flex-wrap justify-center gap-3">
+      <div class="mt-9 md:mt-11 flex flex-wrap justify-center gap-3">
         {nextEvent ? (
           <>
-            <a href={generateEventUrl(nextEvent, lang)} class="btn btn-teal">{t.events.viewDetails}</a>
-            <a href="#call-for-papers" class="btn">{t.callForPapers.submitButton}</a>
+            <a href={generateEventUrl(nextEvent, lang)} class="btn btn-teal text-[15px] px-6 py-4">{t.events.viewDetails}</a>
+            <a href="#call-for-papers" class="btn btn-ghost-dark text-[15px] px-6 py-4">{t.callForPapers.submitButton}</a>
           </>
         ) : (
           <>
-            <a href="#call-for-papers" class="btn btn-teal">{t.callForPapers.submitButton}</a>
-            <a href="#events" class="btn">{t.events.pastEvents}</a>
+            <a href="#call-for-papers" class="btn btn-teal text-[15px] px-6 py-4">{t.callForPapers.submitButton}</a>
+            <a href="#events" class="btn btn-ghost-dark text-[15px] px-6 py-4">{t.nav.events}</a>
           </>
         )}
       </div>
     </div>
 
-    <div class="rule mt-16 md:mt-24 pt-5 pb-28 sm:pb-36 md:pb-48 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+    <div class="rule mt-16 md:mt-24 pt-5 pb-10 md:pb-14 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
       <p class="note text-[15px] md:text-[18px]">{noteText}</p>
       <div class="flex items-center gap-5">
         <img src="/images/logo-mark.png" alt="" class="h-14 md:h-16 w-auto" width="263" height="252" />
         {nextEvent?.venuePartner && (
           <>
-            <div class="w-px self-stretch bg-line" aria-hidden="true"></div>
-            <img src={nextEvent.venuePartner.logo} alt={nextEvent.venuePartner.name} class="h-12 md:h-14 w-auto" />
+            <div class="w-px self-stretch bg-white/20" aria-hidden="true"></div>
+            <a href={nextEvent.venuePartner.url} target="_blank" rel="noopener noreferrer" class="bg-white rounded-[4px] px-3 py-2">
+              <img src={nextEvent.venuePartner.logo} alt={nextEvent.venuePartner.name} class="h-10 md:h-12 w-auto" />
+            </a>
           </>
         )}
       </div>
