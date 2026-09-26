@@ -33,9 +33,6 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
     <div class="flex h-16 items-center justify-between gap-6">
       <a href={isMainPage ? '#home' : home} class="flex items-center gap-3 shrink-0">
         <img src="/images/logo-mark.png" alt="Warsaw Software Architecture Group" class="h-11 w-auto" width="263" height="252" />
-        <span class="hidden lg:block display font-bold text-[13px] leading-tight text-ink" style="font-stretch:110%">
-          Warsaw Software<br />Architecture Group
-        </span>
       </a>
 
       <nav class="hidden md:flex items-center gap-7" aria-label="Main">
