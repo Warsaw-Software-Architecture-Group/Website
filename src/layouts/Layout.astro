@@ -1,6 +1,4 @@
 ---
-import Spine from '../components/Spine.astro';
-
 export interface Props {
   title: string;
   description?: string;
@@ -103,7 +101,6 @@ const fullTitle = title.includes('WSAG') ? title : `${title} - WSAG`;
     })} />
   </head>
   <body>
-    <Spine />
     <slot />
   </body>
 </html>

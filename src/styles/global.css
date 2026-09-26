@@ -24,9 +24,6 @@
 
   --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
   --font-text: "IBM Plex Sans", "Segoe UI", Arial, sans-serif;
-
-  --spine-w: 56px;
-  --spine-h: 40px;
 }
 
 @layer base {
@@ -40,14 +37,6 @@
 
   body {
     margin: 0;
-    padding-top: var(--spine-h);
-  }
-
-  @media (min-width: 768px) {
-    body {
-      padding-top: 0;
-      padding-left: var(--spine-w);
-    }
   }
 
   ::selection {
@@ -67,45 +56,6 @@
 }
 
 @layer components {
-  /* --- the spine: site address running along the edge, exactly like the poster --- */
-  .spine {
-    position: fixed;
-    z-index: 60;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: var(--spine-h);
-    background: var(--color-ink);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .spine span {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 12px;
-    letter-spacing: .18em;
-    color: var(--color-teal);
-  }
-  @media (min-width: 768px) {
-    .spine {
-      right: auto;
-      bottom: 0;
-      width: var(--spine-w);
-      height: auto;
-    }
-    .spine span {
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-      font-size: 13px;
-    }
-  }
-
-  .site-header { top: var(--spine-h); }
-  @media (min-width: 768px) {
-    .site-header { top: 0; }
-  }
-
   /* --- poster typography --- */
   .eyebrow {
     font-family: var(--font-display);
