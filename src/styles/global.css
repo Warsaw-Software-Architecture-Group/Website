@@ -167,6 +167,11 @@
     border-color: var(--color-ink);
     color: #fff;
   }
+  .dark-panel .btn-teal:hover {
+    background: #fff;
+    border-color: #fff;
+    color: var(--color-ink);
+  }
   .btn-sm {
     font-size: 12px;
     padding: 8px 12px;
