@@ -1,10 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#4f46e5;stop-opacity:1" />
-    </linearGradient>
-  </defs>
-  <rect width="32" height="32" rx="4" fill="url(#grad)"/>
-  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="18" font-weight="bold">W</text>
+  <rect width="32" height="32" rx="4" fill="#08191F"/>
+  <polygon points="16,4 26.4,10 26.4,22 16,28 5.6,22 5.6,10" fill="none" stroke="#B9C4C8" stroke-width="1.4"/>
+  <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="#21B5C2" font-family="Archivo, Arial, sans-serif" font-size="14" font-weight="800">W</text>
 </svg>

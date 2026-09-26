@@ -1,6 +1,7 @@
 ---
+import HexGlyph from './HexGlyph.astro';
 import { getTranslations } from '../i18n/translations';
-import { getUpcomingEvents } from '../data/events';
+import { getUpcomingEvents, generateEventUrl } from '../data/events';
 
 export interface Props {
   lang?: 'pl' | 'en';
@@ -8,68 +9,60 @@ export interface Props {
 
 const { lang = 'pl' } = Astro.props;
 const t = getTranslations(lang);
+const pl = lang === 'pl';
 
-const upcomingEvents = getUpcomingEvents();
-const nextEvent = upcomingEvents.length > 0 ? upcomingEvents[0] : null;
+const nextEvent = getUpcomingEvents()[0] ?? null;
 
-const nextEventDateFormatted = nextEvent
-  ? new Date(nextEvent.date).toLocaleDateString(lang === 'pl' ? 'pl-PL' : 'en-US', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    })
-  : null;
+const formatDate = (dateString: string) =>
+  new Date(dateString).toLocaleDateString(pl ? 'pl-PL' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const noteText = nextEvent
+  ? `${pl ? 'Następne spotkanie' : 'Next meetup'}: ${formatDate(nextEvent.date)}, ${nextEvent.time}, ${nextEvent.location.name}`
+  : t.events.nextEventSoon;
 ---
 
-<section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-primary/5 to-primary/10">
-  <div class="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] bg-fixed"></div>
+<section id="home" class="dark-panel">
+  <HexGlyph size={860} top="-300px" right="-300px" />
 
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-20 md:pt-32">
     <div class="text-center">
-      {nextEvent && nextEventDateFormatted && (
-      <div class="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary-dark text-sm font-medium mb-8">
-        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM9 12H7v-2h2V7h2v3h2v2h-2v1H9v-1z"/>
-        </svg>
-        {lang === 'pl' ? `Następne spotkanie: ${nextEventDateFormatted}` : `Next Meetup: ${nextEventDateFormatted}`}
-      </div>
-      )}
-      {!nextEvent && (
-      <div class="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary-dark text-sm font-medium mb-8">
-        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM9 12H7v-2h2V7h2v3h2v2h-2v1H9v-1z"/>
-        </svg>
-        {t.events.nextEventSoon}
-      </div>
-      )}
+      <div class="eyebrow text-[17px] sm:text-[22px] md:text-[26px]">{t.organizationName}</div>
 
-      <div class="flex flex-col items-center mb-6">
-        <img
-          src="/images/logo-transparent.png"
-          alt="Warsaw Software Architecture Group Logo"
-          class="w-64 md:w-96 h-auto mb-6"
-        />
-        <h1 class="text-2xl md:text-3xl font-bold text-gray-700 mb-2">
-          {t.organizationName}
-        </h1>
-      </div>
-      
-      <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto mb-16">
-        {t.hero.description}
-      </p>
+      <h1 class="headline text-[34px] sm:text-[56px] md:text-[76px] mt-6 md:mt-8 max-w-5xl mx-auto">
+        {pl ? 'Architektura oprogramowania.' : 'Software architecture.'}<br />
+        {pl ? 'Na żywo, w Warszawie.' : 'Live, in Warsaw.'}
+      </h1>
 
+      <p class="body-copy text-[16px] sm:text-[18px] md:text-[21px] mt-6 md:mt-8 max-w-3xl mx-auto">{t.hero.description}</p>
+
+      <div class="mt-9 md:mt-11 flex flex-wrap justify-center gap-3">
+        {nextEvent ? (
+          <>
+            <a href={generateEventUrl(nextEvent, lang)} class="btn btn-teal text-[15px] px-6 py-4">{t.events.viewDetails}</a>
+            <a href="#call-for-papers" class="btn btn-ghost-dark text-[15px] px-6 py-4">{t.callForPapers.submitButton}</a>
+          </>
+        ) : (
+          <>
+            <a href="#call-for-papers" class="btn btn-teal text-[15px] px-6 py-4">{t.callForPapers.submitButton}</a>
+            <a href="#events" class="btn btn-ghost-dark text-[15px] px-6 py-4">{t.nav.events}</a>
+          </>
+        )}
+      </div>
+    </div>
+
+    <div class="rule mt-16 md:mt-24 pt-5 pb-10 md:pb-14 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+      <p class="note text-[15px] md:text-[18px]">{noteText}</p>
+      <div class="flex items-center gap-5">
+        <img src="/images/logo-mark.png" alt="" class="h-14 md:h-16 w-auto" width="263" height="252" />
+        {nextEvent?.venuePartner && (
+          <>
+            <div class="w-px self-stretch bg-white/20" aria-hidden="true"></div>
+            <a href={nextEvent.venuePartner.url} target="_blank" rel="noopener noreferrer" class="bg-white rounded-[4px] px-3 py-2">
+              <img src={nextEvent.venuePartner.logo} alt={nextEvent.venuePartner.name} class="h-10 md:h-12 w-auto" />
+            </a>
+          </>
+        )}
+      </div>
     </div>
   </div>
-  
-  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-    <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-    </svg>
-  </div>
 </section>
-
-<style>
-  .bg-grid-slate-100 {
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e2e8f0' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  }
-</style>

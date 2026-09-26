@@ -2,106 +2,83 @@
 import Layout from '../../../layouts/Layout.astro';
 import Navigation from '../../../components/Navigation.astro';
 import Footer from '../../../components/Footer.astro';
-import { events, getEventByDateAndId, generateEventUrl, getLocalizedText, toLocalDateString, type Event, type PresentationResource } from '../../../data/events';
+import Skyline from '../../../components/Skyline.astro';
+import { events, getLocalizedText, toLocalDateString, type Event } from '../../../data/events';
 import { getTranslations } from '../../../i18n/translations';
 
 export async function getStaticPaths() {
-  return events.map(event => {
-    const eventDate = toLocalDateString(new Date(event.date));
-    return {
-      params: { 
-        date: eventDate,
-        id: event.meetupId.toString()
-      },
-      props: { event }
-    };
-  });
+  return events.map(event => ({
+    params: { date: toLocalDateString(new Date(event.date)), id: event.meetupId.toString() },
+    props: { event },
+  }));
 }
 
-const { date, id } = Astro.params;
 const { event } = Astro.props as { event: Event };
-
 if (!event) {
   return Astro.redirect('/404');
 }
 
-const lang = 'pl';
+const lang: 'pl' | 'en' = 'pl';
 const t = getTranslations(lang);
+const pl = lang === 'pl';
+const home = pl ? '/' : '/en';
+const eventsUrl = pl ? '/events' : '/en/events';
 
-const formatTime = (time: string) => {
-  return new Date(`2000-01-01T${time}`).toLocaleTimeString('en-US', {
-    hour: 'numeric',
-    minute: '2-digit',
-    hour12: false
-  });
+const formatDate = (dateString: string) =>
+  new Date(dateString).toLocaleDateString(pl ? 'pl-PL' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' });
+const shortDate = (dateString: string) => {
+  const d = new Date(dateString);
+  return `${String(d.getDate()).padStart(2, '0')}.${String(d.getMonth() + 1).padStart(2, '0')}.${d.getFullYear()}`;
 };
 
-const formatDate = (dateString: string, language: string) => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString(language === 'pl' ? 'pl-PL' : 'en-US', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric'
-  });
-};
+const getLocationName = (name: string) => (name === 'Siedziba Circle K' && !pl ? 'Circle K Headquarters' : name);
 
-const getLocationName = (locationName: string, language: string) => {
-  if (locationName === 'Siedziba Circle K') {
-    return language === 'en' ? 'Circle K Headquarters' : 'Siedziba Circle K';
-  }
-  return locationName;
-};
+const statusText = {
+  upcoming: pl ? 'Nadchodzące spotkanie' : 'Upcoming meetup',
+  completed: pl ? 'Spotkanie za nami' : 'Past meetup',
+  cancelled: pl ? 'Spotkanie odwołane' : 'Cancelled meetup',
+}[event.status];
 
-// Generate Google Calendar URL
-const generateGoogleCalendarUrl = (event: Event) => {
-  const eventDate = new Date(event.date);
-  const [startHour, startMinute] = event.time.split(':').map(Number);
-  const [endHour, endMinute] = event.endTime.split(':').map(Number);
+const hasDirections = event.location.directions && event.location.directions !== 'Details to be announced';
+const hasAccessibility = event.location.accessibility && event.location.accessibility !== 'Details to be announced';
 
-  const startDate = new Date(eventDate);
-  startDate.setHours(startHour, startMinute, 0);
-
-  const endDate = new Date(eventDate);
-  endDate.setHours(endHour, endMinute, 0);
-
-  const formatDateForGoogle = (date: Date) => {
-    const y = date.getFullYear();
-    const m = String(date.getMonth() + 1).padStart(2, '0');
-    const d = String(date.getDate()).padStart(2, '0');
-    const h = String(date.getHours()).padStart(2, '0');
-    const min = String(date.getMinutes()).padStart(2, '0');
-    return `${y}${m}${d}T${h}${min}00`;
+const generateGoogleCalendarUrl = (ev: Event) => {
+  const toGoogle = (time: string) => {
+    const d = new Date(ev.date);
+    const [h, m] = time.split(':').map(Number);
+    d.setHours(h, m, 0);
+    const p = (n: number) => String(n).padStart(2, '0');
+    return `${d.getFullYear()}${p(d.getMonth() + 1)}${p(d.getDate())}T${p(d.getHours())}${p(d.getMinutes())}00`;
   };
-
   const params = new URLSearchParams({
     action: 'TEMPLATE',
-    text: event.title,
-    dates: `${formatDateForGoogle(startDate)}/${formatDateForGoogle(endDate)}`,
-    details: getLocalizedText(event.description, lang) + (event.registrationUrl ? `\n\nRejestracja: ${event.registrationUrl}` : ''),
-    location: `${event.location.name}, ${event.location.address}, ${event.location.city}`,
-    ctz: 'Europe/Warsaw'
+    text: ev.title,
+    dates: `${toGoogle(ev.time)}/${toGoogle(ev.endTime)}`,
+    details: getLocalizedText(ev.description, lang) + (ev.registrationUrl ? `\n\n${pl ? 'Rejestracja' : 'Registration'}: ${ev.registrationUrl}` : ''),
+    location: `${ev.location.name}, ${ev.location.address}, ${ev.location.city}`,
+    ctz: 'Europe/Warsaw',
   });
-
   return `https://calendar.google.com/calendar/render?${params.toString()}`;
 };
-
 const googleCalendarUrl = generateGoogleCalendarUrl(event);
 
-const resourceColorClasses: Record<string, string> = {
-  recording: 'bg-red-50 text-red-700 hover:bg-red-100',
-  slides: 'bg-teal-50 text-teal-700 hover:bg-teal-100',
-  template: 'bg-purple-50 text-purple-700 hover:bg-purple-100',
-  book: 'bg-green-50 text-green-700 hover:bg-green-100',
-  code: 'bg-gray-100 text-gray-700 hover:bg-gray-200',
-  blog: 'bg-blue-50 text-blue-700 hover:bg-blue-100',
-  other: 'bg-gray-100 text-gray-700 hover:bg-gray-200',
+const resourceLabel: Record<string, string> = {
+  recording: t.eventDetails.recording,
+  slides: t.eventDetails.slides,
+  template: t.eventDetails.template,
+  book: t.eventDetails.book,
+  code: t.eventDetails.code,
+  blog: t.eventDetails.blog,
 };
+
+const countdownUnits = pl
+  ? [['days', 'dni'], ['hours', 'godzin'], ['minutes', 'minut'], ['seconds', 'sekund']]
+  : [['days', 'days'], ['hours', 'hours'], ['minutes', 'minutes'], ['seconds', 'seconds']];
 ---
 
-<Layout title={`${event.title} - WSAG Event`} description={getLocalizedText(event.description, lang)} type="article" lang={lang}>
+<Layout title={`${event.title} - WSAG`} description={getLocalizedText(event.description, lang)} type="article" lang={lang}>
   <Navigation lang={lang} isMainPage={false} />
 
-  <!-- Event Schema.org JSON-LD -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Event",
@@ -109,289 +86,157 @@ const resourceColorClasses: Record<string, string> = {
     "description": getLocalizedText(event.description, lang),
     "startDate": `${event.date}T${event.time}`,
     "endDate": `${event.date}T${event.endTime || '21:00'}`,
-    "eventStatus": event.status === 'upcoming' ? "https://schema.org/EventScheduled" : "https://schema.org/EventPostponed",
+    "eventStatus": event.status === 'cancelled' ? "https://schema.org/EventCancelled" : "https://schema.org/EventScheduled",
     "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
     "location": {
       "@type": "Place",
       "name": event.location.name,
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": event.location.address,
-        "addressLocality": "Warsaw",
-        "addressCountry": "PL"
-      }
+      "address": { "@type": "PostalAddress", "streetAddress": event.location.address, "addressLocality": "Warsaw", "addressCountry": "PL" }
     },
-    "organizer": {
-      "@type": "Organization",
-      "name": "Warsaw Software Architecture Group",
-      "url": Astro.site || "https://wsag.org"
-    },
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "PLN",
-      "availability": "https://schema.org/InStock",
-      "url": event.registrationUrl
-    },
-    "performer": event.presentations ? event.presentations.map(p => {
-      const speaker = event.speakers.find(s => s.name.toLowerCase().replace(/\s+/g, '-') === p.speakerId);
-      return speaker ? {
-        "@type": "Person",
-        "name": speaker.name,
-        "jobTitle": speaker.role,
-        "worksFor": {
-          "@type": "Organization",
-          "name": speaker.company
-        }
-      } : null;
-    }).filter(p => p !== null) : []
+    "organizer": { "@type": "Organization", "name": "Warsaw Software Architecture Group", "url": Astro.site || "https://wsag.org.pl" },
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "PLN", "availability": "https://schema.org/InStock", "url": event.registrationUrl },
+    "performer": event.presentations.map(p => {
+      const s = event.speakers.find(sp => sp.id === p.speakerId);
+      return s ? { "@type": "Person", "name": s.name, "jobTitle": s.role, "worksFor": { "@type": "Organization", "name": s.company } } : null;
+    }).filter(Boolean)
   })} />
 
-  <div class="min-h-screen bg-gray-50">
-    <!-- Header -->
-    <div class="bg-gradient-to-r from-[#29B7C0] to-[#1e959c] text-white">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16">
+  <main>
+    <!-- Poster-style header -->
+    <section class="relative overflow-hidden bg-white border-b border-line">
+      <Skyline class="h-20 sm:h-28 md:h-40" />
+      <div class="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-12 md:pt-16">
         <div class="text-center">
-          <div class="inline-flex items-center px-3 py-1 rounded-full bg-white/20 text-sm font-medium mb-4">
-            {event.status === 'upcoming' ? (
-              <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM9 12H7v-2h2V7h2v3h2v2h-2v1H9v-1z"/>
-              </svg>
-            ) : (
-              <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-            )}
-            {event.status === 'upcoming' ? 'Upcoming Event' : 'Past Event'} - Meetup #{event.meetupId}
-          </div>
-          
-          <h1 class="text-4xl md:text-5xl font-bold mb-4">{event.title}</h1>
-          <p class="text-xl opacity-90 max-w-2xl mx-auto">{getLocalizedText(event.description, lang)}</p>
-          
-          <div class="flex flex-wrap justify-center gap-4 mt-8">
-            <div class="flex items-center bg-white/10 px-4 py-2 rounded-lg">
-              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-              </svg>
-              {formatDate(event.date, lang)}
-            </div>
-            <div class="flex items-center bg-white/10 px-4 py-2 rounded-lg">
-              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-              {formatTime(event.time)} - {formatTime(event.endTime)}
-            </div>
-            <div class="flex items-center bg-white/10 px-4 py-2 rounded-lg">
-              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-              </svg>
-              {getLocationName(event.location.name, lang)}
-            </div>
-          </div>
-          
-          {event.status === 'upcoming' && (
-            <div class="mt-8">
-              <!-- Countdown Timer -->
-              <div id="countdown" class="flex justify-center gap-4 mb-8">
-                <div class="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-3 min-w-[80px] text-center">
-                  <div id="countdown-days" class="text-3xl font-bold">--</div>
-                  <div class="text-sm opacity-80">{lang === 'pl' ? 'dni' : 'days'}</div>
-                </div>
-                <div class="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-3 min-w-[80px] text-center">
-                  <div id="countdown-hours" class="text-3xl font-bold">--</div>
-                  <div class="text-sm opacity-80">{lang === 'pl' ? 'godzin' : 'hours'}</div>
-                </div>
-                <div class="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-3 min-w-[80px] text-center">
-                  <div id="countdown-minutes" class="text-3xl font-bold">--</div>
-                  <div class="text-sm opacity-80">{lang === 'pl' ? 'minut' : 'minutes'}</div>
-                </div>
-                <div class="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-3 min-w-[80px] text-center">
-                  <div id="countdown-seconds" class="text-3xl font-bold">--</div>
-                  <div class="text-sm opacity-80">{lang === 'pl' ? 'sekund' : 'seconds'}</div>
-                </div>
-              </div>
+          <div class="eyebrow text-[17px] sm:text-[20px] md:text-[24px]">{statusText}</div>
 
-              <div class="flex flex-wrap justify-center gap-4">
+          <div class="mt-4 flex items-start justify-center gap-3 md:gap-5">
+            <div class="num text-[130px] sm:text-[180px] md:text-[220px]" aria-hidden="true">{event.meetupId}</div>
+            <div class="badge text-[18px] sm:text-[24px] md:text-[30px] px-3 py-2 md:px-4 md:py-3 mt-2 md:mt-4">{shortDate(event.date)}</div>
+          </div>
+
+          <div class="label text-[17px] sm:text-[20px] md:text-[24px] mt-3">
+            {formatDate(event.date)}, {event.time}–{event.endTime}
+          </div>
+
+          <h1 class="headline text-[32px] sm:text-[40px] md:text-[50px] mt-7">{event.title}</h1>
+          <p class="body-copy text-[16px] md:text-[19px] mt-4 max-w-3xl mx-auto">{getLocalizedText(event.description, lang)}</p>
+
+          {event.status === 'upcoming' && (
+            <div class="mt-9">
+              <div id="countdown" class="flex justify-center gap-2 sm:gap-3">
+                {countdownUnits.map(([key, label]) => (
+                  <div class="card min-w-[70px] sm:min-w-[88px] px-3 py-3">
+                    <div id={`countdown-${key}`} class="display font-black text-[28px] sm:text-[34px] leading-none text-ink" style="font-stretch:112%">--</div>
+                    <div class="text-[12px] text-muted mt-1.5">{label}</div>
+                  </div>
+                ))}
+              </div>
+              <div class="mt-7 flex flex-wrap justify-center gap-3">
                 {event.registrationUrl && (
-                  <a href={event.registrationUrl} target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-4 bg-white text-[#29B7C0] rounded-lg hover:bg-gray-50 transition-colors duration-200 font-bold text-lg shadow-lg">
-                    {lang === 'pl' ? 'Zarejestruj się' : 'Register Now'}
+                  <a href={event.registrationUrl} target="_blank" rel="noopener noreferrer" class="btn btn-teal text-[15px] px-6 py-4">
+                    {pl ? 'Zarejestruj się' : 'Register'}
                   </a>
                 )}
-                <a href={googleCalendarUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-6 py-4 bg-white/20 text-white border border-white/30 rounded-lg hover:bg-white/30 transition-colors duration-200 font-medium">
-                  <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zM9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm-8 4H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/>
-                  </svg>
-                  {lang === 'pl' ? 'Dodaj do kalendarza' : 'Add to Calendar'}
+                <a href={googleCalendarUrl} target="_blank" rel="noopener noreferrer" class="btn text-[15px] px-6 py-4">
+                  {pl ? 'Dodaj do kalendarza' : 'Add to calendar'}
                 </a>
               </div>
             </div>
           )}
         </div>
+
+        <div class="rule mt-14 md:mt-20 pt-5 pb-24 sm:pb-32 md:pb-44 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+          <p class="note text-[15px] md:text-[18px]">
+            {getLocationName(event.location.name)}{event.location.address ? `, ${event.location.address}` : ''}
+          </p>
+          <div class="flex items-center gap-5">
+            <img src="/images/logo-mark.png" alt="" class="h-14 md:h-16 w-auto" width="263" height="252" />
+            {event.venuePartner && (
+              <>
+                <div class="w-px self-stretch bg-line" aria-hidden="true"></div>
+                <a href={event.venuePartner.url} target="_blank" rel="noopener noreferrer">
+                  <img src={event.venuePartner.logo} alt={event.venuePartner.name} class="h-12 md:h-14 w-auto" />
+                </a>
+              </>
+            )}
+          </div>
+        </div>
       </div>
-    </div>
-    
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="grid lg:grid-cols-3 gap-8">
-        <!-- Main Content -->
-        <div class="lg:col-span-2 space-y-8">
-          <!-- Description -->
-          <div class="bg-white rounded-xl shadow-md p-8">
-            <h2 class="text-2xl font-bold text-gray-900 mb-4">{t.eventDetails.aboutThisEvent}</h2>
-            <div class="prose prose-blue max-w-none">
-              {getLocalizedText(event.longDescription, lang).split('\n\n').map(paragraph => (
-                <p class="text-gray-600 mb-4">{paragraph}</p>
+    </section>
+
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-14 md:py-20">
+      <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+        <!-- Main column -->
+        <div class="lg:col-span-8 space-y-14 md:space-y-16">
+          <section>
+            <h2 class="headline text-[28px] md:text-[34px]">{t.eventDetails.aboutThisEvent}</h2>
+            <div class="mt-5 space-y-4">
+              {getLocalizedText(event.longDescription, lang).split('\n\n').map(p => (
+                <p class="text-[16px] md:text-[17px] text-slate-text leading-relaxed">{p}</p>
               ))}
             </div>
-          </div>
+          </section>
 
-        </div>
+          {event.agenda && event.agenda.length > 0 && (
+            <section>
+              <h2 class="headline text-[28px] md:text-[34px]">Agenda</h2>
+              <ol class="mt-6 border-t border-line">
+                {event.agenda.map(item => {
+                  const isTalk = item.type === 'presentation' || item.type === 'talk';
+                  const presentation = isTalk && item.presentationId ? event.presentations.find(p => p.id === item.presentationId) : null;
+                  const speaker = isTalk && item.speakerIds?.[0] ? event.speakers.find(s => s.id === item.speakerIds![0]) : null;
+                  const cancelled = !!presentation?.cancelled;
+                  const title = presentation ? getLocalizedText(presentation.title, lang) : item.title;
+                  return (
+                    <li class="grid grid-cols-[64px_1fr] sm:grid-cols-[88px_1fr] gap-4 sm:gap-6 py-6 border-b border-line">
+                      <div class="display font-bold text-[15px] sm:text-[17px] text-teal-deep pt-0.5" style="font-stretch:110%">{item.time}</div>
 
-        <!-- Sidebar -->
-        <div class="space-y-6">
-          <div class="bg-white rounded-xl shadow-md p-6">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">{t.eventDetails.eventDetailsTitle}</h3>
-            <div class="space-y-4">
-              <div>
-                <h4 class="font-medium text-gray-900 mb-1">{t.eventDetails.location}</h4>
-                <p class="text-gray-600 text-sm">{getLocationName(event.location.name, lang)}</p>
-                <p class="text-gray-600 text-sm">{event.location.address}</p>
-                <p class="text-gray-600 text-sm">{event.location.city}</p>
-                {event.location.directions && event.location.directions !== 'Details to be announced' && (
-                  <p class="text-gray-600 text-sm font-medium">{event.location.directions}</p>
-                )}
-              </div>
-              <div>
-                <h4 class="font-medium text-gray-900 mb-1">{t.eventDetails.accessibility}</h4>
-                <p class="text-gray-600 text-sm">{event.location.accessibility}</p>
-              </div>
-              <div>
-                <h4 class="font-medium text-gray-900 mb-1">{t.eventDetails.capacity}</h4>
-                <p class="text-gray-600 text-sm">{t.eventDetails.upToAttendees.replace('{count}', event.maxAttendees)}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Agenda (full width) -->
-      {event.agenda && event.agenda.length > 0 && (
-      <div class="bg-white rounded-xl shadow-md p-8 mt-8">
-        <h2 class="text-2xl font-bold text-gray-900 mb-8">{lang === 'pl' ? 'Agenda' : 'Agenda'}</h2>
-          <div class="relative">
-            <!-- Timeline line -->
-            <div class="absolute left-[27px] top-2 bottom-2 w-px bg-gray-200"></div>
-
-            <div class="space-y-0">
-              {event.agenda.map((item) => {
-                const isPresentation = item.type === 'presentation' || item.type === 'talk';
-                const speaker = isPresentation && item.speakerIds?.[0]
-                  ? event.speakers.find(s => s.id === item.speakerIds[0])
-                  : null;
-                const presentation = isPresentation && item.presentationId
-                  ? event.presentations.find(p => p.id === item.presentationId)
-                  : null;
-
-                return (
-                  <div class={`relative flex gap-5 ${isPresentation ? 'py-6' : 'py-4'}`}>
-                    <!-- Timeline dot -->
-                    <div class="flex-shrink-0 w-[55px] flex flex-col items-center z-10">
-                      {isPresentation && !presentation?.cancelled ? (
-                        <div class="w-3 h-3 rounded-full bg-[#29B7C0] ring-4 ring-[#29B7C0]/20 mt-1.5"></div>
-                      ) : isPresentation && presentation?.cancelled ? (
-                        <div class="w-3 h-3 rounded-full bg-red-400 ring-4 ring-red-100 mt-1.5"></div>
-                      ) : (
-                        <div class="w-2.5 h-2.5 rounded-full bg-gray-300 ring-4 ring-gray-100 mt-1.5"></div>
-                      )}
-                      <span class="text-xs font-semibold text-gray-400 mt-2">{item.time}</span>
-                    </div>
-
-                    <!-- Content -->
-                    <div class={`flex-1 min-w-0 ${isPresentation && presentation?.cancelled ? 'bg-red-50/60 rounded-xl p-6 -my-1 border border-red-200/60 border-dashed' : isPresentation ? 'bg-gray-50 rounded-xl p-6 -my-1' : ''}`}>
-                      {isPresentation ? (
-                        <div class={presentation?.cancelled ? 'opacity-75' : ''}>
-                          {presentation?.cancelled && (
-                            <div class="flex items-center gap-2 mb-3">
-                              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-700">
-                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                </svg>
-                                {lang === 'pl' ? 'Odwołana' : 'Cancelled'}
-                              </span>
-                              {presentation.cancellationNote && (
-                                <span class="text-xs text-red-600/80">{getLocalizedText(presentation.cancellationNote, lang)}</span>
-                              )}
-                            </div>
-                          )}
+                      {isTalk ? (
+                        <div class={cancelled ? 'opacity-70' : ''}>
                           <div class="flex items-start gap-4">
                             {speaker?.photo && (
-                              <img src={speaker.photo} alt={speaker.name} class={`w-14 h-14 rounded-xl object-cover flex-shrink-0 shadow-sm ${presentation?.cancelled ? 'grayscale opacity-60' : ''}`} />
+                              <img src={speaker.photo} alt={speaker.name} class={`h-14 w-14 shrink-0 rounded-[4px] object-cover ${cancelled ? 'grayscale' : ''}`} loading="lazy" />
                             )}
-                            <div class="flex-1 min-w-0">
-                              <h4 class={`text-lg font-semibold leading-snug ${presentation?.cancelled ? 'text-gray-400 line-through decoration-red-300/70 decoration-2' : 'text-gray-900'}`}>
-                                {presentation ? getLocalizedText(presentation.title, lang) : item.title}
-                              </h4>
+                            <div class="min-w-0">
+                              <h3 class={`display font-extrabold text-[18px] md:text-[21px] leading-tight ${cancelled ? 'line-through text-muted' : 'text-ink'}`} style="font-stretch:112%">{title}</h3>
                               {speaker && (
-                                <p class={`text-sm mt-1 ${presentation?.cancelled ? 'text-gray-400' : 'text-gray-500'}`}>{speaker.name}</p>
+                                <p class="text-[14px] text-slate-text mt-1">
+                                  {speaker.name}{speaker.role ? `, ${speaker.role}` : ''}{speaker.company ? ` (${speaker.company})` : ''}
+                                </p>
                               )}
-                              {presentation?.language && !presentation?.cancelled && (
-                                <div class="flex items-center gap-3 mt-2">
-                                  <span class="inline-flex items-center gap-1 text-xs text-gray-500 bg-white px-2 py-0.5 rounded-full">
-                                    <span>{presentation.language === 'pl' ? '🇵🇱' : '🇬🇧'}</span>
-                                    <span>{presentation.language === 'pl' ? 'Polski' : 'English'}</span>
-                                  </span>
-                                </div>
+                              <div class="mt-2.5 flex flex-wrap gap-1.5">
+                                {cancelled ? (
+                                  <span class="tag !border-ink !text-ink">{pl ? 'odwołana' : 'cancelled'}</span>
+                                ) : (
+                                  <>
+                                    {presentation?.language && <span class="tag">{presentation.language === 'pl' ? (pl ? 'po polsku' : 'in Polish') : (pl ? 'po angielsku' : 'in English')}</span>}
+                                    {presentation?.duration && <span class="tag">{presentation.duration} min</span>}
+                                  </>
+                                )}
+                              </div>
+                              {cancelled && presentation?.cancellationNote && (
+                                <p class="text-[13px] text-muted mt-2">{getLocalizedText(presentation.cancellationNote, lang)}</p>
                               )}
                             </div>
                           </div>
-                          {presentation?.description && !presentation?.cancelled && (
-                            <div class="text-sm text-gray-600 mt-4 leading-relaxed" set:html={getLocalizedText(presentation.description, lang)} />
+
+                          {presentation?.description && !cancelled && (
+                            <div class="rich text-[15px] text-slate-text leading-relaxed mt-4" set:html={getLocalizedText(presentation.description, lang)} />
                           )}
+
                           {event.status === 'completed' && presentation?.resources && presentation.resources.length > 0 && (
-                            <div class="mt-4 pt-4 border-t border-gray-200">
-                              <h5 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">{t.eventDetails.materials}</h5>
+                            <div class="mt-4">
+                              <div class="label text-[12px] tracking-[.04em] mb-2">{t.eventDetails.materials}</div>
                               <div class="flex flex-wrap gap-2">
-                                {presentation.resources.map((resource) => {
-                                  const resourceTitle = typeof resource.title === 'string' ? resource.title : resource.title[lang] || resource.title.pl;
-                                  const colorClasses = resourceColorClasses[resource.type] || resourceColorClasses.other;
+                                {presentation.resources.map(r => {
+                                  const rt = typeof r.title === 'string' ? r.title : (r.title[lang] || r.title.pl);
+                                  const internal = r.url.startsWith('/');
                                   return (
-                                    <a
-                                      href={resource.url}
-                                      target={resource.url.startsWith('/') ? '_self' : '_blank'}
-                                      rel={resource.url.startsWith('/') ? undefined : 'noopener noreferrer'}
-                                      class={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${colorClasses}`}
-                                    >
-                                      {resource.type === 'recording' && (
-                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
-                                        </svg>
+                                    <a href={r.url} target={internal ? '_self' : '_blank'} rel={internal ? undefined : 'noopener noreferrer'} class="chip inline-flex items-center gap-1.5">
+                                      {r.type === 'recording' && (
+                                        <svg class="w-3.5 h-3.5 text-teal-deep" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
                                       )}
-                                      {resource.type === 'slides' && (
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                                        </svg>
-                                      )}
-                                      {resource.type === 'template' && (
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
-                                        </svg>
-                                      )}
-                                      {resource.type === 'book' && (
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                                        </svg>
-                                      )}
-                                      {resource.type === 'code' && (
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                                        </svg>
-                                      )}
-                                      {resource.type === 'blog' && (
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 5c7.18 0 13 5.82 13 13M6 11a7 7 0 017 7m-6 0a1 1 0 110-2 1 1 0 010 2z" />
-                                        </svg>
-                                      )}
-                                      {resourceTitle}
+                                      <span>{resourceLabel[r.type] ? `${resourceLabel[r.type]}: ` : ''}{rt}</span>
                                     </a>
                                   );
                                 })}
@@ -401,210 +246,139 @@ const resourceColorClasses: Record<string, string> = {
                         </div>
                       ) : (
                         <div>
-                          <h4 class="font-medium text-gray-500">{item.title}</h4>
-                          {item.description && (
-                            <p class="text-sm text-gray-400 mt-0.5">{item.description}</p>
-                          )}
+                          <h3 class="display font-semibold text-[16px] text-muted">{item.title}</h3>
+                          {item.description && <p class="text-[13px] text-muted mt-0.5">{item.description}</p>}
                         </div>
                       )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-        )}
+                    </li>
+                  );
+                })}
+              </ol>
+            </section>
+          )}
 
-      {event.privacyNotice && (
-        <div class="bg-amber-50 border border-amber-200 rounded-xl shadow-md p-8 mt-8">
-          <div class="flex items-start gap-3">
-            <svg class="w-6 h-6 text-amber-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
-            </svg>
-            <div>
-              <h3 class="text-lg font-semibold text-amber-800 mb-2">{lang === 'pl' ? 'Informacja o prywatności' : 'Privacy Notice'}</h3>
-              <p class="text-amber-700">{getLocalizedText(event.privacyNotice, lang)}</p>
-            </div>
-          </div>
-        </div>
-      )}
+          {event.privacyNotice && (
+            <section class="card p-6 md:p-7 border-l-4 !border-l-teal">
+              <h2 class="display font-extrabold text-[18px] text-ink" style="font-stretch:112%">{pl ? 'Informacja o prywatności' : 'Privacy notice'}</h2>
+              <p class="text-[15px] text-slate-text leading-relaxed mt-2">{getLocalizedText(event.privacyNotice, lang)}</p>
+            </section>
+          )}
 
-      <!-- Location Map - Full Width -->
-      <div class="bg-white rounded-xl shadow-md p-8 mt-8">
-        <h2 class="text-2xl font-bold text-gray-900 mb-6">{t.eventDetails.location}</h2>
-        <div class="space-y-6">
-          <!-- Map -->
-          <div class="w-full">
-            <div class="h-80 bg-gray-100 rounded-lg overflow-hidden">
-              <div id="event-map" class="w-full h-full"></div>
+          <section>
+            <h2 class="headline text-[28px] md:text-[34px]">{t.eventDetails.location}</h2>
+            <div class="card mt-5 overflow-hidden">
+              <div id="event-map" class="h-72 md:h-80 w-full bg-paper"></div>
             </div>
-          </div>
-          
-          <!-- Location Details -->
-          <div class="grid md:grid-cols-2 gap-6">
-            <div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-3">{getLocationName(event.location.name, lang)}</h3>
-              <div class="flex items-start text-gray-600">
-                <svg class="w-5 h-5 mr-2 mt-0.5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                </svg>
-                <div>
-                  <div>{event.location.address}</div>
-                  <div>{event.location.city}</div>
-                  {event.location.directions && event.location.directions !== 'Details to be announced' && (
-                    <div class="mt-1 font-medium text-gray-700">{event.location.directions}</div>
-                  )}
-                </div>
+          </section>
+        </div>
+
+        <!-- Side column -->
+        <aside class="lg:col-span-4">
+          <div class="card p-6 lg:sticky lg:top-24">
+            <h2 class="label text-[13px] tracking-[.04em]">{t.eventDetails.eventDetailsTitle}</h2>
+            <dl class="mt-4 space-y-5">
+              <div>
+                <dt class="display font-bold text-[14px] text-ink">{t.eventDetails.location}</dt>
+                <dd class="text-[14px] text-slate-text mt-1">
+                  {getLocationName(event.location.name)}<br />
+                  {event.location.address}<br />
+                  {event.location.zipCode ? `${event.location.zipCode} ` : ''}{event.location.city}
+                  {hasDirections && <><br /><span class="text-ink font-medium">{event.location.directions}</span></>}
+                </dd>
               </div>
-            </div>
+              <div>
+                <dt class="display font-bold text-[14px] text-ink">{pl ? 'Termin' : 'When'}</dt>
+                <dd class="text-[14px] text-slate-text mt-1">{formatDate(event.date)}<br />{event.time}–{event.endTime}</dd>
+              </div>
+              {hasAccessibility && (
+                <div>
+                  <dt class="display font-bold text-[14px] text-ink">{t.eventDetails.accessibility}</dt>
+                  <dd class="text-[14px] text-slate-text mt-1">{event.location.accessibility}</dd>
+                </div>
+              )}
+              <div>
+                <dt class="display font-bold text-[14px] text-ink">{t.eventDetails.capacity}</dt>
+                <dd class="text-[14px] text-slate-text mt-1">{t.eventDetails.upToAttendees.replace('{count}', String(event.maxAttendees))}</dd>
+              </div>
+              {event.venuePartner && (
+                <div>
+                  <dt class="display font-bold text-[14px] text-ink">{pl ? 'Gospodarz' : 'Host'}</dt>
+                  <dd class="mt-2">
+                    <a href={event.venuePartner.url} target="_blank" rel="noopener noreferrer" class="inline-block card p-3 hover:border-ink transition-colors">
+                      <img src={event.venuePartner.logo} alt={event.venuePartner.name} class="h-10 w-auto" />
+                    </a>
+                  </dd>
+                </div>
+              )}
+            </dl>
 
-            {event.venuePartner && (
-            <div>
-              <h4 class="text-lg font-semibold text-gray-900 mb-3">
-                {lang === 'pl' ? 'Partner miejsca' : 'Venue Partner'}
-              </h4>
-              <a
-                href={event.venuePartner.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-block bg-white p-4 rounded-lg border border-gray-200 hover:border-[#29B7C0] transition-colors duration-200"
-              >
-                <img
-                  src={event.venuePartner.logo}
-                  alt={event.venuePartner.name}
-                  class="h-12 w-auto"
-                />
+            {event.status === 'upcoming' && event.registrationUrl && (
+              <a href={event.registrationUrl} target="_blank" rel="noopener noreferrer" class="btn btn-teal w-full justify-center mt-6">
+                {pl ? 'Zarejestruj się' : 'Register'}
               </a>
-            </div>
             )}
-          </div>
-        </div>
-      </div>
-      
-      <!-- Navigation -->
-      <div class="mt-12 flex justify-between items-center">
-        <a href="/events" class="flex items-center text-[#29B7C0] hover:text-[#1e959c] font-medium">
-          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-          </svg>
-          {lang === 'pl' ? 'Wszystkie wydarzenia' : 'Back to All Events'}
-        </a>
 
-        <a href="/" class="text-gray-600 hover:text-gray-900">
-          {lang === 'pl' ? 'Strona główna' : 'Back to Home'}
-        </a>
+            <div class="rule mt-6 pt-5 flex flex-col gap-2">
+              <a href={eventsUrl} class="display font-semibold text-[14px] text-teal-deep hover:underline">{pl ? 'Wszystkie wydarzenia' : 'All events'}</a>
+              <a href={home} class="display font-semibold text-[14px] text-ink hover:underline">{pl ? 'Strona główna' : 'Home'}</a>
+            </div>
+          </div>
+        </aside>
       </div>
     </div>
-  </div>
+  </main>
 
   <Footer lang={lang} />
 </Layout>
 
-<!-- Leaflet CSS -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<!-- Leaflet JS -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-<script define:vars={{ eventLocation: event.location }}>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Geocode the address to get coordinates
+<script is:inline define:vars={{ eventLocation: event.location }}>
+  document.addEventListener('DOMContentLoaded', function () {
+    const tiles = () => L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    });
+    const fallback = () => tiles().addTo(L.map('event-map').setView([52.2297, 21.0122], 13));
     const address = `${eventLocation.address}, ${eventLocation.city}`;
-    
-    // Use a geocoding service to get coordinates
+
     fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`)
-      .then(response => response.json())
+      .then(r => r.json())
       .then(data => {
-        if (data && data.length > 0) {
-          const lat = parseFloat(data[0].lat);
-          const lon = parseFloat(data[0].lon);
-          
-          // Initialize the map
-          const map = L.map('event-map').setView([lat, lon], 16);
-          
-          // Add OpenStreetMap tiles
-          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          }).addTo(map);
-          
-          // Add a marker for the event location
-          L.marker([lat, lon])
-            .addTo(map)
-            .bindPopup(`
-              <div style="text-align: center;">
-                <strong>${eventLocation.name}</strong><br/>
-                ${eventLocation.address}<br/>
-                ${eventLocation.city}
-              </div>
-            `)
-            .openPopup();
-        } else {
-          // Fallback: show a default map centered on Warsaw
-          const map = L.map('event-map').setView([52.2297, 21.0122], 13);
-          
-          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          }).addTo(map);
-          
-          // Show location not found message
-          const mapElement = document.getElementById('event-map');
-          mapElement.innerHTML = '<div class="flex items-center justify-center h-full text-gray-500"><p>${t.eventDetails.locationNotFound}</p></div>';
-        }
+        if (!data || data.length === 0) return fallback();
+        const lat = parseFloat(data[0].lat), lon = parseFloat(data[0].lon);
+        const map = L.map('event-map').setView([lat, lon], 16);
+        tiles().addTo(map);
+        L.marker([lat, lon]).addTo(map)
+          .bindPopup(`<strong>${eventLocation.name}</strong><br/>${eventLocation.address}<br/>${eventLocation.city}`)
+          .openPopup();
       })
-      .catch(error => {
-        console.error('Error geocoding address:', error);
-        // Fallback map
-        const map = L.map('event-map').setView([52.2297, 21.0122], 13);
-        
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-      });
+      .catch(fallback);
   });
 </script>
 
-<script define:vars={{ eventDate: event.date, eventTime: event.time }}>
-  document.addEventListener('DOMContentLoaded', function() {
-    const countdownElement = document.getElementById('countdown');
-    if (!countdownElement) return;
+<script is:inline define:vars={{ eventDate: event.date, eventTime: event.time, nowText: pl ? 'Spotkanie już trwa' : 'Happening now' }}>
+  document.addEventListener('DOMContentLoaded', function () {
+    const el = document.getElementById('countdown');
+    if (!el) return;
+    const target = new Date(eventDate);
+    const [h, m] = eventTime.split(':').map(Number);
+    target.setHours(h, m, 0, 0);
 
-    const targetDate = new Date(eventDate);
-    const [hours, minutes] = eventTime.split(':').map(Number);
-    targetDate.setHours(hours, minutes, 0, 0);
-
-    function updateCountdown() {
-      const now = new Date();
-      const diff = targetDate - now;
-
+    const pad = n => String(n).padStart(2, '0');
+    function tick() {
+      const diff = target - new Date();
       if (diff <= 0) {
-        countdownElement.innerHTML = '<div class="text-xl font-bold">Wydarzenie już trwa!</div>';
+        el.innerHTML = `<div class="badge text-[20px] px-4 py-3">${nowText}</div>`;
+        clearInterval(timer);
         return;
       }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hoursLeft = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutesLeft = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const secondsLeft = Math.floor((diff % (1000 * 60)) / 1000);
-
-      document.getElementById('countdown-days').textContent = days.toString().padStart(2, '0');
-      document.getElementById('countdown-hours').textContent = hoursLeft.toString().padStart(2, '0');
-      document.getElementById('countdown-minutes').textContent = minutesLeft.toString().padStart(2, '0');
-      document.getElementById('countdown-seconds').textContent = secondsLeft.toString().padStart(2, '0');
+      document.getElementById('countdown-days').textContent = pad(Math.floor(diff / 86400000));
+      document.getElementById('countdown-hours').textContent = pad(Math.floor((diff % 86400000) / 3600000));
+      document.getElementById('countdown-minutes').textContent = pad(Math.floor((diff % 3600000) / 60000));
+      document.getElementById('countdown-seconds').textContent = pad(Math.floor((diff % 60000) / 1000));
     }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+    tick();
+    const timer = setInterval(tick, 1000);
   });
 </script>
-
-<style>
-  html {
-    scroll-behavior: smooth;
-  }
-
-  .leaflet-container {
-    border-radius: 0.5rem;
-  }
-</style>

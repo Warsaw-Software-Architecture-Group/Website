@@ -73,7 +73,7 @@ const fullTitle = title.includes('WSAG') ? title : `${title} - WSAG`;
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify({
@@ -100,19 +100,11 @@ const fullTitle = title.includes('WSAG') ? title : `${title} - WSAG`;
       ]
     })} />
   </head>
-  <body class="antialiased">
+  <body>
     <slot />
   </body>
 </html>
 
 <style is:global>
   @import '../styles/global.css';
-  
-  html {
-    font-family: 'Inter', system-ui, sans-serif;
-  }
-  
-  * {
-    box-sizing: border-box;
-  }
 </style>

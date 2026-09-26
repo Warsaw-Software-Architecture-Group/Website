@@ -9,7 +9,7 @@ import CallForPapers from '../../components/CallForPapers.astro';
 import Organizers from '../../components/Organizers.astro';
 import Footer from '../../components/Footer.astro';
 
-const lang = 'en';
+const lang: 'pl' | 'en' = 'en';
 ---
 
 <Layout title="WSAG - Warsaw Software Architecture Group" description="Warsaw Software Architecture Community. Monthly meetups, workshops and networking for IT professionals. Join us to learn and grow!" lang={lang}>
@@ -24,9 +24,3 @@ const lang = 'en';
   </main>
   <Footer lang={lang} />
 </Layout>
-
-<style>
-  html {
-    scroll-behavior: smooth;
-  }
-</style>

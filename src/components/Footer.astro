@@ -1,4 +1,5 @@
 ---
+import HexGlyph from './HexGlyph.astro';
 import { getTranslations } from '../i18n/translations';
 
 export interface Props {
@@ -8,60 +9,65 @@ export interface Props {
 const { lang = 'pl' } = Astro.props;
 const t = getTranslations(lang);
 const currentYear = new Date().getFullYear();
+const home = lang === 'en' ? '/en' : '/';
 
-const footerLinks = {
-  [t.footer.quickLinks]: [
-    { href: '/', label: t.footer.links.home },
-    { href: lang === 'en' ? '/en/events' : '/events', label: t.footer.links.events },
-  ],
-  [t.footer.community]: [
-    { href: lang === 'en' ? '/en/code-of-conduct' : '/code-of-conduct', label: t.footer.links.codeOfConduct },
-  ],
-};
+const columns = [
+  {
+    title: t.footer.quickLinks,
+    links: [
+      { href: home, label: t.footer.links.home },
+      { href: lang === 'en' ? '/en/events' : '/events', label: t.footer.links.events },
+      { href: `${home}#call-for-papers`, label: 'Call for Papers' },
+    ],
+  },
+  {
+    title: t.footer.community,
+    links: [
+      { href: lang === 'en' ? '/en/code-of-conduct' : '/code-of-conduct', label: t.footer.links.codeOfConduct },
+      { href: lang === 'en' ? '/en/privacy' : '/privacy', label: t.footer.links.privacy },
+      { href: 'https://www.linkedin.com/company/warsaw-software-architecture-group/', label: 'LinkedIn', external: true },
+    ],
+  },
+];
 ---
 
-<footer class="text-gray-300" style="background-color: #0E2337;">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="grid md:grid-cols-5 gap-8">
-      <div class="md:col-span-2">
-        <div class="mb-4">
-          <img
-            src="/images/logo-dark.png"
-            alt="Warsaw Software Architecture Group Logo"
-            class="h-20 w-auto"
-          />
-        </div>
-        <p class="text-sm mb-4">
-          {t.footer.description}
-        </p>
-        <div class="bg-[#1a3a52] rounded-xl p-6 mb-4">
-          <p class="text-lg font-bold text-white mb-2">
-            {lang === 'pl' ? 'Skontaktuj się z nami!' : 'Contact us!'}
-          </p>
-          <p class="text-sm text-gray-300 mb-3">
-            {lang === 'pl' ? 'Napisz do nas na LinkedIn!' : 'Write to us on LinkedIn!'}
-          </p>
+<footer class="dark-panel">
+  <HexGlyph size={900} top="-260px" right="-420px" />
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-16 pb-10">
+    <div class="grid gap-12 md:grid-cols-12">
+      <div class="md:col-span-6">
+        <img src="/images/logo-mark.png" alt="Warsaw Software Architecture Group" class="h-20 w-auto" width="263" height="252" />
+        <p class="body-copy mt-6 max-w-md text-[15px]">{t.footer.description}</p>
+
+        <div class="mt-8 card !bg-ink-deep !border-white/15 p-5 max-w-md">
+          <p class="display font-bold text-white text-[15px]">{lang === 'pl' ? 'Skontaktuj się z nami' : 'Get in touch'}</p>
+          <p class="body-copy text-[14px] mt-1">{lang === 'pl' ? 'Najszybciej odpowiadamy na LinkedIn.' : 'LinkedIn is the fastest way to reach us.'}</p>
           <a
             href="https://www.linkedin.com/company/warsaw-software-architecture-group/"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center text-white hover:text-gray-300 transition-colors duration-200"
+            class="btn btn-ghost-dark btn-sm mt-4"
           >
-            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
             </svg>
-            {lang === 'pl' ? 'Odwiedź nasz LinkedIn' : 'Visit our LinkedIn'}
+            {lang === 'pl' ? 'Napisz na LinkedIn' : 'Message us on LinkedIn'}
           </a>
         </div>
       </div>
-      
-      {Object.entries(footerLinks).map(([category, links]) => (
-        <div>
-          <h3 class="text-white font-semibold mb-4">{category}</h3>
-          <ul class="space-y-2">
-            {links.map(link => (
+
+      {columns.map(col => (
+        <div class="md:col-span-3">
+          <h3 class="label text-[13px] tracking-[.04em]">{col.title}</h3>
+          <ul class="mt-4 space-y-2.5">
+            {col.links.map(link => (
               <li>
-                <a href={link.href} class="text-sm hover:text-white transition-colors duration-200">
+                <a
+                  href={link.href}
+                  target={link.external ? '_blank' : undefined}
+                  rel={link.external ? 'noopener noreferrer' : undefined}
+                  class="text-[15px] text-dark-body hover:text-white transition-colors"
+                >
                   {link.label}
                 </a>
               </li>
@@ -70,17 +76,10 @@ const footerLinks = {
         </div>
       ))}
     </div>
-    
-    <div class="border-t border-gray-800 mt-12 pt-8">
-      <div class="flex flex-col md:flex-row justify-between items-center">
-        <p class="text-sm">
-          © {currentYear} Warsaw Software Architecture Group. {t.footer.copyright}
-        </p>
-        <div class="flex space-x-6 mt-4 md:mt-0">
-          <a href={lang === 'en' ? '/en/privacy' : '/privacy'} class="text-sm hover:text-white transition-colors duration-200">{t.footer.links.privacy}</a>
-          <a href={lang === 'en' ? '/en/code-of-conduct' : '/code-of-conduct'} class="text-sm hover:text-white transition-colors duration-200">{t.footer.links.codeOfConduct}</a>
-        </div>
-      </div>
+
+    <div class="rule mt-14 pt-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <p class="text-[13px] text-dark-body">© {currentYear} Warsaw Software Architecture Group. {t.footer.copyright}</p>
+      <p class="note text-[15px]">wsag.org.pl</p>
     </div>
   </div>
 </footer>

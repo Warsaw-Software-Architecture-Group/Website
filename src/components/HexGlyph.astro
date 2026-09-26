@@ -1,0 +1,11 @@
+---
+// Hexagon glyph (the logo's outline) used on dark panels.
+export interface Props { size?: number; top?: string; right?: string }
+const { size = 720, top = '-160px', right = '-320px' } = Astro.props;
+---
+<svg class="pointer-events-none absolute z-0" width={size} height={size} viewBox="0 0 100 100" fill="none" style={`top:${top};right:${right}`} aria-hidden="true">
+  <polygon points="50,2 96,26 96,74 50,98 4,74 4,26" stroke="rgba(33,181,194,.30)" stroke-width=".7"/>
+  <polygon points="50,14 85,32 85,68 50,86 15,68 15,32" stroke="rgba(33,181,194,.16)" stroke-width=".5"/>
+  <circle cx="50" cy="2" r="1.4" fill="#21B5C2"/><circle cx="96" cy="26" r="1.4" fill="#21B5C2"/>
+  <circle cx="4" cy="74" r="1.4" fill="#21B5C2"/><circle cx="50" cy="98" r="1.4" fill="#21B5C2"/>
+</svg>
