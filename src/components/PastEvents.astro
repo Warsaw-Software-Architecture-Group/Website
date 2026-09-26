@@ -1,0 +1,49 @@
+---
+import { getPastEvents, generateEventUrl, getLocalizedText } from '../data/events';
+import { getTranslations } from '../i18n/translations';
+
+export interface Props {
+  lang?: 'pl' | 'en';
+}
+
+const { lang = 'pl' } = Astro.props;
+const t = getTranslations(lang);
+const pl = lang === 'pl';
+
+const pastEvents = getPastEvents().reverse();
+
+const formatDate = (dateString: string) =>
+  new Date(dateString).toLocaleDateString(pl ? 'pl-PL' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<div class="border-b border-line">
+  {pastEvents.map(event => (
+    <a
+      href={generateEventUrl(event, lang)}
+      class="group grid grid-cols-[64px_1fr] md:grid-cols-[96px_190px_1fr_auto] gap-x-5 md:gap-x-8 gap-y-3 py-6 md:py-7 border-t border-line hover:bg-paper transition-colors -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
+    >
+      <div class="num-sm text-[48px] md:text-[64px] row-span-2 md:row-span-1" aria-label={`${t.events.meetup} ${event.meetupId}`}>{event.meetupId}</div>
+
+      <div class="md:pt-1.5">
+        <div class="label text-[13px]">{formatDate(event.date)}</div>
+        <div class="text-[13px] text-muted mt-0.5">{event.location.name}</div>
+      </div>
+
+      <ul class="space-y-1.5 text-[14px] md:text-[15px] text-slate-text md:pt-1.5">
+        {event.presentations.filter(p => !p.cancelled).map(p => (
+          <li class="flex gap-2">
+            <span class="mt-[8px] h-[7px] w-[7px] shrink-0 rounded-[2px] bg-teal" aria-hidden="true"></span>
+            <span>{getLocalizedText(p.title, lang)}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div class="col-start-2 md:col-start-auto md:pt-1.5 flex items-center gap-1.5 display font-semibold text-[13px] text-teal-deep">
+        {t.events.viewDetails}
+        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </div>
+    </a>
+  ))}
+</div>

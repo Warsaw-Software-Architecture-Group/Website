@@ -1,0 +1,104 @@
+---
+import { getUpcomingEvents, generateEventUrl, getLocalizedText } from '../data/events';
+import { getTranslations } from '../i18n/translations';
+
+export interface Props {
+  lang?: 'pl' | 'en';
+}
+
+const { lang = 'pl' } = Astro.props;
+const t = getTranslations(lang);
+const pl = lang === 'pl';
+
+const upcomingEvents = getUpcomingEvents();
+
+const formatDate = (dateString: string) =>
+  new Date(dateString).toLocaleDateString(pl ? 'pl-PL' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' });
+const shortDate = (dateString: string) => {
+  const d = new Date(dateString);
+  return `${String(d.getDate()).padStart(2, '0')}.${String(d.getMonth() + 1).padStart(2, '0')}`;
+};
+---
+
+{upcomingEvents.length === 0 && (
+  <div class="card p-8 md:p-10 flex flex-col sm:flex-row sm:items-center gap-6">
+    <div class="num-sm text-[64px] shrink-0" aria-hidden="true">?</div>
+    <div>
+      <h4 class="display font-extrabold text-[20px] text-ink" style="font-stretch:112%">{t.events.stayTuned}</h4>
+      <p class="body-copy text-[15px] mt-1">{t.events.followUs}</p>
+    </div>
+  </div>
+)}
+
+{upcomingEvents.length > 0 && (
+  <div class="grid gap-6 md:grid-cols-2">
+    {upcomingEvents.map((event, index) => (
+      <a href={generateEventUrl(event, lang)} class="card overflow-hidden group flex flex-col hover:border-ink transition-colors">
+        <div class="relative h-44 bg-paper">
+          <div id={`event-map-${index}`} class="w-full h-full"></div>
+          <div class="absolute left-4 top-4 z-[400] badge text-[14px] px-2.5 py-1.5">{shortDate(event.date)}</div>
+        </div>
+
+        <div class="p-6 md:p-7 flex gap-5 md:gap-6 flex-1">
+          <div class="num-sm text-[64px] md:text-[84px] shrink-0 pt-1" aria-hidden="true">{event.meetupId}</div>
+          <div class="min-w-0 flex-1">
+            <div class="label text-[13px]">{t.events.meetup} WSAG #{event.meetupId}</div>
+            <div class="display font-extrabold text-[20px] md:text-[22px] text-ink mt-1 leading-tight group-hover:text-teal-deep transition-colors" style="font-stretch:112%">
+              {formatDate(event.date)}, <span class="whitespace-nowrap">{event.time}–{event.endTime}</span>
+            </div>
+
+            {event.presentations.length > 0 && (
+              <ul class="mt-4 space-y-1.5 text-[14px] text-slate-text">
+                {event.presentations.map(p => (
+                  <li class="flex gap-2">
+                    <span class="mt-[7px] h-[7px] w-[7px] shrink-0 rounded-[2px] bg-teal" aria-hidden="true"></span>
+                    <span class={p.cancelled ? 'line-through text-muted' : ''}>
+                      {getLocalizedText(p.title, lang)}
+                      {p.cancelled && <span class="ml-1 no-underline text-[12px]">({pl ? 'odwołana' : 'cancelled'})</span>}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            <div class="rule mt-5 pt-4 text-[13px] text-muted">
+              <div class="text-ink font-medium">{event.location.name}</div>
+              <div>{[event.location.address, [event.location.zipCode, event.location.city].filter(Boolean).join(' ')].filter(Boolean).join(', ')}</div>
+            </div>
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+)}
+
+{upcomingEvents.length > 0 && (
+  <>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script is:inline define:vars={{ upcomingEvents }}>
+      document.addEventListener('DOMContentLoaded', function () {
+        const opts = { dragging: false, zoomControl: false, scrollWheelZoom: false, doubleClickZoom: false, touchZoom: false, attributionControl: false };
+        const tiles = () => L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        });
+        const fallback = (id) => tiles().addTo(L.map(id, opts).setView([52.2297, 21.0122], 13));
+
+        upcomingEvents.forEach((event, index) => {
+          const id = `event-map-${index}`;
+          const address = `${event.location.address}, ${event.location.city}`;
+          fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`)
+            .then(r => r.json())
+            .then(data => {
+              if (!data || data.length === 0) return fallback(id);
+              const lat = parseFloat(data[0].lat), lon = parseFloat(data[0].lon);
+              const map = L.map(id, opts).setView([lat, lon], 15);
+              tiles().addTo(map);
+              L.marker([lat, lon]).addTo(map);
+            })
+            .catch(() => fallback(id));
+        });
+      });
+    </script>
+  </>
+)}

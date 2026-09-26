@@ -1,0 +1,22 @@
+---
+// Warsaw skyline silhouette used at the bottom of light poster panels.
+export interface Props { class?: string }
+const { class: cls = '' } = Astro.props;
+---
+<div class={`pointer-events-none absolute inset-x-0 bottom-0 z-0 text-skyline ${cls}`} aria-hidden="true">
+  <svg viewBox="0 0 1200 200" preserveAspectRatio="none" fill="currentColor" class="block w-full h-full">
+    <rect x="0" y="170" width="1200" height="30"/>
+    <rect x="24" y="112" width="46" height="58"/><rect x="82" y="86" width="34" height="84"/>
+    <rect x="126" y="120" width="52" height="50"/><rect x="192" y="58" width="30" height="112"/>
+    <rect x="203" y="30" width="8" height="28"/><rect x="234" y="98" width="44" height="72"/>
+    <rect x="292" y="74" width="26" height="96"/><rect x="330" y="122" width="60" height="48"/>
+    <rect x="404" y="90" width="38" height="80"/><rect x="456" y="40" width="26" height="130"/>
+    <rect x="465" y="14" width="8" height="26"/><rect x="496" y="106" width="54" height="64"/>
+    <rect x="566" y="80" width="32" height="90"/><rect x="612" y="126" width="46" height="44"/>
+    <rect x="674" y="96" width="40" height="74"/><rect x="730" y="66" width="28" height="104"/>
+    <rect x="776" y="116" width="58" height="54"/><rect x="850" y="88" width="36" height="82"/>
+    <rect x="900" y="48" width="24" height="122"/><rect x="908" y="24" width="8" height="24"/>
+    <rect x="940" y="110" width="50" height="60"/><rect x="1006" y="84" width="30" height="86"/>
+    <rect x="1052" y="124" width="56" height="46"/><rect x="1126" y="100" width="44" height="70"/>
+  </svg>
+</div>

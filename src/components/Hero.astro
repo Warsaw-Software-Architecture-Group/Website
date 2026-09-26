@@ -1,6 +1,7 @@
 ---
+import Skyline from './Skyline.astro';
 import { getTranslations } from '../i18n/translations';
-import { getUpcomingEvents } from '../data/events';
+import { getUpcomingEvents, getPastEvents, generateEventUrl } from '../data/events';
 
 export interface Props {
   lang?: 'pl' | 'en';
@@ -8,68 +9,92 @@ export interface Props {
 
 const { lang = 'pl' } = Astro.props;
 const t = getTranslations(lang);
+const pl = lang === 'pl';
 
-const upcomingEvents = getUpcomingEvents();
-const nextEvent = upcomingEvents.length > 0 ? upcomingEvents[0] : null;
+const nextEvent = getUpcomingEvents()[0] ?? null;
+const pastCount = getPastEvents().length;
 
-const nextEventDateFormatted = nextEvent
-  ? new Date(nextEvent.date).toLocaleDateString(lang === 'pl' ? 'pl-PL' : 'en-US', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    })
-  : null;
+const formatDate = (dateString: string) =>
+  new Date(dateString).toLocaleDateString(pl ? 'pl-PL' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' });
+
+// Polish plural for "spotkanie"
+const meetingsWord = (n: number) => {
+  if (!pl) return n === 1 ? 'meetup so far' : 'meetups so far';
+  if (n === 1) return 'spotkanie za nami';
+  const last = n % 10, tens = n % 100;
+  if (last >= 2 && last <= 4 && !(tens >= 12 && tens <= 14)) return 'spotkania za nami';
+  return 'spotkań za nami';
+};
+
+// Same trick as the generator: show 2^n when the number is a power of two
+const exponentOf = (n: number) => {
+  if (!Number.isInteger(n) || n < 2) return null;
+  const e = Math.log2(n);
+  return Number.isInteger(e) ? e : null;
+};
+
+const number = nextEvent ? nextEvent.meetupId : pastCount;
+const exponent = exponentOf(number);
+
+const labelText = nextEvent
+  ? `${pl ? 'spotkanie WSAG' : 'WSAG meetup'}, ${formatDate(nextEvent.date)}`
+  : meetingsWord(pastCount);
+
+const headline = nextEvent
+  ? (pl ? 'Widzimy się w Warszawie' : 'See you in Warsaw')
+  : (pl ? 'Kolejne spotkanie już wkrótce' : 'Next meetup coming soon');
+
+const noteText = nextEvent
+  ? `${pl ? 'Następne spotkanie' : 'Next meetup'}: ${formatDate(nextEvent.date)}, ${nextEvent.time}`
+  : t.events.nextEventSoon;
 ---
 
-<section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-primary/5 to-primary/10">
-  <div class="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] bg-fixed"></div>
+<section id="home" class="relative overflow-hidden bg-white">
+  <Skyline class="h-24 sm:h-32 md:h-44" />
 
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+  <div class="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-14 md:pt-20">
     <div class="text-center">
-      {nextEvent && nextEventDateFormatted && (
-      <div class="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary-dark text-sm font-medium mb-8">
-        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM9 12H7v-2h2V7h2v3h2v2h-2v1H9v-1z"/>
-        </svg>
-        {lang === 'pl' ? `Następne spotkanie: ${nextEventDateFormatted}` : `Next Meetup: ${nextEventDateFormatted}`}
-      </div>
-      )}
-      {!nextEvent && (
-      <div class="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary-dark text-sm font-medium mb-8">
-        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM9 12H7v-2h2V7h2v3h2v2h-2v1H9v-1z"/>
-        </svg>
-        {t.events.nextEventSoon}
-      </div>
-      )}
+      <div class="eyebrow text-[17px] sm:text-[22px] md:text-[26px]">{t.organizationName}</div>
 
-      <div class="flex flex-col items-center mb-6">
-        <img
-          src="/images/logo-transparent.png"
-          alt="Warsaw Software Architecture Group Logo"
-          class="w-64 md:w-96 h-auto mb-6"
-        />
-        <h1 class="text-2xl md:text-3xl font-bold text-gray-700 mb-2">
-          {t.organizationName}
-        </h1>
+      <div class="mt-5 flex items-start justify-center gap-3 md:gap-5">
+        <div class="num text-[150px] sm:text-[200px] md:text-[260px]" aria-label={String(number)}>{number}</div>
+        {exponent !== null && (
+          <div class="badge text-[24px] md:text-[38px] px-3 py-2 md:px-4 md:py-3 mt-3 md:mt-5" aria-hidden="true">2<sup>{exponent}</sup></div>
+        )}
       </div>
-      
-      <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto mb-16">
-        {t.hero.description}
-      </p>
 
+      <div class="label text-[19px] sm:text-[22px] md:text-[28px] mt-4">{labelText}</div>
+
+      <h1 class="headline text-[34px] sm:text-[44px] md:text-[56px] mt-8 md:mt-10 max-w-4xl mx-auto">{headline}</h1>
+
+      <p class="body-copy text-[16px] sm:text-[18px] md:text-[21px] mt-5 max-w-3xl mx-auto">{t.hero.description}</p>
+
+      <div class="mt-9 flex flex-wrap justify-center gap-3">
+        {nextEvent ? (
+          <>
+            <a href={generateEventUrl(nextEvent, lang)} class="btn btn-teal">{t.events.viewDetails}</a>
+            <a href="#call-for-papers" class="btn">{t.callForPapers.submitButton}</a>
+          </>
+        ) : (
+          <>
+            <a href="#call-for-papers" class="btn btn-teal">{t.callForPapers.submitButton}</a>
+            <a href="#events" class="btn">{t.events.pastEvents}</a>
+          </>
+        )}
+      </div>
+    </div>
+
+    <div class="rule mt-16 md:mt-24 pt-5 pb-28 sm:pb-36 md:pb-48 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+      <p class="note text-[15px] md:text-[18px]">{noteText}</p>
+      <div class="flex items-center gap-5">
+        <img src="/images/logo-mark.png" alt="" class="h-14 md:h-16 w-auto" width="263" height="252" />
+        {nextEvent?.venuePartner && (
+          <>
+            <div class="w-px self-stretch bg-line" aria-hidden="true"></div>
+            <img src={nextEvent.venuePartner.logo} alt={nextEvent.venuePartner.name} class="h-12 md:h-14 w-auto" />
+          </>
+        )}
+      </div>
     </div>
   </div>
-  
-  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-    <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-    </svg>
-  </div>
 </section>
-
-<style>
-  .bg-grid-slate-100 {
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e2e8f0' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  }
-</style>

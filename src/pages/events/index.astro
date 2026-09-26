@@ -2,136 +2,49 @@
 import Layout from '../../layouts/Layout.astro';
 import Navigation from '../../components/Navigation.astro';
 import Footer from '../../components/Footer.astro';
-import { events, getUpcomingEvents, generateEventUrl, getLocalizedText } from '../../data/events';
+import PageHero from '../../components/PageHero.astro';
+import UpcomingEvents from '../../components/UpcomingEvents.astro';
+import PastEvents from '../../components/PastEvents.astro';
+import { getPastEvents } from '../../data/events';
 import { getTranslations } from '../../i18n/translations';
 
-const lang = 'pl';
+const lang: 'pl' | 'en' = 'pl';
 const t = getTranslations(lang);
-
-const upcomingEvents = getUpcomingEvents();
-
-const formatTime = (time: string) => {
-  return new Date(`2000-01-01T${time}`).toLocaleTimeString(lang === 'pl' ? 'pl-PL' : 'en-US', {
-    hour: 'numeric',
-    minute: '2-digit',
-    hour12: false
-  });
-};
+const home = lang === 'en' ? '/en' : '/';
+const hasPast = getPastEvents().length > 0;
 ---
 
-<Layout title="All Events - WSAG" description="Browse all Warsaw Software Architecture Group events, including upcoming meetups and past session recordings." lang={lang}>
+<Layout title={`${t.events.allEvents} - WSAG`} description={t.events.allEventsSubtitle} lang={lang}>
   <Navigation lang={lang} isMainPage={false} />
-  <div class="min-h-screen bg-gray-50">
-    <!-- Header -->
-    <div class="bg-gradient-to-r from-[#29B7C0] to-[#1e959c] text-white">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
-        <div class="text-center">
-          <h1 class="text-4xl md:text-5xl font-bold mb-4">{t.events.allEvents}</h1>
-          <p class="text-xl opacity-90 max-w-2xl mx-auto">
-            {t.events.allEventsSubtitle}
-          </p>
+  <main>
+    <PageHero eyebrow={t.organizationName} title={t.events.allEvents} description={t.events.allEventsSubtitle} />
+
+    <section class="bg-white py-16 md:py-20">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <h2 class="label text-[14px] tracking-[.04em] mb-5">{t.events.upcoming}</h2>
+        <UpcomingEvents lang={lang} />
+
+        {hasPast && (
+          <div class="mt-16 md:mt-20">
+            <h2 class="label text-[14px] tracking-[.04em] mb-2">{t.events.pastEvents}</h2>
+            <PastEvents lang={lang} />
+          </div>
+        )}
+      </div>
+    </section>
+
+    <section class="dark-panel py-16 md:py-20">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-end justify-between gap-8">
+        <div class="max-w-2xl">
+          <h2 class="headline text-[30px] md:text-[40px]">{t.events.speakAtWSAG}</h2>
+          <p class="body-copy text-[16px] md:text-[18px] mt-4">{t.events.speakAtWSAGDesc}</p>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href={`${home}#call-for-papers`} class="btn btn-teal">{t.events.becomeASpeaker}</a>
+          <a href={home} class="btn btn-ghost-dark">{t.events.backToHome}</a>
         </div>
       </div>
-    </div>
-    
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <!-- Upcoming Events -->
-      {upcomingEvents.length > 0 && (
-        <div class="mb-16">
-          <div class="flex items-center mb-8">
-            <span class="w-1 h-8 bg-[#29B7C0] mr-3 rounded-full"></span>
-            <h2 class="text-3xl font-bold text-gray-900">{t.events.upcoming}</h2>
-          </div>
-          
-          <div class="grid md:grid-cols-2 gap-6">
-            {upcomingEvents.map(event => (
-              <a
-                href={generateEventUrl(event)}
-                class="block bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group cursor-pointer"
-              >
-                <div class="p-8">
-                  <div class="flex items-center justify-between mb-4">
-                    <div class="flex items-center text-sm text-gray-500">
-                      <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                      </svg>
-                      {event.date}
-                    </div>
-                    <div class="flex items-center text-sm text-gray-500">
-                      <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                      </svg>
-                      {formatTime(event.time)} - {formatTime(event.endTime)}
-                    </div>
-                  </div>
-
-                  <h3 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-[#29B7C0] transition-colors duration-200">
-                    {event.title}
-                  </h3>
-
-                  <p class="text-gray-600 mb-4 line-clamp-3">{getLocalizedText(event.description, lang)}</p>
-
-                  <div class="flex items-center mb-6">
-                    <svg class="w-4 h-4 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                    </svg>
-                    <span class="text-sm text-gray-600">{event.location.name}</span>
-                  </div>
-
-                  <div class="flex flex-wrap gap-2">
-                    {event.tags.slice(0, 2).map(tag => (
-                      <span class="px-2 py-1 bg-[#29B7C0]/10 text-[#1e959c] text-xs rounded-full">
-                        #{tag}
-                      </span>
-                    ))}
-                    {event.tags.length > 2 && (
-                      <span class="text-xs text-gray-500">
-                        +{event.tags.length - 2} {t.events.more}
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
-
-      <!-- Call to Action -->
-      <div class="mt-16 bg-gradient-to-r from-[#29B7C0] to-[#1e959c] rounded-3xl p-8 md:p-12 text-center text-white">
-        <h3 class="text-2xl md:text-3xl font-bold mb-4">{t.events.speakAtWSAG}</h3>
-        <p class="text-lg opacity-90 mb-8 max-w-2xl mx-auto">
-          {t.events.speakAtWSAGDesc}
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/" class="px-6 py-3 bg-white text-[#29B7C0] rounded-lg hover:bg-gray-50 transition-colors duration-200 font-medium">
-            {t.events.backToHome}
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
+    </section>
+  </main>
   <Footer lang={lang} />
 </Layout>
-
-<style>
-  .line-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  
-  .line-clamp-3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  
-  html {
-    scroll-behavior: smooth;
-  }
-</style>
