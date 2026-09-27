@@ -39,6 +39,11 @@
     margin: 0;
   }
 
+  /* Anchor targets stop below the sticky header */
+  [id] {
+    scroll-margin-top: 4.5rem;
+  }
+
   ::selection {
     background: var(--color-teal);
     color: var(--color-teal-ink);
