@@ -47,7 +47,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
         <LanguageSwitcher currentLang={lang} currentPath={currentPath} />
       </div>
 
-      <button class="md:hidden p-2 -mr-2 text-ink" id="mobile-menu-button" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+      <button class="md:hidden flex items-center justify-center w-11 h-11 mr-1 text-ink" id="mobile-menu-button" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16" />
         </svg>
