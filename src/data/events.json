@@ -1001,5 +1001,60 @@
     "tags": ["architecture", "community", "networking"],
     "prerequisites": [],
     "targetAudience": ["Software Architects", "Senior Developers", "Tech Leads", "Engineering Managers"]
+  },
+  {
+    "id": "2026-10-21",
+    "meetupId": 8,
+    "title": "WSAG Meetup #8",
+    "slug": "wsag-meetup-8",
+    "date": "October 21, 2026",
+    "time": "18:00",
+    "endTime": "21:00",
+    "description": {
+      "pl": "Dołącz do ósmego spotkania Warsaw Software Architecture Group w siedzibie Circle K Business Centre! Agenda zostanie wkrótce ogłoszona.",
+      "en": "Join us for the eighth Warsaw Software Architecture Group meetup at Circle K Business Centre! Agenda to be announced soon."
+    },
+    "longDescription": {
+      "pl": "Zapraszamy na ósme spotkanie WSAG, ponownie w siedzibie Circle K Business Centre! Szczegóły dotyczące agendy i prelegentów zostaną ogłoszone wkrótce.\n\nTo świetna okazja, aby poznać innych architektów oprogramowania, dzielić się wiedzą i kontynuować budowanie naszej lokalnej społeczności architektury.",
+      "en": "Join us for the eighth WSAG meetup, once again at Circle K Business Centre! Details about the agenda and speakers will be announced soon.\n\nThis is a great opportunity to meet fellow software architects, share knowledge, and continue building our local architecture community."
+    },
+    "location": {
+      "name": "Circle K Business Centre",
+      "address": "Puławska 145",
+      "zipCode": "02-715",
+      "city": "Warsaw, Poland",
+      "mapUrl": "https://maps.google.com/embed?pb=!1m18!1m12!1m3!1d2443.6585859798344!2d20.98462631580052!3d52.22104397975899",
+      "directions": "Details to be announced",
+      "parking": "Details to be announced",
+      "accessibility": "Details to be announced"
+    },
+    "speakers": [],
+    "presentations": [],
+    "agenda": [],
+    "maxAttendees": 75,
+    "registeredAttendees": 0,
+    "registrationUrl": "https://pragmaticmeet.com/en/events/wsag-8",
+    "status": "upcoming",
+    "venuePartner": {
+      "name": "Circle K Business Centre Warsaw",
+      "url": "https://www.circlek.pl/",
+      "logo": "/assets/2026_01/logo-full-color-rgb_logo-Warsaw.png"
+    },
+    "privacyNotice": {
+      "pl": "Ze względu na politykę bezpieczeństwa Circle K Business Centre, organizatorzy są zobowiązani do przekazania imion i nazwisk uczestników. Rejestrując się na wydarzenie, wyrażasz zgodę na udostępnienie Twojego imienia i nazwiska w celu uzyskania dostępu do budynku.",
+      "en": "Due to the security policy of Circle K Business Centre, organizers are required to provide first names and surnames of participants. By registering for this event, you consent to sharing your name for building access purposes."
+    },
+    "tags": [
+      "architecture",
+      "community",
+      "networking"
+    ],
+    "prerequisites": [],
+    "targetAudience": [
+      "Software Architects",
+      "Senior Developers",
+      "Tech Leads",
+      "Engineering Managers"
+    ]
   }
 ]
