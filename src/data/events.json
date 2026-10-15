@@ -1011,12 +1011,12 @@
     "time": "18:00",
     "endTime": "21:00",
     "description": {
-      "pl": "Dołącz do ósmego spotkania Warsaw Software Architecture Group w siedzibie Circle K Business Centre! Agenda zostanie wkrótce ogłoszona.",
-      "en": "Join us for the eighth Warsaw Software Architecture Group meetup at Circle K Business Centre! Agenda to be announced soon."
+      "pl": "Dołącz do ósmego spotkania Warsaw Software Architecture Group w siedzibie Circle K Business Centre! Prezentacje o agentach AI z perspektywy cyberbezpieczeństwa, o tym, dlaczego nie lubić DORA Metrics (choć się je liczy), oraz o lekcjach z produkcyjnych wdrożeń mikrofrontendów.",
+      "en": "Join us for the eighth Warsaw Software Architecture Group meetup at Circle K Business Centre! Talks on AI agents from a cybersecurity perspective, why not to like DORA Metrics (even if you compute them yourself), and lessons from microfrontends in production."
     },
     "longDescription": {
-      "pl": "Zapraszamy na ósme spotkanie WSAG, ponownie w siedzibie Circle K Business Centre! Szczegóły dotyczące agendy i prelegentów zostaną ogłoszone wkrótce.\n\nTo świetna okazja, aby poznać innych architektów oprogramowania, dzielić się wiedzą i kontynuować budowanie naszej lokalnej społeczności architektury.",
-      "en": "Join us for the eighth WSAG meetup, once again at Circle K Business Centre! Details about the agenda and speakers will be announced soon.\n\nThis is a great opportunity to meet fellow software architects, share knowledge, and continue building our local architecture community."
+      "pl": "Zapraszamy na ósme spotkanie WSAG, ponownie w siedzibie Circle K Business Centre! Czekają na Was trzy prezentacje: Dzianis (Denis) Hlukhau spojrzy na agentów AI z perspektywy cyberbezpieczeństwa, Krzysztof Hałasa opowie, dlaczego nie lubi DORA Metrics (choć sam je liczy), a Tomasz Ducin podzieli się lekcjami z produkcyjnych wdrożeń mikrofrontendów.\n\nTo świetna okazja, aby poznać innych architektów oprogramowania, dzielić się wiedzą i kontynuować budowanie naszej lokalnej społeczności architektury.",
+      "en": "Join us for the eighth WSAG meetup, once again at Circle K Business Centre! Three talks await you: Dzianis (Denis) Hlukhau will look at AI agents from a cybersecurity perspective, Krzysztof Hałasa will explain why he doesn't like DORA Metrics (even though he computes them himself), and Tomasz Ducin will share lessons from microfrontends in production.\n\nThis is a great opportunity to meet fellow software architects, share knowledge, and continue building our local architecture community."
     },
     "location": {
       "name": "Circle K Business Centre",
@@ -1028,9 +1028,144 @@
       "parking": "Details to be announced",
       "accessibility": "Details to be announced"
     },
-    "speakers": [],
-    "presentations": [],
-    "agenda": [],
+    "speakers": [
+      {
+        "id": "dzianis-hlukhau",
+        "name": "Dzianis (Denis) Hlukhau",
+        "role": "",
+        "company": "",
+        "bio": "",
+        "linkedin": "https://www.linkedin.com/in/dzianis-hlukhau/",
+        "photo": "/images/speakers/meetup-8/dzianis.jpeg"
+      },
+      {
+        "id": "krzysztof-halasa",
+        "name": "Krzysztof Hałasa",
+        "role": "",
+        "company": "",
+        "bio": "",
+        "linkedin": "https://www.linkedin.com/in/krzysztof-ha%C5%82asa-khalasa-com/",
+        "photo": "/images/speakers/meetup-8/krzysztof.png"
+      },
+      {
+        "id": "tomasz-ducin",
+        "name": "Tomasz Ducin",
+        "role": "",
+        "company": "",
+        "bio": "",
+        "linkedin": "https://www.linkedin.com/in/tomasz-ducin/",
+        "photo": "/images/speakers/meetup-8/tomasz.jpeg"
+      }
+    ],
+    "presentations": [
+      {
+        "id": "ai-agents-from-a-cybersecurity-perspective",
+        "title": {
+          "pl": "Agenci AI z perspektywy cyberbezpieczeństwa",
+          "en": "AI Agents from a Cybersecurity Perspective"
+        },
+        "description": {
+          "pl": "Zapoznamy się, w jaki sposób sztuczna inteligencja, a w szczególności agenci, są integrowani z istniejącą architekturą bezpieczeństwa na przykładzie AWS, a także przeprowadzimy modelowanie zagrożeń dla agenta FinOps.",
+          "en": "We'll look at how artificial intelligence, and agents in particular, are integrated into an existing security architecture using AWS as an example, and we'll run a threat modelling exercise for a FinOps agent."
+        },
+        "speakerId": "dzianis-hlukhau",
+        "duration": 40,
+        "level": "intermediate",
+        "language": "pl",
+        "tags": [
+          "AI",
+          "security",
+          "AWS",
+          "threat modeling"
+        ],
+        "resources": []
+      },
+      {
+        "id": "why-i-dont-like-dora-metrics",
+        "title": {
+          "pl": "Dlaczego nie lubię DORA Metrics (choć sam je liczę)",
+          "en": "Why I Don't Like DORA Metrics (Even Though I Compute Them Myself)"
+        },
+        "description": {
+          "pl": "Zespół deployuje kilka razy dziennie, a change failure rate ma podręcznikowy. Dyrektor IT pyta, ile kosztował ostatni feature i czy developer za 30 tys. zł dowozi dwa razy więcej niż ten za 15 tys. Dashboard nie ma na to odpowiedzi. Brzmi znajomo?\n\nZacznę od przeglądu: DORA, SPACE, Flow Metrics i inne, które w erze AI rosną same. Przy każdej metodzie pokażę, co pokazuje, czego nie i dlaczego żadna z nich nie jest idealna.\n\nPotem case z dużego ubezpieczyciela. Dyrektor IT miał przeczucie, że dwa lata wcześniej organizacja pracowała lepiej. Potwierdziły to trzy proste metryki. Pokazały też, co z dostarczaniem zrobiła zmiana modelu operacyjnego i jakie inne, nieoczywiste wnioski, wypłynęły z tego doświadczenia.\n\nNa koniec pokażę model pracy, w którym da się mierzyć przydatność pojedynczej osoby w organizacji - w kontrze do tego, co twierdzą Kent Beck i Gergely Orosz. Do tego zajawka algorytmu, który jednoznacznie ocenia cały zespół (i odpowiada na pytanie, czy AI pomogło).",
+          "en": "The team deploys several times a day and its change failure rate is textbook. The IT director asks how much the last feature cost and whether a developer paid 30k PLN delivers twice as much as one paid 15k. The dashboard has no answer. Sound familiar?\n\nI'll start with an overview: DORA, SPACE, Flow Metrics and others that, in the AI era, grow on their own. For each method I'll show what it reveals, what it doesn't, and why none of them is perfect.\n\nThen a case from a large insurer. The IT director had a hunch that two years earlier the organisation had worked better. Three simple metrics confirmed it. They also showed what a change of operating model did to delivery, and what other, non-obvious conclusions came out of that experience.\n\nFinally, I'll show a working model in which the usefulness of a single person in an organisation can be measured - contrary to what Kent Beck and Gergely Orosz claim. Plus a teaser of an algorithm that unambiguously evaluates the whole team (and answers the question of whether AI helped)."
+        },
+        "speakerId": "krzysztof-halasa",
+        "duration": 40,
+        "level": "intermediate",
+        "language": "pl",
+        "tags": [
+          "metrics",
+          "DORA",
+          "engineering management",
+          "AI"
+        ],
+        "resources": []
+      },
+      {
+        "id": "when-microfrontends-go-wrong",
+        "title": {
+          "pl": "When MicroFrontends go wrong: lessons from production",
+          "en": "When MicroFrontends go wrong: lessons from production"
+        },
+        "description": {
+          "pl": "Architektura MikroFrontendowa (MFE) ma na celu zmierzenie się z bardzo konkretnymi wyzwaniami - i wbrew pozorom chodzi bardziej o organizację pracy zespołów, niż o sam kod frontendowy. Jest to też architektura dość niejednorodna, a mnogość rozwiązań niejednego doprowadziła do... błędnej, jak się potem okazało, decyzji. Dodatkowo, MFE współdzieli pewne cechy z Mikro Serwisami, są jednak między nimi dość istotne różnice - w szczególności wynikające z innego środowiska uruchomieniowego.\n\nPodczas prelekcji przyjrzymy się projektowaniu, wdrażaniu, uruchamianiu oraz organizowaniu pracy wielo zespołowej wokół architektury MFE - wszystko związane z: modułowością, zarządzaniem stanem, podziałem poziomym i pionowym, praktykami DevOps, topologiami zespołowymi i stosowaniem strategicznego DDD.\n\nPrzeanalizujemy realne przypadki zarówno sukcesów jak i porażek zastosowania mikro frontendów, budując solidne rozumienie \"tradeoff-ów\" które za nimi stoją. Zwalczymy przy okazji kilka mitów, które narosły wokół tej architektury, będące skutkiem niezrozumienia konceptu i... nieudanych wdrożeń.",
+          "en": "Microfrontend (MFE) architecture is meant to tackle very specific challenges - and, contrary to appearances, it is more about how teams organise their work than about the frontend code itself. It is also a rather heterogeneous architecture, and the sheer number of options has led more than one team to a decision that later turned out to be... wrong. On top of that, MFEs share some traits with microservices, yet there are significant differences between them - in particular those stemming from a different runtime environment.\n\nIn this talk we'll look at designing, deploying, running and organising multi-team work around MFE architecture - everything related to: modularity, state management, horizontal and vertical splits, DevOps practices, team topologies and applying strategic DDD.\n\nWe'll analyse real-world cases of both successes and failures of microfrontends, building a solid understanding of the trade-offs behind them. Along the way we'll bust a few myths that have grown around this architecture as a result of misunderstanding the concept and... failed implementations."
+        },
+        "speakerId": "tomasz-ducin",
+        "duration": 40,
+        "level": "intermediate",
+        "language": "pl",
+        "tags": [
+          "frontend",
+          "microfrontends",
+          "DDD",
+          "team topologies"
+        ],
+        "resources": []
+      }
+    ],
+    "agenda": [
+      {
+        "time": "18:00",
+        "title": "Agenci AI z perspektywy cyberbezpieczeństwa",
+        "speaker": "Dzianis (Denis) Hlukhau",
+        "speakerIds": [
+          "dzianis-hlukhau"
+        ],
+        "presentationId": "ai-agents-from-a-cybersecurity-perspective",
+        "description": "",
+        "type": "presentation"
+      },
+      {
+        "time": "18:50",
+        "title": "Dlaczego nie lubię DORA Metrics (choć sam je liczę)",
+        "speaker": "Krzysztof Hałasa",
+        "speakerIds": [
+          "krzysztof-halasa"
+        ],
+        "presentationId": "why-i-dont-like-dora-metrics",
+        "description": "",
+        "type": "presentation"
+      },
+      {
+        "time": "19:40",
+        "title": "When MicroFrontends go wrong: lessons from production",
+        "speaker": "Tomasz Ducin",
+        "speakerIds": [
+          "tomasz-ducin"
+        ],
+        "presentationId": "when-microfrontends-go-wrong",
+        "description": "",
+        "type": "presentation"
+      },
+      {
+        "time": "20:30",
+        "title": "Closing & Networking",
+        "description": "Final Q&A and networking",
+        "type": "networking"
+      }
+    ],
     "maxAttendees": 75,
     "registeredAttendees": 0,
     "registrationUrl": "https://pragmaticmeet.com/en/events/wsag-8",
