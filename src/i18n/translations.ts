@@ -126,9 +126,9 @@ export const translations = {
       speakAtWSAGDesc: 'Podziel się swoją wiedzą i doświadczeniem z warszawską społecznością architektury oprogramowania. Zawsze szukamy pasjonatów-prelegentów!',
       becomeASpeaker: 'Zostań prelegentem',
       backToHome: 'Powrót do strony głównej',
-      stayTuned: 'Informacje o kolejnym wydarzeniu ogłosimy wkrótce!',
-      followUs: 'Obserwuj nas na LinkedIn, żeby nie przegapić ogłoszenia.',
-      nextEventSoon: 'Kolejne spotkanie ogłosimy wkrótce'
+      stayTuned: 'Pracujemy już nad Meetupem #{number}!',
+      followUs: 'Szczegóły ogłosimy wkrótce. Obserwuj nas na LinkedIn, żeby nie przegapić ogłoszenia.',
+      nextEventSoon: 'Pracujemy nad Meetupem #{number} — szczegóły wkrótce'
     },
     videoSlider: {
       title: 'Nagrania z prezentacji',
@@ -497,9 +497,9 @@ export const translations = {
       speakAtWSAGDesc: 'Share your knowledge and experience with Warsaw\'s software architecture community. We\'re always looking for passionate speakers!',
       becomeASpeaker: 'Become a Speaker',
       backToHome: 'Back to Home',
-      stayTuned: 'Details of our next event will be announced soon!',
-      followUs: 'Follow us on LinkedIn so you don\'t miss the announcement.',
-      nextEventSoon: 'Next meetup to be announced soon'
+      stayTuned: 'We\'re already working on Meetup #{number}!',
+      followUs: 'Details coming soon. Follow us on LinkedIn so you don\'t miss the announcement.',
+      nextEventSoon: 'We\'re working on Meetup #{number} — details coming soon'
     },
     videoSlider: {
       title: 'Presentation Recordings',

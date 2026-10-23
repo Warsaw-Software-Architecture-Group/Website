@@ -1,7 +1,7 @@
 ---
 import HexGlyph from './HexGlyph.astro';
 import { getTranslations } from '../i18n/translations';
-import { getUpcomingEvents, generateEventUrl } from '../data/events';
+import { getUpcomingEvents, generateEventUrl, getNextMeetupNumber } from '../data/events';
 
 export interface Props {
   lang?: 'pl' | 'en';
@@ -12,13 +12,14 @@ const t = getTranslations(lang);
 const pl = lang === 'pl';
 
 const nextEvent = getUpcomingEvents()[0] ?? null;
+const nextMeetupNumber = getNextMeetupNumber();
 
 const formatDate = (dateString: string) =>
   new Date(dateString).toLocaleDateString(pl ? 'pl-PL' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' });
 
 const noteText = nextEvent
   ? `${pl ? 'Następne spotkanie' : 'Next meetup'}: ${formatDate(nextEvent.date)}, ${nextEvent.time}, ${nextEvent.location.name}`
-  : t.events.nextEventSoon;
+  : t.events.nextEventSoon.replace('{number}', String(nextMeetupNumber));
 ---
 
 <section id="home" class="dark-panel">

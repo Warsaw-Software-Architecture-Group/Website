@@ -140,6 +140,10 @@ export function getPastEvents(): Event[] {
   return events.filter(event => event.status === 'completed');
 }
 
+export function getNextMeetupNumber(): number {
+  return Math.max(...events.map(event => event.meetupId)) + 1;
+}
+
 export interface RecordingEntry {
   presentationTitle: string | BilingualText;
   speakerName: string;

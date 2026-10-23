@@ -1,5 +1,5 @@
 ---
-import { getUpcomingEvents, generateEventUrl, getLocalizedText } from '../data/events';
+import { getUpcomingEvents, generateEventUrl, getLocalizedText, getNextMeetupNumber } from '../data/events';
 import { getTranslations } from '../i18n/translations';
 
 export interface Props {
@@ -11,6 +11,7 @@ const t = getTranslations(lang);
 const pl = lang === 'pl';
 
 const upcomingEvents = getUpcomingEvents();
+const nextMeetupNumber = getNextMeetupNumber();
 
 const formatDate = (dateString: string) =>
   new Date(dateString).toLocaleDateString(pl ? 'pl-PL' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -22,9 +23,9 @@ const shortDate = (dateString: string) => {
 
 {upcomingEvents.length === 0 && (
   <div class="card p-8 md:p-10 flex flex-col sm:flex-row sm:items-center gap-6">
-    <div class="num-sm text-[64px] shrink-0" aria-hidden="true">?</div>
+    <div class="num-sm text-[64px] shrink-0" aria-hidden="true">{nextMeetupNumber}</div>
     <div>
-      <h4 class="display font-extrabold text-[20px] text-ink" style="font-stretch:112%">{t.events.stayTuned}</h4>
+      <h4 class="display font-extrabold text-[20px] text-ink" style="font-stretch:112%">{t.events.stayTuned.replace('{number}', String(nextMeetupNumber))}</h4>
       <p class="body-copy text-[15px] mt-1">{t.events.followUs}</p>
     </div>
   </div>
