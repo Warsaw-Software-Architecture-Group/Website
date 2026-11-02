@@ -917,7 +917,13 @@
         "level": "intermediate",
         "language": "pl",
         "tags": [],
-        "resources": []
+        "resources": [
+          {
+            "type": "recording",
+            "title": { "pl": "Nagranie", "en": "Recording" },
+            "url": "https://www.youtube.com/watch?v=ZgCilyX-B60"
+          }
+        ]
       },
       {
         "id": "context-engineering-patterns",
@@ -934,7 +940,13 @@
         "level": "intermediate",
         "language": "pl",
         "tags": ["AI", "LLM", "context engineering"],
-        "resources": []
+        "resources": [
+          {
+            "type": "recording",
+            "title": { "pl": "Nagranie", "en": "Recording" },
+            "url": "https://www.youtube.com/watch?v=Q3OStyBL_c0"
+          }
+        ]
       },
       {
         "id": "when-rbac-is-not-enough",
@@ -951,7 +963,13 @@
         "level": "intermediate",
         "language": "pl",
         "tags": ["security", "authorization", "RBAC"],
-        "resources": []
+        "resources": [
+          {
+            "type": "recording",
+            "title": { "pl": "Nagranie", "en": "Recording" },
+            "url": "https://www.youtube.com/watch?v=l2Jhc02Yqes"
+          }
+        ]
       }
     ],
     "agenda": [
