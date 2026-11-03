@@ -1209,5 +1209,56 @@
       "Tech Leads",
       "Engineering Managers"
     ]
+  },
+  {
+    "id": "2026-11-24",
+    "meetupId": 9,
+    "title": "WSAG Meetup #9",
+    "slug": "wsag-meetup-9",
+    "date": "November 24, 2026",
+    "time": "18:00",
+    "endTime": "21:00",
+    "description": {
+      "pl": "Dołącz do dziewiątego spotkania Warsaw Software Architecture Group w Polsko-Japońskiej Akademii Technik Komputerowych! Agenda zostanie wkrótce ogłoszona.",
+      "en": "Join us for the ninth Warsaw Software Architecture Group meetup at the Polish-Japanese Academy of Information Technology! Agenda to be announced soon."
+    },
+    "longDescription": {
+      "pl": "Zapraszamy na dziewiąte spotkanie WSAG, ponownie goszczone w Polsko-Japońskiej Akademii Technik Komputerowych! Szczegóły dotyczące agendy i prelegentów zostaną ogłoszone wkrótce.\n\nTo świetna okazja, aby poznać innych architektów oprogramowania, dzielić się wiedzą i kontynuować budowanie naszej lokalnej społeczności architektury.",
+      "en": "Join us for the ninth WSAG meetup, once again hosted at the Polish-Japanese Academy of Information Technology! Details about the agenda and speakers will be announced soon.\n\nThis is a great opportunity to meet fellow software architects, share knowledge, and continue building our local architecture community."
+    },
+    "location": {
+      "name": "Polsko-Japońska Akademia Technik Komputerowych",
+      "address": "Koszykowa 86",
+      "zipCode": "02-008",
+      "city": "Warsaw, Poland",
+      "mapUrl": "",
+      "directions": "Details to be announced",
+      "parking": "Details to be announced",
+      "accessibility": "Details to be announced"
+    },
+    "speakers": [],
+    "presentations": [],
+    "agenda": [],
+    "maxAttendees": 150,
+    "registeredAttendees": 0,
+    "registrationUrl": "https://pragmaticmeet.com/en/events/wsag-9",
+    "status": "upcoming",
+    "venuePartner": {
+      "name": "Polsko-Japońska Akademia Technik Komputerowych",
+      "url": "https://pja.edu.pl/",
+      "logo": "/images/pj-logo.png"
+    },
+    "tags": [
+      "architecture",
+      "community",
+      "networking"
+    ],
+    "prerequisites": [],
+    "targetAudience": [
+      "Software Architects",
+      "Senior Developers",
+      "Tech Leads",
+      "Engineering Managers"
+    ]
   }
 ]
