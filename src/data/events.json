@@ -70,22 +70,34 @@
         "resources": [
           {
             "type": "recording",
-            "title": { "pl": "Nagranie", "en": "Recording" },
+            "title": {
+              "pl": "Nagranie",
+              "en": "Recording"
+            },
             "url": "https://youtu.be/eLx0FYplzUw"
           },
           {
             "type": "slides",
-            "title": { "pl": "Slajdy", "en": "Slides" },
+            "title": {
+              "pl": "Slajdy",
+              "en": "Slides"
+            },
             "url": "https://www.canva.com/design/DAG-GQblNzw/qB2bGPx3UXiZQMVxTRYBMQ/view"
           },
           {
             "type": "template",
-            "title": { "pl": "Szablon RACI", "en": "RACI Template" },
+            "title": {
+              "pl": "Szablon RACI",
+              "en": "RACI Template"
+            },
             "url": "https://miro.com/templates/raci-matrix-template/"
           },
           {
             "type": "template",
-            "title": { "pl": "Szablon Business Capability Canvas", "en": "Business Capability Canvas Template" },
+            "title": {
+              "pl": "Szablon Business Capability Canvas",
+              "en": "Business Capability Canvas Template"
+            },
             "url": "https://miro.com/templates/business-capability-canvas-template/"
           }
         ]
@@ -108,17 +120,26 @@
         "resources": [
           {
             "type": "recording",
-            "title": { "pl": "Nagranie", "en": "Recording" },
+            "title": {
+              "pl": "Nagranie",
+              "en": "Recording"
+            },
             "url": "https://youtu.be/RIp9T8E3juc"
           },
           {
             "type": "book",
-            "title": { "pl": "Książka", "en": "Book" },
+            "title": {
+              "pl": "Książka",
+              "en": "Book"
+            },
             "url": "https://www.amazon.pl/dp/1492180742"
           },
           {
             "type": "slides",
-            "title": { "pl": "Slajdy", "en": "Slides" },
+            "title": {
+              "pl": "Slajdy",
+              "en": "Slides"
+            },
             "url": "/assets/2026_01/Pi_kny kod to za ma_o_fixed.pptx"
           }
         ]
@@ -141,7 +162,10 @@
         "resources": [
           {
             "type": "recording",
-            "title": { "pl": "Nagranie", "en": "Recording" },
+            "title": {
+              "pl": "Nagranie",
+              "en": "Recording"
+            },
             "url": "https://youtu.be/Cs9c7YW3Rnc"
           }
         ]
@@ -158,7 +182,9 @@
         "time": "18:10",
         "title": "Capability Mapping & Raci / Daci Matrix - w praktyce",
         "speaker": "Kamil Kiełbasa",
-        "speakerIds": ["kamil-kielbasa"],
+        "speakerIds": [
+          "kamil-kielbasa"
+        ],
         "presentationId": "capability-mapping-raci-daci",
         "description": "",
         "type": "presentation"
@@ -167,7 +193,9 @@
         "time": "19:05",
         "title": "Piękny kod to za mało – mój kurs startupowy za 100 tys. zł",
         "speaker": "Maciej Kacprzak",
-        "speakerIds": ["maciej-kacprzak"],
+        "speakerIds": [
+          "maciej-kacprzak"
+        ],
         "presentationId": "piekny-kod-to-za-malo",
         "description": "",
         "type": "presentation"
@@ -176,7 +204,9 @@
         "time": "20:00",
         "title": "Zapomniana sztuka myślenia. Jak uczyć się z LLMami, aby nie zwiększać cognitive debt?",
         "speaker": "Tomasz Ducin",
-        "speakerIds": ["tomasz-ducin"],
+        "speakerIds": [
+          "tomasz-ducin"
+        ],
         "presentationId": "techniki-efektywnej-nauki-z-llmami",
         "description": "",
         "type": "presentation"
@@ -197,7 +227,11 @@
       "url": "https://www.circlek.pl/",
       "logo": "/assets/2026_01/logo-full-color-rgb_logo-Warsaw.png"
     },
-    "tags": ["architecture", "community", "networking"],
+    "tags": [
+      "architecture",
+      "community",
+      "networking"
+    ],
     "prerequisites": [],
     "targetAudience": [
       "Software Architects",
@@ -277,7 +311,10 @@
         "resources": [
           {
             "type": "recording",
-            "title": { "pl": "Nagranie", "en": "Recording" },
+            "title": {
+              "pl": "Nagranie",
+              "en": "Recording"
+            },
             "url": "https://www.youtube.com/watch?v=UBSy7qyMyPA"
           }
         ]
@@ -300,7 +337,10 @@
         "resources": [
           {
             "type": "recording",
-            "title": { "pl": "Nagranie", "en": "Recording" },
+            "title": {
+              "pl": "Nagranie",
+              "en": "Recording"
+            },
             "url": "https://www.youtube.com/watch?v=83UTFtZUggM"
           }
         ]
@@ -339,7 +379,9 @@
         "time": "18:10",
         "title": "Ocena cyberbezpieczeństwa jako część CI/CD",
         "speaker": "Mateusz Konicki",
-        "speakerIds": ["mateusz-konicki"],
+        "speakerIds": [
+          "mateusz-konicki"
+        ],
         "presentationId": "ocena-cyberbezpieczenstwa-cicd",
         "description": "",
         "type": "presentation"
@@ -348,7 +390,9 @@
         "time": "19:05",
         "title": "HTMX: Aplikacje webowe dla zmęczonych.",
         "speaker": "Marcin Golenia",
-        "speakerIds": ["marcin-golenia"],
+        "speakerIds": [
+          "marcin-golenia"
+        ],
         "presentationId": "htmx-aplikacje-webowe",
         "description": "",
         "type": "presentation"
@@ -357,7 +401,9 @@
         "time": "20:00",
         "title": "Zapomniana sztuka myślenia. Jak uczyć się z LLMami, aby nie zwiększać cognitive debt?",
         "speaker": "Tomasz Ducin",
-        "speakerIds": ["tomasz-ducin"],
+        "speakerIds": [
+          "tomasz-ducin"
+        ],
         "presentationId": "zapomniana-sztuka-myslenia",
         "description": "",
         "type": "presentation"
@@ -377,7 +423,11 @@
       "url": "https://wwsi.edu.pl/",
       "logo": "/images/partners/wwsi_logo.png"
     },
-    "tags": ["architecture", "community", "networking"],
+    "tags": [
+      "architecture",
+      "community",
+      "networking"
+    ],
     "prerequisites": [],
     "targetAudience": [
       "Software Architects",
@@ -477,7 +527,9 @@
         "time": "18:00",
         "title": "Gdzie głupieją mądre algorytmy - o etyce w AI",
         "speaker": "Tomasz Zgliczyński-Cuber",
-        "speakerIds": ["tomasz-zgliczynski-cuber"],
+        "speakerIds": [
+          "tomasz-zgliczynski-cuber"
+        ],
         "presentationId": "gdzie-glupieja-madre-algorytmy",
         "description": "",
         "type": "presentation"
@@ -486,7 +538,9 @@
         "time": "19:05",
         "title": "Zapomniana sztuka myślenia. Jak uczyć się z LLMami, aby nie zwiększać cognitive debt?",
         "speaker": "Tomasz Ducin",
-        "speakerIds": ["tomasz-ducin"],
+        "speakerIds": [
+          "tomasz-ducin"
+        ],
         "presentationId": "zapomniana-sztuka-myslenia",
         "description": "",
         "type": "presentation"
@@ -507,7 +561,11 @@
       "url": "https://pja.edu.pl/",
       "logo": "/images/pj-logo.png"
     },
-    "tags": ["architecture", "community", "networking"],
+    "tags": [
+      "architecture",
+      "community",
+      "networking"
+    ],
     "prerequisites": [],
     "targetAudience": [
       "Software Architects",
@@ -576,7 +634,7 @@
           "en": "Software Architecture: The Bad Parts"
         },
         "description": {
-          "pl": "W tej prezentacji pokażę, jak tak zwane dobre praktyki w połączeniu z powierzchownym rozumieniem domeny mogą tworzyć niebezpieczną iluzję kontroli.\n\nNa podstawie rzeczywistego przykładu z domeny Connected Health — konkretnie alertowania o ryzyku raka wątroby — pokażę, jak podejście noun-driven prowadzi do nadmiernego sprzężenia i kruchych systemów.\n\nOmówię typowe pułapki architektoniczne, takie jak naruszenia kontekstu, sprzężenie z bazą danych, wyciek domeny i mieszanie modeli odczytu i zapisu. Podważę też popularne przekonanie branżowe, wyjaśniając, dlaczego Clean/Hexagonal Architecture nie jest architekturą.\n\nUczestnicy wyjdą z głębszym rozumieniem tego, jak decyzje projektowe kształtują zachowanie systemu — i jak łatwo „najlepsze praktyki\u201d mogą zawieść, gdy domena jest źle rozumiana.",
+          "pl": "W tej prezentacji pokażę, jak tak zwane dobre praktyki w połączeniu z powierzchownym rozumieniem domeny mogą tworzyć niebezpieczną iluzję kontroli.\n\nNa podstawie rzeczywistego przykładu z domeny Connected Health — konkretnie alertowania o ryzyku raka wątroby — pokażę, jak podejście noun-driven prowadzi do nadmiernego sprzężenia i kruchych systemów.\n\nOmówię typowe pułapki architektoniczne, takie jak naruszenia kontekstu, sprzężenie z bazą danych, wyciek domeny i mieszanie modeli odczytu i zapisu. Podważę też popularne przekonanie branżowe, wyjaśniając, dlaczego Clean/Hexagonal Architecture nie jest architekturą.\n\nUczestnicy wyjdą z głębszym rozumieniem tego, jak decyzje projektowe kształtują zachowanie systemu — i jak łatwo „najlepsze praktyki” mogą zawieść, gdy domena jest źle rozumiana.",
           "en": "In this talk, I will demonstrate how so-called good practices combined with a shallow understanding of the domain can create a dangerous illusion of control.\n\nUsing a real-world example from the Connected Health domain—specifically, liver cancer risk alerting—I will show how a noun-driven design approach leads to excessive coupling and brittle systems.\n\nThe talk will explore common architectural pitfalls such as context violations, database coupling, domain leakage, and mixing read and write models. I will also challenge a popular industry belief by explaining why Clean/Hexagonal Architecture is not an architecture.\n\nAttendees will leave with a clearer understanding of how design decisions shape system behavior—and how easily \"best practices\" can fail when the domain is misunderstood."
         },
         "speakerId": "artur-wojnar",
@@ -592,7 +650,7 @@
           "en": "How We Waste Time Building APIs — and the Moment DDD Starts to Matter"
         },
         "description": {
-          "pl": "Czy Domain-Driven Design to tylko teoretyczna koncepcja?\n\nW okopach większość zespołów nie zaczyna od Bounded Contexts czy Context Maps. Zaczyna od ticketów, kryteriów akceptacji i... konieczności dostarczenia API!\n\nZ czasem API rosną. Pojawiają się nowi konsumenci. Powstają współdzielone zasoby. I nagle zespoły zmagają się z pytaniami takimi jak:\n- Kto jest właścicielem tego API?\n- Czy możemy zmienić ten kontrakt?\n- Dlaczego każda mała decyzja wymaga architekta?\n\nW tej prezentacji opowiem historię o tym, jak zespoły w sposób naturalny rozwijają API w chaosie — i dlaczego nie jest to porażka.\n\nPokażę moment, w którym Domain-Driven Design przestaje być teoretyczny i staje się praktycznym narzędziem do podejmowania decyzji: pomagającym zespołom rozumować o relacjach między bounded contexts, własności i autonomii — bez „robienia pełnego DDD\u201d.",
+          "pl": "Czy Domain-Driven Design to tylko teoretyczna koncepcja?\n\nW okopach większość zespołów nie zaczyna od Bounded Contexts czy Context Maps. Zaczyna od ticketów, kryteriów akceptacji i... konieczności dostarczenia API!\n\nZ czasem API rosną. Pojawiają się nowi konsumenci. Powstają współdzielone zasoby. I nagle zespoły zmagają się z pytaniami takimi jak:\n- Kto jest właścicielem tego API?\n- Czy możemy zmienić ten kontrakt?\n- Dlaczego każda mała decyzja wymaga architekta?\n\nW tej prezentacji opowiem historię o tym, jak zespoły w sposób naturalny rozwijają API w chaosie — i dlaczego nie jest to porażka.\n\nPokażę moment, w którym Domain-Driven Design przestaje być teoretyczny i staje się praktycznym narzędziem do podejmowania decyzji: pomagającym zespołom rozumować o relacjach między bounded contexts, własności i autonomii — bez „robienia pełnego DDD”.",
           "en": "Is Domain-Driven Design just a theoretical concept?\n\nWhen working in the trenches, most teams don't start with Bounded Contexts or Context Maps. They start with tickets, acceptance criteria, and... the need to ship APIs!\n\nOver time, APIs grow. New consumers appear. Shared resources emerge. And suddenly teams struggle with questions like:\n- Who owns this API?\n- Can we change this contract?\n- Why does every small decision require an architect?\n\nIn this talk, I'll tell the story of how teams naturally evolve APIs in chaos — and why this is not a failure.\n\nI'll show the moment when Domain-Driven Design stops being theoretical and becomes a practical decision-making tool: helping teams reason about relationships between bounded contexts, ownership, and autonomy — without \"doing full DDD\"."
         },
         "speakerId": "jacek-milewski",
@@ -615,7 +673,11 @@
         "duration": 40,
         "level": "intermediate",
         "language": "pl",
-        "tags": ["architecture", "lessons learned", "experience"],
+        "tags": [
+          "architecture",
+          "lessons learned",
+          "experience"
+        ],
         "resources": []
       }
     ],
@@ -630,7 +692,9 @@
         "time": "18:00",
         "title": "Software Architecture: The Bad Parts",
         "speaker": "Artur Wojnar",
-        "speakerIds": ["artur-wojnar"],
+        "speakerIds": [
+          "artur-wojnar"
+        ],
         "presentationId": "software-architecture-bad-parts",
         "description": "",
         "type": "presentation"
@@ -639,7 +703,9 @@
         "time": "18:50",
         "title": "How We Waste Time Building APIs — and the Moment DDD Starts to Matter",
         "speaker": "Jacek Milewski",
-        "speakerIds": ["jacek-milewski"],
+        "speakerIds": [
+          "jacek-milewski"
+        ],
         "presentationId": "how-we-waste-time-building-apis",
         "description": "",
         "type": "presentation"
@@ -648,7 +714,9 @@
         "time": "20:00",
         "title": "Blizny zamiast certyfikatów. Pole bitwy jako szkoła architektury.",
         "speaker": "Maciej Jędrzejewski",
-        "speakerIds": ["maciej-jedrzejewski"],
+        "speakerIds": [
+          "maciej-jedrzejewski"
+        ],
         "presentationId": "blizny-zamiast-certyfikatow",
         "description": "",
         "type": "presentation"
@@ -672,7 +740,11 @@
       "pl": "Ze względu na politykę bezpieczeństwa Circle K Business Centre, organizatorzy są zobowiązani do przekazania imion i nazwisk uczestników. Rejestrując się na wydarzenie, wyrażasz zgodę na udostępnienie Twojego imienia i nazwiska w celu uzyskania dostępu do budynku.",
       "en": "Due to the security policy of Circle K Business Centre, organizers are required to provide first names and surnames of participants. By registering for this event, you consent to sharing your name for building access purposes."
     },
-    "tags": ["architecture", "community", "networking"],
+    "tags": [
+      "architecture",
+      "community",
+      "networking"
+    ],
     "prerequisites": [],
     "targetAudience": [
       "Software Architects",
@@ -712,7 +784,11 @@
     "maxAttendees": 0,
     "registeredAttendees": 0,
     "status": "cancelled",
-    "tags": ["architecture", "community", "networking"],
+    "tags": [
+      "architecture",
+      "community",
+      "networking"
+    ],
     "prerequisites": [],
     "targetAudience": [
       "Software Architects",
@@ -796,7 +872,11 @@
         "duration": 40,
         "level": "intermediate",
         "language": "pl",
-        "tags": ["AI", "Stable Diffusion", "machine learning"],
+        "tags": [
+          "AI",
+          "Stable Diffusion",
+          "machine learning"
+        ],
         "resources": []
       }
     ],
@@ -805,7 +885,9 @@
         "time": "18:00",
         "title": "Jak starzeje się przyrostowy model oprogramowania i czemu nikt już o nim nie mówi, od kiedy mamy scruma?",
         "speaker": "Ola Kucharska",
-        "speakerIds": ["ola-kucharska"],
+        "speakerIds": [
+          "ola-kucharska"
+        ],
         "presentationId": "starzenie-sie-modelu-przyrostowego",
         "description": "",
         "type": "presentation"
@@ -814,7 +896,9 @@
         "time": "18:50",
         "title": "Od selfie do AI: Jak nauczyć Stable Diffusion swojej twarzy i nie tylko",
         "speaker": "Piotr Stapp",
-        "speakerIds": ["piotr-stapp"],
+        "speakerIds": [
+          "piotr-stapp"
+        ],
         "presentationId": "od-selfie-do-ai-stable-diffusion",
         "description": "",
         "type": "presentation"
@@ -840,7 +924,11 @@
       "url": "https://pja.edu.pl/",
       "logo": "/images/pj-logo.png"
     },
-    "tags": ["architecture", "community", "networking"],
+    "tags": [
+      "architecture",
+      "community",
+      "networking"
+    ],
     "prerequisites": [],
     "targetAudience": [
       "Software Architects",
@@ -920,7 +1008,10 @@
         "resources": [
           {
             "type": "recording",
-            "title": { "pl": "Nagranie", "en": "Recording" },
+            "title": {
+              "pl": "Nagranie",
+              "en": "Recording"
+            },
             "url": "https://www.youtube.com/watch?v=ZgCilyX-B60"
           }
         ]
@@ -939,11 +1030,18 @@
         "duration": 40,
         "level": "intermediate",
         "language": "pl",
-        "tags": ["AI", "LLM", "context engineering"],
+        "tags": [
+          "AI",
+          "LLM",
+          "context engineering"
+        ],
         "resources": [
           {
             "type": "recording",
-            "title": { "pl": "Nagranie", "en": "Recording" },
+            "title": {
+              "pl": "Nagranie",
+              "en": "Recording"
+            },
             "url": "https://www.youtube.com/watch?v=Q3OStyBL_c0"
           }
         ]
@@ -962,11 +1060,18 @@
         "duration": 40,
         "level": "intermediate",
         "language": "pl",
-        "tags": ["security", "authorization", "RBAC"],
+        "tags": [
+          "security",
+          "authorization",
+          "RBAC"
+        ],
         "resources": [
           {
             "type": "recording",
-            "title": { "pl": "Nagranie", "en": "Recording" },
+            "title": {
+              "pl": "Nagranie",
+              "en": "Recording"
+            },
             "url": "https://www.youtube.com/watch?v=l2Jhc02Yqes"
           }
         ]
@@ -977,7 +1082,9 @@
         "time": "18:00",
         "title": "Will „Magic: the Gathering” Save IT?",
         "speaker": "Michał (Hans) Hadrysiak",
-        "speakerIds": ["michal-hadrysiak"],
+        "speakerIds": [
+          "michal-hadrysiak"
+        ],
         "presentationId": "will-magic-the-gathering-save-it",
         "description": "",
         "type": "presentation"
@@ -986,7 +1093,9 @@
         "time": "18:50",
         "title": "Context Engineering Patterns",
         "speaker": "Tomasz Ducin",
-        "speakerIds": ["tomasz-ducin"],
+        "speakerIds": [
+          "tomasz-ducin"
+        ],
         "presentationId": "context-engineering-patterns",
         "description": "",
         "type": "presentation"
@@ -995,7 +1104,9 @@
         "time": "19:40",
         "title": "When RBAC Is Not Enough?",
         "speaker": "Kamil Kiełbasa",
-        "speakerIds": ["kamil-kielbasa"],
+        "speakerIds": [
+          "kamil-kielbasa"
+        ],
         "presentationId": "when-rbac-is-not-enough",
         "description": "",
         "type": "presentation"
@@ -1016,9 +1127,18 @@
       "url": "https://jit.team/",
       "logo": "/images/partners/Logo_jit_team_2025_black-28_1.png"
     },
-    "tags": ["architecture", "community", "networking"],
+    "tags": [
+      "architecture",
+      "community",
+      "networking"
+    ],
     "prerequisites": [],
-    "targetAudience": ["Software Architects", "Senior Developers", "Tech Leads", "Engineering Managers"]
+    "targetAudience": [
+      "Software Architects",
+      "Senior Developers",
+      "Tech Leads",
+      "Engineering Managers"
+    ]
   },
   {
     "id": "2026-10-21",
@@ -1219,12 +1339,12 @@
     "time": "18:00",
     "endTime": "21:00",
     "description": {
-      "pl": "Dołącz do dziewiątego spotkania Warsaw Software Architecture Group w Polsko-Japońskiej Akademii Technik Komputerowych! Agenda zostanie wkrótce ogłoszona.",
-      "en": "Join us for the ninth Warsaw Software Architecture Group meetup at the Polish-Japanese Academy of Information Technology! Agenda to be announced soon."
+      "pl": "Dołącz do dziewiątego spotkania Warsaw Software Architecture Group w Polsko-Japońskiej Akademii Technik Komputerowych! Trzy prelekcje: wzorce z open source dla pracy z AI, skalowalna architektura aplikacji mobilnych oraz metryki DORA jako narzędzie budowania kultury zaufania.",
+      "en": "Join us for the ninth Warsaw Software Architecture Group meetup at the Polish-Japanese Academy of Information Technology! Three talks: open-source patterns for working with AI, scalable mobile app architecture, and DORA metrics as a tool for building a culture of trust."
     },
     "longDescription": {
-      "pl": "Zapraszamy na dziewiąte spotkanie WSAG, ponownie goszczone w Polsko-Japońskiej Akademii Technik Komputerowych! Szczegóły dotyczące agendy i prelegentów zostaną ogłoszone wkrótce.\n\nTo świetna okazja, aby poznać innych architektów oprogramowania, dzielić się wiedzą i kontynuować budowanie naszej lokalnej społeczności architektury.",
-      "en": "Join us for the ninth WSAG meetup, once again hosted at the Polish-Japanese Academy of Information Technology! Details about the agenda and speakers will be announced soon.\n\nThis is a great opportunity to meet fellow software architects, share knowledge, and continue building our local architecture community."
+      "pl": "Zapraszamy na dziewiąte spotkanie WSAG, ponownie goszczone w Polsko-Japońskiej Akademii Technik Komputerowych!\n\nHleb Sukrystsik pokaże, jak nie wymyślać koła od nowa i korzystać ze sprawdzonych wzorców open source do pracy z AI w dużym zespole (prelekcja po angielsku). Michał Pobuta opowie, jak projektować aplikacje mobilne, które rosną bez przepisywania, na przykładach z .NET MAUI. Marcin Kowalczyk pokaże, jak zbudować kulturę zaufania i ciągłego doskonalenia wokół metryk DORA.\n\nTo świetna okazja, aby poznać innych architektów oprogramowania, dzielić się wiedzą i kontynuować budowanie naszej lokalnej społeczności architektury.",
+      "en": "Join us for the ninth WSAG meetup, once again hosted at the Polish-Japanese Academy of Information Technology!\n\nHleb Sukrystsik will show how to stop reinventing the wheel and use proven open-source patterns for working with AI in a large team (talk in English). Michał Pobuta will explain how to design mobile apps that grow without a rewrite, with examples from .NET MAUI. Marcin Kowalczyk will show how to build a culture of trust and continuous improvement around DORA metrics.\n\nThis is a great opportunity to meet fellow software architects, share knowledge, and continue building our local architecture community."
     },
     "location": {
       "name": "Polsko-Japońska Akademia Technik Komputerowych",
@@ -1236,9 +1356,144 @@
       "parking": "Details to be announced",
       "accessibility": "Details to be announced"
     },
-    "speakers": [],
-    "presentations": [],
-    "agenda": [],
+    "speakers": [
+      {
+        "id": "hleb-sukrystsik",
+        "name": "Hleb Sukrystsik",
+        "role": "",
+        "company": "",
+        "bio": "",
+        "linkedin": "",
+        "photo": "/images/speakers/meetup-9/hleb.jpeg"
+      },
+      {
+        "id": "michal-pobuta",
+        "name": "Michał Pobuta",
+        "role": "",
+        "company": "",
+        "bio": "",
+        "linkedin": "",
+        "photo": "/images/speakers/meetup-9/michal.jpeg"
+      },
+      {
+        "id": "marcin-kowalczyk",
+        "name": "Marcin Kowalczyk",
+        "role": "",
+        "company": "",
+        "bio": "",
+        "linkedin": "",
+        "photo": "/images/speakers/meetup-9/marcin.png"
+      }
+    ],
+    "presentations": [
+      {
+        "id": "dont-reinvent-the-wheel-open-source-patterns",
+        "title": {
+          "pl": "Nie wymyślaj koła od nowa: wzorce z open source",
+          "en": "Don't Reinvent the Wheel: Patterns from Open Source"
+        },
+        "description": {
+          "pl": "Dobre praktyki nie muszą być wymyślane od zera. Open source od lat rozwija skille dla AI, czyli sprawdzone instrukcje do dokumentowania, planowania i pracy z kodem. W tym wystąpieniu omówię najważniejsze z nich i pokażę, jak adaptować je w dużym, enterprise'owym zespole.",
+          "en": "Good practices don't have to be invented from scratch. For years the open-source community has been developing skills for AI: proven instructions for documenting, planning and working with code. In this talk I'll go through the most important ones and show how to adapt them in a large enterprise team."
+        },
+        "speakerId": "hleb-sukrystsik",
+        "duration": 40,
+        "level": "intermediate",
+        "language": "en",
+        "tags": [
+          "AI",
+          "open source",
+          "developer experience",
+          "enterprise"
+        ],
+        "resources": []
+      },
+      {
+        "id": "monolith-in-your-pocket-scalable-mobile-architecture",
+        "title": {
+          "pl": "Monolit w kieszeni: skalowalna architektura aplikacji mobilnych",
+          "en": "A Monolith in Your Pocket: Scalable Mobile App Architecture"
+        },
+        "description": {
+          "pl": "Aplikacja mobilna to zwykle monolit: jeden projekt, jeden release i wiele osób w tym samym kodzie. Na początku to nie przeszkadza, ale z każdą nową funkcją i każdą nową osobą w zespole zmiany kosztują coraz więcej. Pokażę, jak projektować aplikacje mobilne, które rosną bez przepisywania i pozwalają zespołom pracować niezależnie. Na przykładach z .NET MAUI, prosto z produkcji.",
+          "en": "A mobile app is usually a monolith: one project, one release and many people in the same codebase. At first that's fine, but with every new feature and every new team member, changes cost more and more. I'll show how to design mobile apps that grow without a rewrite and let teams work independently. With examples from .NET MAUI, straight from production."
+        },
+        "speakerId": "michal-pobuta",
+        "duration": 40,
+        "level": "intermediate",
+        "language": "pl",
+        "tags": [
+          "mobile",
+          "architecture",
+          ".NET MAUI",
+          "modularity"
+        ],
+        "resources": []
+      },
+      {
+        "id": "metrics-are-people-not-numbers-dora",
+        "title": {
+          "pl": "Metryki to ludzie, nie cyfry: jak zbudować kulturę zaufania i ciągłego doskonalenia wokół metryk DORA",
+          "en": "Metrics Are People, Not Numbers: Building a Culture of Trust and Continuous Improvement Around DORA Metrics"
+        },
+        "description": {
+          "pl": "Szczegóły prelekcji ogłosimy wkrótce.",
+          "en": "Talk details will be announced soon."
+        },
+        "speakerId": "marcin-kowalczyk",
+        "duration": 40,
+        "level": "intermediate",
+        "language": "pl",
+        "tags": [
+          "DORA",
+          "metrics",
+          "engineering culture",
+          "continuous improvement"
+        ],
+        "resources": []
+      }
+    ],
+    "agenda": [
+      {
+        "time": "18:00",
+        "title": "Nie wymyślaj koła od nowa: wzorce z open source",
+        "speaker": "Hleb Sukrystsik",
+        "speakerIds": [
+          "hleb-sukrystsik"
+        ],
+        "presentationId": "dont-reinvent-the-wheel-open-source-patterns",
+        "description": "",
+        "type": "presentation"
+      },
+      {
+        "time": "18:50",
+        "title": "Monolit w kieszeni: skalowalna architektura aplikacji mobilnych",
+        "speaker": "Michał Pobuta",
+        "speakerIds": [
+          "michal-pobuta"
+        ],
+        "presentationId": "monolith-in-your-pocket-scalable-mobile-architecture",
+        "description": "",
+        "type": "presentation"
+      },
+      {
+        "time": "19:40",
+        "title": "Metryki to ludzie, nie cyfry: jak zbudować kulturę zaufania i ciągłego doskonalenia wokół metryk DORA",
+        "speaker": "Marcin Kowalczyk",
+        "speakerIds": [
+          "marcin-kowalczyk"
+        ],
+        "presentationId": "metrics-are-people-not-numbers-dora",
+        "description": "",
+        "type": "presentation"
+      },
+      {
+        "time": "20:30",
+        "title": "Closing & Networking",
+        "description": "Final Q&A and networking",
+        "type": "networking"
+      }
+    ],
     "maxAttendees": 150,
     "registeredAttendees": 0,
     "registrationUrl": "https://pragmaticmeet.com/en/events/wsag-9",
@@ -1250,8 +1505,10 @@
     },
     "tags": [
       "architecture",
-      "community",
-      "networking"
+      "AI",
+      "mobile",
+      "DORA",
+      "community"
     ],
     "prerequisites": [],
     "targetAudience": [
