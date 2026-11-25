@@ -1497,7 +1497,7 @@
     "maxAttendees": 150,
     "registeredAttendees": 0,
     "registrationUrl": "https://pragmaticmeet.com/en/events/wsag-9",
-    "status": "upcoming",
+    "status": "completed",
     "venuePartner": {
       "name": "Polsko-Japońska Akademia Technik Komputerowych",
       "url": "https://pja.edu.pl/",
@@ -1509,6 +1509,57 @@
       "mobile",
       "DORA",
       "community"
+    ],
+    "prerequisites": [],
+    "targetAudience": [
+      "Software Architects",
+      "Senior Developers",
+      "Tech Leads",
+      "Engineering Managers"
+    ]
+  },
+  {
+    "id": "2026-12-10",
+    "meetupId": 10,
+    "title": "WSAG Meetup #10",
+    "slug": "wsag-meetup-10",
+    "date": "December 10, 2026",
+    "time": "18:00",
+    "endTime": "21:00",
+    "description": {
+      "pl": "Dołącz do dziesiątego spotkania Warsaw Software Architecture Group w biurze Jit Team! Agenda zostanie wkrótce ogłoszona.",
+      "en": "Join us for the tenth Warsaw Software Architecture Group meetup at the Jit Team office! Agenda to be announced soon."
+    },
+    "longDescription": {
+      "pl": "Zapraszamy na dziesiąte spotkanie WSAG, ponownie goszczone w biurze Jit Team! Szczegóły dotyczące agendy i prelegentów zostaną ogłoszone wkrótce.\n\nTo świetna okazja, aby poznać innych architektów oprogramowania, dzielić się wiedzą i kontynuować budowanie naszej lokalnej społeczności architektury.",
+      "en": "Join us for the tenth WSAG meetup, once again hosted at the Jit Team office! Details about the agenda and speakers will be announced soon.\n\nThis is a great opportunity to meet fellow software architects, share knowledge, and continue building our local architecture community."
+    },
+    "location": {
+      "name": "Jit Team",
+      "address": "Przyokopowa 33",
+      "zipCode": "01-208",
+      "city": "Warsaw, Poland",
+      "mapUrl": "",
+      "directions": "8th floor",
+      "parking": "Details to be announced",
+      "accessibility": "Details to be announced"
+    },
+    "speakers": [],
+    "presentations": [],
+    "agenda": [],
+    "maxAttendees": 75,
+    "registeredAttendees": 0,
+    "registrationUrl": "",
+    "status": "upcoming",
+    "venuePartner": {
+      "name": "Jit Team",
+      "url": "https://jit.team/",
+      "logo": "/images/partners/Logo_jit_team_2025_black-28_1.png"
+    },
+    "tags": [
+      "architecture",
+      "community",
+      "networking"
     ],
     "prerequisites": [],
     "targetAudience": [
